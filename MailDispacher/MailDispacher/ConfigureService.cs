@@ -1,4 +1,5 @@
 ﻿using Topshelf;
+using Topshelf.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,8 @@ namespace MailDispacher
         {
             HostFactory.Run(configure =>
             {
+                configure.UseLog4Net("..\\..\\App.config");
+                HostLogger.Get<Program>().Info("Servizio in fase di avvio");
                 configure.Service<WindowsService>(service =>
                 {
                     service.ConstructUsing(s => new WindowsService());
@@ -24,7 +27,11 @@ namespace MailDispacher
                 configure.SetServiceName("MetalMailDispacher");
                 configure.SetDisplayName("MetalMailDispacher");
                 configure.SetDescription("Servizio email dispacher di Metalplus");
+                HostLogger.Get<Program>().Info("Servizio avviato");
             });
+
+            var exitCode = (int)Convert.ChangeType(rc, rc.GetTypeCode());
+            Environment.ExitCode = exitCode;
         }
     }
 }
