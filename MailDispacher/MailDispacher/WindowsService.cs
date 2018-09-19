@@ -6,11 +6,16 @@ using System.Threading.Tasks;
 
 namespace MailDispacher
 {
-    class Program
+    public class WindowsService
     {
-        static void Main(string[] args)
+        public void Start()
         {
-            ConfigureService.Configure();
+
+        }
+
+        public void Stop()
+        {
+
         }
     }
 }
