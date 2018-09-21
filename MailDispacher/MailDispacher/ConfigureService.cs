@@ -12,23 +12,23 @@ namespace MailDispacher
     {
         internal static void Configure()
         {
-            HostFactory.Run(configure =>
-            {
-                configure.UseLog4Net("..\\..\\App.config");
-                HostLogger.Get<Program>().Info("Servizio in fase di avvio");
-                configure.Service<WindowsService>(service =>
-                {
-                    service.ConstructUsing(s => new WindowsService());
-                    service.WhenStarted(s => s.Start());
-                    service.WhenStopped(s => s.Stop());
-                });
+            var rc = HostFactory.Run(configure =>
+              {
+                  configure.UseLog4Net("..\\..\\App.config");
+                  HostLogger.Get<Program>().Info("Servizio in fase di avvio");
+                  configure.Service<WindowsService>(service =>
+                  {
+                      service.ConstructUsing(s => new WindowsService());
+                      service.WhenStarted(s => s.Start());
+                      service.WhenStopped(s => s.Stop());
+                  });
 
-                configure.RunAsLocalSystem();
-                configure.SetServiceName("MetalMailDispacher");
-                configure.SetDisplayName("MetalMailDispacher");
-                configure.SetDescription("Servizio email dispacher di Metalplus");
-                HostLogger.Get<Program>().Info("Servizio avviato");
-            });
+                  configure.RunAsLocalSystem();
+                  configure.SetServiceName("MetalMailDispacher");
+                  configure.SetDisplayName("MetalMailDispacher");
+                  configure.SetDescription("Servizio email dispacher di Metalplus");
+                  HostLogger.Get<Program>().Info("Servizio avviato");
+              });
 
             var exitCode = (int)Convert.ChangeType(rc, rc.GetTypeCode());
             Environment.ExitCode = exitCode;
