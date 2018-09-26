@@ -28,6 +28,7 @@ namespace MailDispacher
                   configure.SetDisplayName("MetalMailDispacher");
                   configure.SetDescription("Servizio email dispacher di Metalplus");
                   HostLogger.Get<Program>().Info("Servizio avviato");
+                  configure.StartAutomatically();
               });
 
             var exitCode = (int)Convert.ChangeType(rc, rc.GetTypeCode());

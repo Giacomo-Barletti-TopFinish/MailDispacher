@@ -12,6 +12,6 @@ namespace MailDispacher.Entities
         public static string DA_INVIARE = "DIN";
         public static string ERRORE = "ERR";
         public static string INVIATA = "INV";
-        public static string RIPROVARE = "RIP";
+        public static string BLOCCATA = "BLK";
     }
 }

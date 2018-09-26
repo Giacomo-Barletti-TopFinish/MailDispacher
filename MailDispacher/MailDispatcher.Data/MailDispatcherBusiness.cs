@@ -66,7 +66,7 @@ namespace MailDispatcher.Data
         public void InsertMD_LOG(decimal IdMail, string TipoOperazione, string Nota)
         {
             MailDispatcherAdapter a = new MailDispatcherAdapter(DbConnection, DbTransaction);
-            a.InsertMD_LOG(IdMail,TipoOperazione,Nota);
+            a.InsertMD_LOG(IdMail,TipoOperazione.ToUpper(),Nota.ToUpper());
         }
 
         [DataContext]

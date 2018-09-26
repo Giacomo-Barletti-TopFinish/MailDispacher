@@ -36,13 +36,39 @@ namespace MailDispatcher.Services
                 {
                     try
                     {
-                        decimal richiedente = mail.IDRICHIEDENTE;
+                        decimal idRichiedente = mail.IDRICHIEDENTE;
+
+                        if(mail.TENTATIVO==3)
+                        {
+                            bMD.InsertMD_LOG(mail.IDMAIL, "MAIL BLOCCATA", "SUPERATO IL NUMERO DI TENTATIVI AMMESSI");
+                            mail.STATO = MD_EMAIL_STATO.BLOCCATA;
+                            bMD.UpdateMailDispatcherDSTable(ds.MD_EMAIL.TableName, ds);
+                            continue;
+                        }
+
+                        MailDispatcherDS.MD_RICHIEDENTIRow richiedente = ds.MD_RICHIEDENTI.Where(x => x.IDRICHIEDENTE == idRichiedente).FirstOrDefault();
+                        if(richiedente==null)
+                        {
+                            bMD.InsertMD_LOG(mail.IDMAIL, "RICERCA RICHIEDENTE", string.Format("RICHIEDENTE {0} INESISTENTE", idRichiedente));
+                            mail.STATO = MD_EMAIL_STATO.DA_INVIARE;
+                            mail.TENTATIVO = mail.TENTATIVO + 1;
+                            bMD.UpdateMailDispatcherDSTable(ds.MD_EMAIL.TableName, ds);
+                            continue;
+                        }
 
                         List<string> destintinatariMail = (from destinatari in ds.MD_GRUPPI_DESTINATARI
                                                            join gruppi in ds.MD_GRUPPI_DESTINATARI on destinatari.IDGRUPPO equals gruppi.IDGRUPPO
                                                            join richiedenti in ds.MD_GRUPPI_RICHIEDENTI on gruppi.IDGRUPPO equals richiedenti.IDGRUPPO
-                                                           where richiedenti.IDRICHIEDENTE == richiedente
+                                                           where richiedenti.IDRICHIEDENTE == idRichiedente
                                                            select destinatari.DESTINATARIO).ToList();
+                        if (destintinatariMail.Count == 0)
+                        {
+                            bMD.InsertMD_LOG(mail.IDMAIL, "RICERCA DESTINATARI", string.Format("NESSUN DESTINATARIO PER RICHIEDENTE {0}", idRichiedente));
+                            mail.STATO = MD_EMAIL_STATO.DA_INVIARE;
+                            mail.TENTATIVO = mail.TENTATIVO + 1;
+                            bMD.UpdateMailDispatcherDSTable(ds.MD_EMAIL.TableName, ds);
+                            continue;
+                        }
 
                         MailSender sender = new MailSender();
                         string oggetto = string.Format("MAIL:{0} - {1}", mail.IDMAIL, mail.OGGETTO);
