@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="MagazzinoDS" targetNamespace="http://tempuri.org/MagazzinoDS.xsd" xmlns:mstns="http://tempuri.org/MagazzinoDS.xsd" xmlns="http://tempuri.org/MagazzinoDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ConnectionString (Settings)" PropertyReference="ApplicationSettings.MonitorServices.Entities.Properties.Settings.GlobalReference.Default.ConnectionString" Provider="System.Data.OracleClient" />
+        </Connections>
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="MagazzinoDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="MagazzinoDS" msprop:Generator_UserDSName="MagazzinoDS">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="MAGAZZINONEGATIVO" msprop:Generator_TableClassName="MAGAZZINONEGATIVODataTable" msprop:Generator_TableVarName="tableMAGAZZINONEGATIVO" msprop:Generator_TablePropName="MAGAZZINONEGATIVO" msprop:Generator_RowDeletingName="MAGAZZINONEGATIVORowDeleting" msprop:Generator_RowChangingName="MAGAZZINONEGATIVORowChanging" msprop:Generator_RowEvHandlerName="MAGAZZINONEGATIVORowChangeEventHandler" msprop:Generator_RowDeletedName="MAGAZZINONEGATIVORowDeleted" msprop:Generator_UserTableName="MAGAZZINONEGATIVO" msprop:Generator_RowChangedName="MAGAZZINONEGATIVORowChanged" msprop:Generator_RowEvArgName="MAGAZZINONEGATIVORowChangeEvent" msprop:Generator_RowClassName="MAGAZZINONEGATIVORow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IDMAGAZZ" msprop:Generator_ColumnVarNameInTable="columnIDMAGAZZ" msprop:Generator_ColumnPropNameInRow="IDMAGAZZ" msprop:Generator_ColumnPropNameInTable="IDMAGAZZColumn" msprop:Generator_UserColumnName="IDMAGAZZ">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MODELLO" msprop:Generator_ColumnVarNameInTable="columnMODELLO" msprop:Generator_ColumnPropNameInRow="MODELLO" msprop:Generator_ColumnPropNameInTable="MODELLOColumn" msprop:Generator_UserColumnName="MODELLO">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DESMAGAZZ" msprop:Generator_ColumnVarNameInTable="columnDESMAGAZZ" msprop:Generator_ColumnPropNameInRow="DESMAGAZZ" msprop:Generator_ColumnPropNameInTable="DESMAGAZZColumn" msprop:Generator_UserColumnName="DESMAGAZZ">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CODICEMAG" msprop:Generator_ColumnVarNameInTable="columnCODICEMAG" msprop:Generator_ColumnPropNameInRow="CODICEMAG" msprop:Generator_ColumnPropNameInTable="CODICEMAGColumn" msprop:Generator_UserColumnName="CODICEMAG">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DESTABMAG" msprop:Generator_ColumnVarNameInTable="columnDESTABMAG" msprop:Generator_ColumnPropNameInRow="DESTABMAG" msprop:Generator_ColumnPropNameInTable="DESTABMAGColumn" msprop:Generator_UserColumnName="DESTABMAG">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="QESI" msprop:Generator_ColumnVarNameInTable="columnQESI" msprop:Generator_ColumnPropNameInRow="QESI" msprop:Generator_ColumnPropNameInTable="QESIColumn" msprop:Generator_UserColumnName="QESI" type="xs:decimal" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{006D7C48-2A8C-4DBF-B291-25F731B7373A}</ProjectGuid>
+    <ProjectGuid>{54F8F340-7429-43A4-9848-F2B25A20D835}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MailDispatcher.Data</RootNamespace>
-    <AssemblyName>MailDispatcher.Data</AssemblyName>
+    <RootNamespace>MonitorServices.Entities</RootNamespace>
+    <AssemblyName>MonitorServices.Entities</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,13 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Oracle.ManagedDataAccess, Version=4.122.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Lib\Oracle.ManagedDataAccess.12.2.1100\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.OracleClient" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,28 +41,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MailDispatcherAdapter.cs" />
-    <Compile Include="MailDispatcherBusiness.cs" />
-    <Compile Include="MDAdapterBase.cs" />
-    <Compile Include="Core\AdapterBase.cs" />
-    <Compile Include="Core\BusinessBase.cs" />
-    <Compile Include="Core\ColumnMapAttribute.cs" />
-    <Compile Include="Core\ContextManager.cs" />
-    <Compile Include="Core\DaoExtensor.cs" />
-    <Compile Include="Core\DataContextAttribute.cs" />
-    <Compile Include="Core\Exceptions.cs" />
-    <Compile Include="MDBusinessBase.cs" />
+    <Compile Include="MagazzinoDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MagazzinoDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MailDispacher.Entities\MailDispacher.Entities.csproj">
-      <Project>{E21E9331-8AC1-432C-A463-9A59E9B1918C}</Project>
-      <Name>MailDispacher.Entities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MonitorServices.Entities\MonitorServices.Entities.csproj">
-      <Project>{54f8f340-7429-43a4-9848-f2b25a20d835}</Project>
-      <Name>MonitorServices.Entities</Name>
-    </ProjectReference>
+    <None Include="app.config" />
+    <None Include="MagazzinoDS.xsc">
+      <DependentUpon>MagazzinoDS.xsd</DependentUpon>
+    </None>
+    <None Include="MagazzinoDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MagazzinoDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="MagazzinoDS.xss">
+      <DependentUpon>MagazzinoDS.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

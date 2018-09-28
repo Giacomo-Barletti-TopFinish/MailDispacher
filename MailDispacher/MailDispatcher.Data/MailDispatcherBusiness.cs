@@ -2,6 +2,7 @@
 using MailDispatcher.Data.Core;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -63,17 +64,46 @@ namespace MailDispatcher.Data
         }
 
         [DataContext]
+        public void FillMD_ALLEGATI(MailDispatcherDS ds, decimal IDMAIL)
+        {
+            MailDispatcherAdapter a = new MailDispatcherAdapter(DbConnection, DbTransaction);
+            a.FillMD_ALLEGATI(ds, IDMAIL);
+        }
+
+
+        [DataContext]
         public void InsertMD_LOG(decimal IdMail, string TipoOperazione, string Nota)
         {
             MailDispatcherAdapter a = new MailDispatcherAdapter(DbConnection, DbTransaction);
-            a.InsertMD_LOG(IdMail,TipoOperazione.ToUpper(),Nota.ToUpper());
+            a.InsertMD_LOG(IdMail, TipoOperazione.ToUpper(), Nota.ToUpper());
         }
 
         [DataContext]
-        public void InsertMD_LOG( string Nota)
+        public void InsertMD_LOG(string Nota)
         {
             MailDispatcherAdapter a = new MailDispatcherAdapter(DbConnection, DbTransaction);
-            a.InsertMD_LOG( Nota);
+            a.InsertMD_LOG(Nota);
+        }
+
+        [DataContext(true)]
+        public decimal CreaMail(decimal idRichiedente, string oggetto, string corpo)
+        {
+            MailDispatcherAdapter a = new MailDispatcherAdapter(DbConnection, DbTransaction);
+            return a.CreaMail(idRichiedente, oggetto, corpo);
+        }
+
+        [DataContext(true)]
+        public void SottomettiEmail(decimal IDMAIL)
+        {
+            MailDispatcherAdapter a = new MailDispatcherAdapter(DbConnection, DbTransaction);
+            a.SottomettiEmail(IDMAIL);
+        }
+
+        [DataContext(true)]
+        public void AggiungiAllegato(decimal IDMAIL, string filename, MemoryStream ms)
+        {            
+            MailDispatcherAdapter a = new MailDispatcherAdapter(DbConnection, DbTransaction);
+            a.AggiungiAllegato(IDMAIL, filename, ms);
         }
     }
 }

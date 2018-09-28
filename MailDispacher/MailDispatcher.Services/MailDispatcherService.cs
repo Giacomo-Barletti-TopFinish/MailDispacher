@@ -2,6 +2,7 @@
 using MailDispatcher.Data;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
@@ -26,19 +27,20 @@ namespace MailDispatcher.Services
                 bMD.FillMD_GRUPPI_RICHIEDENTI(ds);
                 bMD.FillMD_GRUPPI_DESTINATARI(ds);
 
-
                 List<decimal> idmail = ds.MD_EMAIL.Select(x => x.IDMAIL).Distinct().ToList();
 
-                bMD.FillMD_ALLEGATI(ds, idmail);
+
 
 
                 foreach (MailDispatcherDS.MD_EMAILRow mail in ds.MD_EMAIL)
                 {
                     try
                     {
+                        ds.MD_ALLEGATI.Clear();
+                        bMD.FillMD_ALLEGATI(ds, mail.IDMAIL);
                         decimal idRichiedente = mail.IDRICHIEDENTE;
 
-                        if(mail.TENTATIVO==3)
+                        if (mail.TENTATIVO == 3)
                         {
                             bMD.InsertMD_LOG(mail.IDMAIL, "MAIL BLOCCATA", "SUPERATO IL NUMERO DI TENTATIVI AMMESSI");
                             mail.STATO = MD_EMAIL_STATO.BLOCCATA;
@@ -47,7 +49,7 @@ namespace MailDispatcher.Services
                         }
 
                         MailDispatcherDS.MD_RICHIEDENTIRow richiedente = ds.MD_RICHIEDENTI.Where(x => x.IDRICHIEDENTE == idRichiedente).FirstOrDefault();
-                        if(richiedente==null)
+                        if (richiedente == null)
                         {
                             bMD.InsertMD_LOG(mail.IDMAIL, "RICERCA RICHIEDENTE", string.Format("RICHIEDENTE {0} INESISTENTE", idRichiedente));
                             mail.STATO = MD_EMAIL_STATO.DA_INVIARE;
@@ -82,7 +84,12 @@ namespace MailDispatcher.Services
 
                         sender.AggiungiCorpoAllaMail(sb.ToString());
 
-                        string corpo = string.Format("MAIL AUTOMAT");
+                        foreach (MailDispatcherDS.MD_ALLEGATIRow allegato in ds.MD_ALLEGATI)
+                        {
+                            MemoryStream ms = new MemoryStream(allegato.FILECONTENT);
+                            sender.AggiungiAllegato(ms, allegato.FILENAME);
+                        }
+
 
                         sender.InviaMail();
 

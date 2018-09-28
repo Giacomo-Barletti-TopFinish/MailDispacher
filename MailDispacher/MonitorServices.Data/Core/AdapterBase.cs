@@ -9,7 +9,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace MailDispatcher.Data.Core
+namespace MonitorServices.Data.Core
 {
     public class AdapterBase
     {

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
 using System.Net;
+using System.IO;
 
 namespace MailDispatcher.Services
 {
@@ -42,6 +43,12 @@ namespace MailDispatcher.Services
         public void AggiungiCorpoAllaMail(string corpo)
         {
             _mail.Body = corpo;
+        }
+
+        public void AggiungiAllegato(Stream stream, string filename)
+        {
+            Attachment at = new Attachment(stream, filename);
+            _mail.Attachments.Add(at);
         }
 
         public void InviaMail()
