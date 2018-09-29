@@ -19,5 +19,11 @@ namespace MonitorServices.Data
             a.FillMagazziniNegativi(ds);
         }
 
+        [DataContext]
+        public void FillMagazziniGiacenza(MagazzinoDS ds)
+        {
+            MagazzinoAdapter a = new MagazzinoAdapter(DbConnection, DbTransaction);
+            a.FillMagazziniGiacenza(ds);
+        }
     }
 }

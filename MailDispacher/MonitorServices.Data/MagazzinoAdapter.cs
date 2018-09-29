@@ -38,5 +38,29 @@ namespace MonitorServices.Data
             }
         }
 
+        public void FillMagazziniGiacenza(MagazzinoDS ds)
+        {
+            string select = @"select  ma.idmagazz,ma.modello, ma.desmagazz,tm.CODICEMAG, tm.destabmag ,sa.qesi, SA.QTOT_DISP_ESI,GI.GIACENZA
+                                from ditta1.SALDI_GEN sa
+                                inner join gruppo.magazz ma on ma.idmagazz = sa.idmagazz
+                                inner join gruppo.tabmag tm on tm.idtabmag = sa.idtabmag
+                                INNER JOIN MONITOR_GIACENZA GI ON GI.IDMAGAZZ = MA.IDMAGAZZ
+                                where sa.QTOT_DISP_ESI <GI.GIACENZA
+
+                                union all
+
+                                select  ma.idmagazz,ma.modello, ma.desmagazz,tm.CODICEMAG, tm.destabmag ,sa.qesi, SA.QTOT_DISP_ESI,GI.GIACENZA
+                                from ditta2.SALDI_GEN sa
+                                inner join gruppo.magazz ma on ma.idmagazz = sa.idmagazz
+                                inner join gruppo.tabmag tm on tm.idtabmag = sa.idtabmag
+                                INNER JOIN MONITOR_GIACENZA GI ON GI.IDMAGAZZ = MA.IDMAGAZZ
+                                where sa.QTOT_DISP_ESI <GI.GIACENZA
+                                ";
+
+            using (DbDataAdapter da = BuildDataAdapter(select))
+            {
+                da.Fill(ds.MAGAZZINOGIACENZA);
+            }
+        }
     }
 }

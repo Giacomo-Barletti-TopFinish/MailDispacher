@@ -13,7 +13,139 @@ namespace MonitorServices.Helpers
 {
     public class ExcelHelper
     {
-        public byte[] CreaExcelMancanti(MagazzinoDS ds)
+
+        public byte[] CreaExcelMagazziniGiacenze(MagazzinoDS ds)
+        {
+            byte[] content;
+            MemoryStream ms = new MemoryStream();
+            using (SpreadsheetDocument document = SpreadsheetDocument.Create(ms, SpreadsheetDocumentType.Workbook))
+            {
+                WorkbookPart workbookPart = document.AddWorkbookPart();
+                workbookPart.Workbook = new Workbook();
+
+                WorksheetPart worksheetPart = workbookPart.AddNewPart<WorksheetPart>();
+                worksheetPart.Worksheet = new Worksheet();
+
+                // Adding style
+                WorkbookStylesPart stylePart = workbookPart.AddNewPart<WorkbookStylesPart>();
+                stylePart.Stylesheet = GenerateStylesheet();
+                stylePart.Stylesheet.Save();
+
+                // Setting up columns
+                Columns columns = new Columns(
+                        new Column // Id column
+                        {
+                            Min = 1,
+                            Max = 1,
+                            Width = 15,
+                            CustomWidth = true
+                        },
+                        new Column // Id column
+                        {
+                            Min = 2,
+                            Max = 2,
+                            Width = 20,
+                            CustomWidth = false
+                        },
+                        new Column // Id column
+                        {
+                            Min = 3,
+                            Max = 3,
+                            Width = 20,
+                            CustomWidth = true
+                        },
+                        new Column // Id column
+                        {
+                            Min = 4,
+                            Max = 4,
+                            Width = 40,
+                            CustomWidth = false
+                        },
+                        new Column // Id column
+                        {
+                            Min = 5,
+                            Max = 5,
+                            Width = 60,
+                            CustomWidth = true
+                        },
+                        new Column // Salary column
+                        {
+                            Min = 6,
+                            Max = 6,
+                            Width = 15,
+                            CustomWidth = true
+                        },
+                        new Column // Salary column
+                        {
+                            Min = 7,
+                            Max = 7,
+                            Width = 15,
+                            CustomWidth = true
+                        },
+                        new Column // Salary column
+                        {
+                            Min = 8,
+                            Max = 8,
+                            Width = 15,
+                            CustomWidth = true
+                        });
+
+                worksheetPart.Worksheet.AppendChild(columns);
+
+                Sheets sheets = workbookPart.Workbook.AppendChild(new Sheets());
+
+                Sheet sheet = new Sheet() { Id = workbookPart.GetIdOfPart(worksheetPart), SheetId = 1, Name = "Giacenze" };
+
+                sheets.Append(sheet);
+
+                workbookPart.Workbook.Save();
+
+                SheetData sheetData = worksheetPart.Worksheet.AppendChild(new SheetData());
+
+                // Constructing header
+                Row row = new Row();
+
+                row.Append(
+                    ConstructCell("IDMAGAZZ", CellValues.String, 2),
+                    ConstructCell("MOdello", CellValues.String, 2),
+                    ConstructCell("Descrizione", CellValues.String, 2),
+                    ConstructCell("Magazzino", CellValues.String, 2),
+                    ConstructCell("DescMagaz", CellValues.String, 2),
+                    ConstructCell("Esistenza", CellValues.String, 2),
+                    ConstructCell("Esistenza al netto impieghi", CellValues.String, 2),
+                    ConstructCell("Soglia giacenza", CellValues.String, 2));
+
+                // Insert the header row to the Sheet Data
+                sheetData.AppendChild(row);
+
+                foreach (MagazzinoDS.MAGAZZINOGIACENZARow elemento in ds.MAGAZZINOGIACENZA)
+                {
+                    row = new Row();
+
+                    row.Append(
+                        ConstructCell(elemento.IDMAGAZZ.ToString(), CellValues.String, 1),
+                        ConstructCell(elemento.MODELLO, CellValues.String, 1),
+                        ConstructCell(elemento.DESMAGAZZ, CellValues.String, 1),
+                        ConstructCell(elemento.CODICEMAG, CellValues.String, 1),
+                        ConstructCell(elemento.DESMAGAZZ, CellValues.String, 1),
+                        ConstructCell(elemento.QESI.ToString(), CellValues.String, 1),
+                    ConstructCell(elemento.QTOT_DISP_ESI.ToString(), CellValues.String, 1),
+                    ConstructCell(elemento.GIACENZA.ToString(), CellValues.String, 1));
+
+                    sheetData.AppendChild(row);
+                }
+
+                workbookPart.Workbook.Save();
+                document.Save();
+                document.Close();
+
+                ms.Seek(0, SeekOrigin.Begin);
+                content = ms.ToArray();
+            }
+
+            return content;
+        }
+        public byte[] CreaExcelMagazziniNegativi(MagazzinoDS ds)
         {
             byte[] content;
             MemoryStream ms = new MemoryStream();
@@ -79,7 +211,7 @@ namespace MonitorServices.Helpers
 
                 Sheets sheets = workbookPart.Workbook.AppendChild(new Sheets());
 
-                Sheet sheet = new Sheet() { Id = workbookPart.GetIdOfPart(worksheetPart), SheetId = 1, Name = "Mancanti" };
+                Sheet sheet = new Sheet() { Id = workbookPart.GetIdOfPart(worksheetPart), SheetId = 1, Name = "Negativi" };
 
                 sheets.Append(sheet);
 
