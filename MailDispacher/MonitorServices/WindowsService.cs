@@ -49,6 +49,7 @@ namespace MonitorServices
             {
                 MagazzinoMonitor mMagazzino = new MagazzinoMonitor();
                 mMagazzino.VerificaSaldiNegativi();
+                mMagazzino.VerificaGiacenze();
             }
             catch (Exception ex)
             {
