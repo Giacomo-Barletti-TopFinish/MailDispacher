@@ -642,17 +642,13 @@ namespace MonitorServices.Entities {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class MAGAZZINOGIACENZADataTable : global::System.Data.TypedTableBase<MAGAZZINOGIACENZARow> {
             
+            private global::System.Data.DataColumn columnAZIENDA;
+            
             private global::System.Data.DataColumn columnIDMAGAZZ;
             
             private global::System.Data.DataColumn columnMODELLO;
             
             private global::System.Data.DataColumn columnDESMAGAZZ;
-            
-            private global::System.Data.DataColumn columnCODICEMAG;
-            
-            private global::System.Data.DataColumn columnDESTABMAG;
-            
-            private global::System.Data.DataColumn columnQESI;
             
             private global::System.Data.DataColumn columnQTOT_DISP_ESI;
             
@@ -693,6 +689,14 @@ namespace MonitorServices.Entities {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn AZIENDAColumn {
+                get {
+                    return this.columnAZIENDA;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn IDMAGAZZColumn {
                 get {
                     return this.columnIDMAGAZZ;
@@ -712,30 +716,6 @@ namespace MonitorServices.Entities {
             public global::System.Data.DataColumn DESMAGAZZColumn {
                 get {
                     return this.columnDESMAGAZZ;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CODICEMAGColumn {
-                get {
-                    return this.columnCODICEMAG;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn DESTABMAGColumn {
-                get {
-                    return this.columnDESTABMAG;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn QESIColumn {
-                get {
-                    return this.columnQESI;
                 }
             }
             
@@ -792,15 +772,13 @@ namespace MonitorServices.Entities {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public MAGAZZINOGIACENZARow AddMAGAZZINOGIACENZARow(string IDMAGAZZ, string MODELLO, string DESMAGAZZ, string CODICEMAG, string DESTABMAG, decimal QESI, decimal QTOT_DISP_ESI, decimal GIACENZA) {
+            public MAGAZZINOGIACENZARow AddMAGAZZINOGIACENZARow(string AZIENDA, string IDMAGAZZ, string MODELLO, string DESMAGAZZ, decimal QTOT_DISP_ESI, decimal GIACENZA) {
                 MAGAZZINOGIACENZARow rowMAGAZZINOGIACENZARow = ((MAGAZZINOGIACENZARow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
+                        AZIENDA,
                         IDMAGAZZ,
                         MODELLO,
                         DESMAGAZZ,
-                        CODICEMAG,
-                        DESTABMAG,
-                        QESI,
                         QTOT_DISP_ESI,
                         GIACENZA};
                 rowMAGAZZINOGIACENZARow.ItemArray = columnValuesArray;
@@ -825,12 +803,10 @@ namespace MonitorServices.Entities {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
+                this.columnAZIENDA = base.Columns["AZIENDA"];
                 this.columnIDMAGAZZ = base.Columns["IDMAGAZZ"];
                 this.columnMODELLO = base.Columns["MODELLO"];
                 this.columnDESMAGAZZ = base.Columns["DESMAGAZZ"];
-                this.columnCODICEMAG = base.Columns["CODICEMAG"];
-                this.columnDESTABMAG = base.Columns["DESTABMAG"];
-                this.columnQESI = base.Columns["QESI"];
                 this.columnQTOT_DISP_ESI = base.Columns["QTOT_DISP_ESI"];
                 this.columnGIACENZA = base.Columns["GIACENZA"];
             }
@@ -838,27 +814,22 @@ namespace MonitorServices.Entities {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
+                this.columnAZIENDA = new global::System.Data.DataColumn("AZIENDA", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAZIENDA);
                 this.columnIDMAGAZZ = new global::System.Data.DataColumn("IDMAGAZZ", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIDMAGAZZ);
                 this.columnMODELLO = new global::System.Data.DataColumn("MODELLO", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMODELLO);
                 this.columnDESMAGAZZ = new global::System.Data.DataColumn("DESMAGAZZ", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDESMAGAZZ);
-                this.columnCODICEMAG = new global::System.Data.DataColumn("CODICEMAG", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCODICEMAG);
-                this.columnDESTABMAG = new global::System.Data.DataColumn("DESTABMAG", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDESTABMAG);
-                this.columnQESI = new global::System.Data.DataColumn("QESI", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnQESI);
                 this.columnQTOT_DISP_ESI = new global::System.Data.DataColumn("QTOT_DISP_ESI", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnQTOT_DISP_ESI);
                 this.columnGIACENZA = new global::System.Data.DataColumn("GIACENZA", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnGIACENZA);
+                this.columnAZIENDA.MaxLength = 10;
                 this.columnIDMAGAZZ.MaxLength = 10;
                 this.columnMODELLO.MaxLength = 30;
                 this.columnDESMAGAZZ.MaxLength = 100;
-                this.columnCODICEMAG.MaxLength = 10;
-                this.columnDESTABMAG.MaxLength = 50;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1082,6 +1053,22 @@ namespace MonitorServices.Entities {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string AZIENDA {
+                get {
+                    try {
+                        return ((string)(this[this.tableMAGAZZINOGIACENZA.AZIENDAColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'AZIENDA\' in table \'MAGAZZINOGIACENZA\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMAGAZZINOGIACENZA.AZIENDAColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string IDMAGAZZ {
                 get {
                     try {
@@ -1130,54 +1117,6 @@ namespace MonitorServices.Entities {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string CODICEMAG {
-                get {
-                    try {
-                        return ((string)(this[this.tableMAGAZZINOGIACENZA.CODICEMAGColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CODICEMAG\' in table \'MAGAZZINOGIACENZA\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableMAGAZZINOGIACENZA.CODICEMAGColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string DESTABMAG {
-                get {
-                    try {
-                        return ((string)(this[this.tableMAGAZZINOGIACENZA.DESTABMAGColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'DESTABMAG\' in table \'MAGAZZINOGIACENZA\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableMAGAZZINOGIACENZA.DESTABMAGColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal QESI {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableMAGAZZINOGIACENZA.QESIColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'QESI\' in table \'MAGAZZINOGIACENZA\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableMAGAZZINOGIACENZA.QESIColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public decimal QTOT_DISP_ESI {
                 get {
                     try {
@@ -1206,6 +1145,18 @@ namespace MonitorServices.Entities {
                 set {
                     this[this.tableMAGAZZINOGIACENZA.GIACENZAColumn] = value;
                 }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsAZIENDANull() {
+                return this.IsNull(this.tableMAGAZZINOGIACENZA.AZIENDAColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetAZIENDANull() {
+                this[this.tableMAGAZZINOGIACENZA.AZIENDAColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1242,42 +1193,6 @@ namespace MonitorServices.Entities {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetDESMAGAZZNull() {
                 this[this.tableMAGAZZINOGIACENZA.DESMAGAZZColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCODICEMAGNull() {
-                return this.IsNull(this.tableMAGAZZINOGIACENZA.CODICEMAGColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCODICEMAGNull() {
-                this[this.tableMAGAZZINOGIACENZA.CODICEMAGColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsDESTABMAGNull() {
-                return this.IsNull(this.tableMAGAZZINOGIACENZA.DESTABMAGColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetDESTABMAGNull() {
-                this[this.tableMAGAZZINOGIACENZA.DESTABMAGColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsQESINull() {
-                return this.IsNull(this.tableMAGAZZINOGIACENZA.QESIColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetQESINull() {
-                this[this.tableMAGAZZINOGIACENZA.QESIColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

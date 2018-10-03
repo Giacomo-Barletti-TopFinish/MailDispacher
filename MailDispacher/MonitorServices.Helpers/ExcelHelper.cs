@@ -37,55 +37,41 @@ namespace MonitorServices.Helpers
                         {
                             Min = 1,
                             Max = 1,
-                            Width = 15,
+                            Width = 20,
                             CustomWidth = true
                         },
                         new Column // Id column
                         {
                             Min = 2,
                             Max = 2,
-                            Width = 20,
-                            CustomWidth = false
+                            Width = 15,
+                            CustomWidth = true
                         },
                         new Column // Id column
                         {
                             Min = 3,
                             Max = 3,
                             Width = 20,
-                            CustomWidth = true
+                            CustomWidth = false
                         },
                         new Column // Id column
                         {
                             Min = 4,
                             Max = 4,
-                            Width = 40,
-                            CustomWidth = false
+                            Width = 20,
+                            CustomWidth = true
                         },
-                        new Column // Id column
+                        new Column // Salary column
                         {
                             Min = 5,
                             Max = 5,
-                            Width = 60,
+                            Width = 15,
                             CustomWidth = true
                         },
                         new Column // Salary column
                         {
                             Min = 6,
                             Max = 6,
-                            Width = 15,
-                            CustomWidth = true
-                        },
-                        new Column // Salary column
-                        {
-                            Min = 7,
-                            Max = 7,
-                            Width = 15,
-                            CustomWidth = true
-                        },
-                        new Column // Salary column
-                        {
-                            Min = 8,
-                            Max = 8,
                             Width = 15,
                             CustomWidth = true
                         });
@@ -106,12 +92,10 @@ namespace MonitorServices.Helpers
                 Row row = new Row();
 
                 row.Append(
+                    ConstructCell("Azienda", CellValues.String, 2),
                     ConstructCell("IDMAGAZZ", CellValues.String, 2),
                     ConstructCell("MOdello", CellValues.String, 2),
                     ConstructCell("Descrizione", CellValues.String, 2),
-                    ConstructCell("Magazzino", CellValues.String, 2),
-                    ConstructCell("DescMagaz", CellValues.String, 2),
-                    ConstructCell("Esistenza", CellValues.String, 2),
                     ConstructCell("Esistenza al netto impieghi", CellValues.String, 2),
                     ConstructCell("Soglia giacenza", CellValues.String, 2));
 
@@ -123,12 +107,10 @@ namespace MonitorServices.Helpers
                     row = new Row();
 
                     row.Append(
+                        ConstructCell(elemento.AZIENDA, CellValues.String, 1),
                         ConstructCell(elemento.IDMAGAZZ.ToString(), CellValues.String, 1),
                         ConstructCell(elemento.MODELLO, CellValues.String, 1),
                         ConstructCell(elemento.DESMAGAZZ, CellValues.String, 1),
-                        ConstructCell(elemento.CODICEMAG, CellValues.String, 1),
-                        ConstructCell(elemento.DESMAGAZZ, CellValues.String, 1),
-                        ConstructCell(elemento.QESI.ToString(), CellValues.String, 1),
                     ConstructCell(elemento.QTOT_DISP_ESI.ToString(), CellValues.String, 1),
                     ConstructCell(elemento.GIACENZA.ToString(), CellValues.String, 1));
 

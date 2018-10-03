@@ -14,7 +14,7 @@
   <xs:element name="MagazzinoDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="MagazzinoDS" msprop:Generator_UserDSName="MagazzinoDS">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="MAGAZZINONEGATIVO" msprop:Generator_TableClassName="MAGAZZINONEGATIVODataTable" msprop:Generator_TableVarName="tableMAGAZZINONEGATIVO" msprop:Generator_RowChangedName="MAGAZZINONEGATIVORowChanged" msprop:Generator_TablePropName="MAGAZZINONEGATIVO" msprop:Generator_RowDeletingName="MAGAZZINONEGATIVORowDeleting" msprop:Generator_RowChangingName="MAGAZZINONEGATIVORowChanging" msprop:Generator_RowEvHandlerName="MAGAZZINONEGATIVORowChangeEventHandler" msprop:Generator_RowDeletedName="MAGAZZINONEGATIVORowDeleted" msprop:Generator_RowClassName="MAGAZZINONEGATIVORow" msprop:Generator_UserTableName="MAGAZZINONEGATIVO" msprop:Generator_RowEvArgName="MAGAZZINONEGATIVORowChangeEvent">
+        <xs:element name="MAGAZZINONEGATIVO" msprop:Generator_TableClassName="MAGAZZINONEGATIVODataTable" msprop:Generator_TableVarName="tableMAGAZZINONEGATIVO" msprop:Generator_TablePropName="MAGAZZINONEGATIVO" msprop:Generator_RowDeletingName="MAGAZZINONEGATIVORowDeleting" msprop:Generator_RowChangingName="MAGAZZINONEGATIVORowChanging" msprop:Generator_RowEvHandlerName="MAGAZZINONEGATIVORowChangeEventHandler" msprop:Generator_RowDeletedName="MAGAZZINONEGATIVORowDeleted" msprop:Generator_UserTableName="MAGAZZINONEGATIVO" msprop:Generator_RowChangedName="MAGAZZINONEGATIVORowChanged" msprop:Generator_RowEvArgName="MAGAZZINONEGATIVORowChangeEvent" msprop:Generator_RowClassName="MAGAZZINONEGATIVORow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="IDMAGAZZ" msprop:Generator_ColumnVarNameInTable="columnIDMAGAZZ" msprop:Generator_ColumnPropNameInRow="IDMAGAZZ" msprop:Generator_ColumnPropNameInTable="IDMAGAZZColumn" msprop:Generator_UserColumnName="IDMAGAZZ">
@@ -59,6 +59,13 @@
         <xs:element name="MAGAZZINOGIACENZA" msprop:Generator_TableClassName="MAGAZZINOGIACENZADataTable" msprop:Generator_TableVarName="tableMAGAZZINOGIACENZA" msprop:Generator_TablePropName="MAGAZZINOGIACENZA" msprop:Generator_RowDeletingName="MAGAZZINOGIACENZARowDeleting" msprop:Generator_RowChangingName="MAGAZZINOGIACENZARowChanging" msprop:Generator_RowEvHandlerName="MAGAZZINOGIACENZARowChangeEventHandler" msprop:Generator_RowDeletedName="MAGAZZINOGIACENZARowDeleted" msprop:Generator_UserTableName="MAGAZZINOGIACENZA" msprop:Generator_RowChangedName="MAGAZZINOGIACENZARowChanged" msprop:Generator_RowEvArgName="MAGAZZINOGIACENZARowChangeEvent" msprop:Generator_RowClassName="MAGAZZINOGIACENZARow">
           <xs:complexType>
             <xs:sequence>
+              <xs:element name="AZIENDA" msprop:Generator_ColumnVarNameInTable="columnAZIENDA" msprop:Generator_ColumnPropNameInRow="AZIENDA" msprop:Generator_ColumnPropNameInTable="AZIENDAColumn" msprop:Generator_UserColumnName="AZIENDA" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
               <xs:element name="IDMAGAZZ" msprop:Generator_ColumnVarNameInTable="columnIDMAGAZZ" msprop:Generator_ColumnPropNameInRow="IDMAGAZZ" msprop:Generator_ColumnPropNameInTable="IDMAGAZZColumn" msprop:Generator_UserColumnName="IDMAGAZZ" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -80,21 +87,6 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="CODICEMAG" msprop:Generator_ColumnVarNameInTable="columnCODICEMAG" msprop:Generator_ColumnPropNameInRow="CODICEMAG" msprop:Generator_ColumnPropNameInTable="CODICEMAGColumn" msprop:Generator_UserColumnName="CODICEMAG" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="10" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="DESTABMAG" msprop:Generator_ColumnVarNameInTable="columnDESTABMAG" msprop:Generator_ColumnPropNameInRow="DESTABMAG" msprop:Generator_ColumnPropNameInTable="DESTABMAGColumn" msprop:Generator_UserColumnName="DESTABMAG" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="50" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="QESI" msprop:Generator_ColumnVarNameInTable="columnQESI" msprop:Generator_ColumnPropNameInRow="QESI" msprop:Generator_ColumnPropNameInTable="QESIColumn" msprop:Generator_UserColumnName="QESI" type="xs:decimal" minOccurs="0" />
               <xs:element name="QTOT_DISP_ESI" msprop:Generator_ColumnVarNameInTable="columnQTOT_DISP_ESI" msprop:Generator_ColumnPropNameInRow="QTOT_DISP_ESI" msprop:Generator_ColumnPropNameInTable="QTOT_DISP_ESIColumn" msprop:Generator_UserColumnName="QTOT_DISP_ESI" type="xs:decimal" minOccurs="0" />
               <xs:element name="GIACENZA" msprop:Generator_ColumnVarNameInTable="columnGIACENZA" msprop:Generator_ColumnPropNameInRow="GIACENZA" msprop:Generator_ColumnPropNameInTable="GIACENZAColumn" msprop:Generator_UserColumnName="GIACENZA" type="xs:decimal" minOccurs="0" />
             </xs:sequence>
