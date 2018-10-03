@@ -21,6 +21,7 @@ namespace MonitorServices.Data
                                 from ditta1.SALDI_GEN sa
                                 inner join gruppo.magazz ma on ma.idmagazz = sa.idmagazz
                                 inner join gruppo.tabmag tm on tm.idtabmag = sa.idtabmag
+                                INNER JOIN MONITOR_TABMAG_ABILITATI TA ON TA.idtabmag = TM.idtabmag
                                 where sa.qesi <0
 
                                 union all
@@ -29,6 +30,7 @@ namespace MonitorServices.Data
                                 from ditta2.SALDI_GEN sa
                                 inner join gruppo.magazz ma on ma.idmagazz = sa.idmagazz
                                 inner join gruppo.tabmag tm on tm.idtabmag = sa.idtabmag
+                                INNER JOIN MONITOR_TABMAG_ABILITATI TA ON TA.idtabmag = TM.idtabmag
                                 where sa.qesi <0
                                 ";
 
@@ -40,11 +42,12 @@ namespace MonitorServices.Data
 
         public void FillMagazziniGiacenza(MagazzinoDS ds)
         {
-            string select = @"select  ma.idmagazz,ma.modello, ma.desmagazz,tm.CODICEMAG, tm.destabmag ,sa.qesi, SA.QTOT_DISP_ESI,GI.GIACENZA
+            string select = @"  select  ma.idmagazz,ma.modello, ma.desmagazz,tm.CODICEMAG, tm.destabmag ,sa.qesi, SA.QTOT_DISP_ESI,GI.GIACENZA
                                 from ditta1.SALDI_GEN sa
                                 inner join gruppo.magazz ma on ma.idmagazz = sa.idmagazz
                                 inner join gruppo.tabmag tm on tm.idtabmag = sa.idtabmag
                                 INNER JOIN MONITOR_GIACENZA GI ON GI.IDMAGAZZ = MA.IDMAGAZZ
+                                INNER JOIN MONITOR_TABMAG_ABILITATI TA ON TA.idtabmag = TM.idtabmag
                                 where sa.QTOT_DISP_ESI <GI.GIACENZA
 
                                 union all
@@ -54,6 +57,7 @@ namespace MonitorServices.Data
                                 inner join gruppo.magazz ma on ma.idmagazz = sa.idmagazz
                                 inner join gruppo.tabmag tm on tm.idtabmag = sa.idtabmag
                                 INNER JOIN MONITOR_GIACENZA GI ON GI.IDMAGAZZ = MA.IDMAGAZZ
+                                INNER JOIN MONITOR_TABMAG_ABILITATI TA ON TA.idtabmag = TM.idtabmag
                                 where sa.QTOT_DISP_ESI <GI.GIACENZA
                                 ";
 
