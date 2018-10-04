@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MonitorServices.Data
 {
-    public class MagazzinoAdapter:MonitorAdapterBase
+    public class MagazzinoAdapter : MonitorAdapterBase
     {
         public MagazzinoAdapter(System.Data.IDbConnection connection, IDbTransaction transaction) :
             base(connection, transaction)
@@ -68,6 +68,17 @@ namespace MonitorServices.Data
             {
                 da.Fill(ds.MAGAZZINOGIACENZA);
             }
-        }       
+        }
+
+        public void FillMONITOR_APPROVVIGIONAMENTO(MagazzinoDS ds)
+        {
+            string select = @"SELECT * FROM MONITOR_APPROVVIGIONAMENTO ";
+
+            using (DbDataAdapter da = BuildDataAdapter(select))
+            {
+                da.Fill(ds.MONITOR_APPROVVIGIONAMENTO);
+            }
+        }
+
     }
 }

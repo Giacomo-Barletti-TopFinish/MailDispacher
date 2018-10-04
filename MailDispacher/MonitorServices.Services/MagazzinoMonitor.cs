@@ -41,7 +41,16 @@ namespace MonitorServices.Services
 
             using (MagazzinoBusiness bMagazzino = new MagazzinoBusiness())
             {
+                bMagazzino.FillMONITOR_APPROVVIGIONAMENTO(ds);
                 bMagazzino.FillMagazziniGiacenza(ds);
+
+                foreach (MagazzinoDS.MONITOR_APPROVVIGIONAMENTORow approvvigionamento in ds.MONITOR_APPROVVIGIONAMENTO.Where(x => x.DATASCADENZA > DateTime.Now))
+                {
+                    foreach (MagazzinoDS.MAGAZZINOGIACENZARow giacenza in ds.MAGAZZINOGIACENZA.Where(x => x.RowState != System.Data.DataRowState.Deleted && x.IDMAGAZZ == approvvigionamento.IDMAGAZZ))
+                        giacenza.Delete();
+                }
+
+                ds.MAGAZZINOGIACENZA.AcceptChanges();
 
                 if (ds.MAGAZZINOGIACENZA.Count == 0) return;
 

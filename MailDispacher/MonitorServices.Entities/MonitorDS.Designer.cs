@@ -463,7 +463,6 @@ namespace MonitorServices.Entities {
                 base.Columns.Add(this.columnESEGUITA);
                 this.columnFREQUENZA = new global::System.Data.DataColumn("FREQUENZA", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFREQUENZA);
-                this.columnIDSCHEDULER.AllowDBNull = false;
                 this.columnSERVIZIO.AllowDBNull = false;
                 this.columnSERVIZIO.MaxLength = 50;
                 this.columnDATAESECUZIONE.AllowDBNull = false;
@@ -617,7 +616,12 @@ namespace MonitorServices.Entities {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public decimal IDSCHEDULER {
                 get {
-                    return ((decimal)(this[this.tableMONITOR_SCHEDULER.IDSCHEDULERColumn]));
+                    try {
+                        return ((decimal)(this[this.tableMONITOR_SCHEDULER.IDSCHEDULERColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'IDSCHEDULER\' in table \'MONITOR_SCHEDULER\' is DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableMONITOR_SCHEDULER.IDSCHEDULERColumn] = value;
@@ -677,6 +681,18 @@ namespace MonitorServices.Entities {
                 set {
                     this[this.tableMONITOR_SCHEDULER.FREQUENZAColumn] = value;
                 }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsIDSCHEDULERNull() {
+                return this.IsNull(this.tableMONITOR_SCHEDULER.IDSCHEDULERColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetIDSCHEDULERNull() {
+                this[this.tableMONITOR_SCHEDULER.IDSCHEDULERColumn] = global::System.Convert.DBNull;
             }
         }
         

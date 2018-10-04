@@ -1,4 +1,4 @@
-﻿using MailDispatcher.Data.Core;
+﻿using MonitorServices.Data.Core;
 using MonitorServices.Entities;
 using System;
 using System.Collections.Generic;

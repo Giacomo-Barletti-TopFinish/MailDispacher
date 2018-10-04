@@ -25,5 +25,12 @@ namespace MonitorServices.Data
             MagazzinoAdapter a = new MagazzinoAdapter(DbConnection, DbTransaction);
             a.FillMagazziniGiacenza(ds);
         }
+
+        [DataContext]
+        public void FillMONITOR_APPROVVIGIONAMENTO(MagazzinoDS ds)
+        {
+            MagazzinoAdapter a = new MagazzinoAdapter(DbConnection, DbTransaction);
+            a.FillMONITOR_APPROVVIGIONAMENTO(ds);
+        }
     }
 }

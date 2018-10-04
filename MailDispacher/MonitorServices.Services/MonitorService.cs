@@ -18,16 +18,16 @@ namespace MonitorServices.Services
 
             using (MonitorBusiness bMonitor = new MonitorBusiness())
             {
+                _ds.Clear();
                 bMonitor.FillMONITOR_SCHEDULER(_ds);
 
-                if (!_ds.MONITOR_SCHEDULER.Any(x => x.SERVIZIO == Servizio && x.ESEGUITA == "N" && x.DATAESECUZIONE > DateTime.Today))
+                if (!_ds.MONITOR_SCHEDULER.Any(x => x.SERVIZIO.Trim() == Servizio && x.ESEGUITA == "N" && x.DATAESECUZIONE <= DateTime.Today))
                     return false;
 
-                List<MonitorDS.MONITOR_SCHEDULERRow> schedulazioni = _ds.MONITOR_SCHEDULER.Where(x => x.SERVIZIO == Servizio && x.ESEGUITA == "N" && x.DATAESECUZIONE > DateTime.Today).ToList();
+                List<MonitorDS.MONITOR_SCHEDULERRow> schedulazioni = _ds.MONITOR_SCHEDULER.Where(x => x.SERVIZIO == Servizio && x.ESEGUITA == "N" && x.DATAESECUZIONE <= DateTime.Today).ToList();
                 foreach (MonitorDS.MONITOR_SCHEDULERRow schedulazioneSelezionata in schedulazioni)
                 {
-                    string oraEsecuzione = schedulazione.ORAESECUZIONE;
-                    if (VerificaOraEsecuzione(schedulazione.ORAESECUZIONE))
+                    if (VerificaOraEsecuzione(schedulazioneSelezionata.ORAESECUZIONE))
                     {
                         schedulazione = schedulazioneSelezionata;
                         return true;
@@ -47,7 +47,7 @@ namespace MonitorServices.Services
             int minuti = int.Parse(str[1]);
 
             DateTime oraSchedulata = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day, ore, minuti, 0);
-            if (oraSchedulata > DateTime.Now) return true;
+            if (oraSchedulata < DateTime.Now) return true;
             return false;
         }
 
