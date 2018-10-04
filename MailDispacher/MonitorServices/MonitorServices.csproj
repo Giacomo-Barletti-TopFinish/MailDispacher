@@ -75,6 +75,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MonitorServices.Entities\MonitorServices.Entities.csproj">
+      <Project>{54F8F340-7429-43A4-9848-F2B25A20D835}</Project>
+      <Name>MonitorServices.Entities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MonitorServices.Services\MonitorServices.Services.csproj">
       <Project>{14D841D9-81F5-4F44-B60B-843502907396}</Project>
       <Name>MonitorServices.Services</Name>

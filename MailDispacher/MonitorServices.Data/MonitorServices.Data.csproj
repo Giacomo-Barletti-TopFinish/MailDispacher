@@ -54,11 +54,17 @@
     <Compile Include="Core\Exceptions.cs" />
     <Compile Include="MagazzinoAdapter.cs" />
     <Compile Include="MagazzinoBusiness.cs" />
+    <Compile Include="MonitorAdapter.cs" />
     <Compile Include="MonitorAdapterBase.cs" />
+    <Compile Include="MonitorBusiness.cs" />
     <Compile Include="MonitorBusinessBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MailDispatcher.Data\MailDispatcher.Data.csproj">
+      <Project>{006D7C48-2A8C-4DBF-B291-25F731B7373A}</Project>
+      <Name>MailDispatcher.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MonitorServices.Entities\MonitorServices.Entities.csproj">
       <Project>{54F8F340-7429-43A4-9848-F2B25A20D835}</Project>
       <Name>MonitorServices.Entities</Name>

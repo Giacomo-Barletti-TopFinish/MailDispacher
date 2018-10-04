@@ -46,6 +46,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MagazzinoDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="MonitorDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MonitorDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -65,6 +70,17 @@
     </None>
     <None Include="MagazzinoDS.xss">
       <DependentUpon>MagazzinoDS.xsd</DependentUpon>
+    </None>
+    <None Include="MonitorDS.xsc">
+      <DependentUpon>MonitorDS.xsd</DependentUpon>
+    </None>
+    <None Include="MonitorDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MonitorDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="MonitorDS.xss">
+      <DependentUpon>MonitorDS.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

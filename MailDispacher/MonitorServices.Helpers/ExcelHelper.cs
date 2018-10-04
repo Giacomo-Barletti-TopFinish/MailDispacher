@@ -94,7 +94,7 @@ namespace MonitorServices.Helpers
                 row.Append(
                     ConstructCell("Azienda", CellValues.String, 2),
                     ConstructCell("IDMAGAZZ", CellValues.String, 2),
-                    ConstructCell("MOdello", CellValues.String, 2),
+                    ConstructCell("Modello", CellValues.String, 2),
                     ConstructCell("Descrizione", CellValues.String, 2),
                     ConstructCell("Esistenza al netto impieghi", CellValues.String, 2),
                     ConstructCell("Soglia giacenza", CellValues.String, 2));
@@ -206,7 +206,7 @@ namespace MonitorServices.Helpers
 
                 row.Append(
                     ConstructCell("IDMAGAZZ", CellValues.String, 2),
-                    ConstructCell("MOdello", CellValues.String, 2),
+                    ConstructCell("Modello", CellValues.String, 2),
                     ConstructCell("Descrizione", CellValues.String, 2),
                     ConstructCell("Magazzino", CellValues.String, 2),
                     ConstructCell("DescMagaz", CellValues.String, 2),

@@ -1,4 +1,5 @@
-﻿using MonitorServices.Properties;
+﻿using MonitorServices.Entities;
+using MonitorServices.Properties;
 using MonitorServices.Services;
 using System;
 using System.Collections.Generic;
@@ -47,9 +48,20 @@ namespace MonitorServices
         {
             try
             {
-                MagazzinoMonitor mMagazzino = new MagazzinoMonitor();
-                mMagazzino.VerificaSaldiNegativi();
-                mMagazzino.VerificaGiacenze();
+                MonitorService sMonitor = new MonitorService();
+                MonitorDS.MONITOR_SCHEDULERRow schedulazione;
+                if(sMonitor.VerificaEsecuzione("MAGAZZININEGATIVI", out schedulazione))
+                {
+                    MagazzinoMonitor mMagazzino = new MagazzinoMonitor();
+                    mMagazzino.VerificaSaldiNegativi();
+                }
+
+                if (sMonitor.VerificaEsecuzione("MAGAZZINIGIACENZE", out schedulazione))
+                {
+                    MagazzinoMonitor mMagazzino = new MagazzinoMonitor();
+                    mMagazzino.VerificaGiacenze();
+                }
+
             }
             catch (Exception ex)
             {
