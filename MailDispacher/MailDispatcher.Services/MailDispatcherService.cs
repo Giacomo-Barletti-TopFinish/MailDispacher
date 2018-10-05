@@ -29,9 +29,6 @@ namespace MailDispatcher.Services
 
                 List<decimal> idmail = ds.MD_EMAIL.Select(x => x.IDMAIL).Distinct().ToList();
 
-
-
-
                 foreach (MailDispatcherDS.MD_EMAILRow mail in ds.MD_EMAIL)
                 {
                     try
@@ -58,9 +55,8 @@ namespace MailDispatcher.Services
                             continue;
                         }
 
-                        List<string> destintinatariMail = (from destinatari in ds.MD_GRUPPI_DESTINATARI
-                                                           join gruppi in ds.MD_GRUPPI_DESTINATARI on destinatari.IDGRUPPO equals gruppi.IDGRUPPO
-                                                           join richiedenti in ds.MD_GRUPPI_RICHIEDENTI on gruppi.IDGRUPPO equals richiedenti.IDGRUPPO
+                        List<string> destintinatariMail = (from destinatari in ds.MD_GRUPPI_DESTINATARI                                                          
+                                                           join richiedenti in ds.MD_GRUPPI_RICHIEDENTI on destinatari.IDGRUPPO equals richiedenti.IDGRUPPO
                                                            where richiedenti.IDRICHIEDENTE == idRichiedente
                                                            select destinatari.DESTINATARIO).ToList();
                         if (destintinatariMail.Count == 0)
