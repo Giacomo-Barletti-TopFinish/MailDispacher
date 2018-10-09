@@ -49,7 +49,7 @@ namespace MonitorServices.Data
                                 inner join gruppo.tabmag tm on tm.idtabmag = sa.idtabmag
                                 INNER JOIN MONITOR_GIACENZA GI ON GI.IDMAGAZZ = MA.IDMAGAZZ
                                 INNER JOIN MONITOR_TABMAG_ABILITATI TA ON TA.idtabmag = TM.idtabmag
-                                where sa.QTOT_DISP_ESI <GI.GIACENZA
+                                having sum(SA.QTOT_DISP_ESI) <GI.GIACENZA
                                 group by ma.idmagazz,ma.modello, ma.desmagazz,GI.GIACENZA
 
                                 union all
@@ -60,7 +60,7 @@ namespace MonitorServices.Data
                                 inner join gruppo.tabmag tm on tm.idtabmag = sa.idtabmag
                                 INNER JOIN MONITOR_GIACENZA GI ON GI.IDMAGAZZ = MA.IDMAGAZZ
                                 INNER JOIN MONITOR_TABMAG_ABILITATI TA ON TA.idtabmag = TM.idtabmag
-                                where sa.QTOT_DISP_ESI <GI.GIACENZA
+                                having sum(SA.QTOT_DISP_ESI) <GI.GIACENZA
                                 group by ma.idmagazz,ma.modello, ma.desmagazz,GI.GIACENZA
                                 ";
 
