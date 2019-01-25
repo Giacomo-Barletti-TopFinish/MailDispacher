@@ -43,14 +43,26 @@ namespace MonitorServices.Data
 
         public void FillMagazziniGiacenza(MagazzinoDS ds)
         {
-            string select = @"   select  'METAL-PLUS' AS AZIENDA ,ma.idmagazz,ma.modello, ma.desmagazz, sum(SA.QTOT_DISP_ESI) QTOT_DISP_ESI,GI.GIACENZA
+            string select = @"   
+                            select  'METAL-PLUS' AS AZIENDA ,ma.idmagazz,ma.modello, ma.desmagazz, sum(SA.QTOT_DISP_ESI) QTOT_DISP_ESI,GI.GIACENZA
                                 from ditta1.SALDI_GEN sa
                                 inner join gruppo.magazz ma on ma.idmagazz = sa.idmagazz
                                 inner join gruppo.tabmag tm on tm.idtabmag = sa.idtabmag
                                 INNER JOIN MONITOR_GIACENZA GI ON GI.IDMAGAZZ = MA.IDMAGAZZ
                                 INNER JOIN MONITOR_TABMAG_ABILITATI TA ON TA.idtabmag = TM.idtabmag
                                 having sum(SA.QTOT_DISP_ESI) <GI.GIACENZA
-                                group by ma.idmagazz,ma.modello, ma.desmagazz,GI.GIACENZA                               
+                                group by ma.idmagazz,ma.modello, ma.desmagazz,GI.GIACENZA
+                                union all
+                                
+                 select 'METAL-PLUS' AS AZIENDA ,ma.idmagazz,'*'||ma.modello, ma.desmagazz, 0 QTOT_DISP_ESI,GI.GIACENZA from MONITOR_GIACENZA gi 
+                 inner join gruppo.magazz ma on ma.idmagazz = gi.idmagazz
+                 where gi.idmagazz not in (
+                 select   distinct ma.idmagazz
+                                from ditta1.SALDI_GEN sa
+                                inner join gruppo.magazz ma on ma.idmagazz = sa.idmagazz
+                                inner join gruppo.tabmag tm on tm.idtabmag = sa.idtabmag
+                                INNER JOIN MONITOR_GIACENZA GI ON GI.IDMAGAZZ = MA.IDMAGAZZ
+                                INNER JOIN MONITOR_TABMAG_ABILITATI TA ON TA.idtabmag = TM.idtabmag)                               
                                 ";
 
             using (DbDataAdapter da = BuildDataAdapter(select))
