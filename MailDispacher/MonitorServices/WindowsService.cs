@@ -15,6 +15,7 @@ namespace MonitorServices
     {
         private LogWriter _log = HostLogger.Get<WindowsService>();
         private Timer _timer;
+        object lockObject = new object();
         public void Start()
         {
             try
@@ -46,36 +47,47 @@ namespace MonitorServices
 
         private void TimerCallBack(Object stateInfo)
         {
-            try
+            if (Monitor.TryEnter(lockObject))
             {
-                MonitorService sMonitor = new MonitorService();
-                MonitorDS.MONITOR_SCHEDULERRow schedulazione;
-                if(sMonitor.VerificaEsecuzione("MAGAZZININEGATIVI", out schedulazione))
+                try
                 {
-                    MagazzinoMonitor mMagazzino = new MagazzinoMonitor();
-                    mMagazzino.VerificaSaldiNegativi();
-                    sMonitor.AggiornaSchedulazione(schedulazione);
-                }
+                    MonitorService sMonitor = new MonitorService();
+                    MonitorDS.MONITOR_SCHEDULERRow schedulazione;
+                    if (sMonitor.VerificaEsecuzione("MAGAZZININEGATIVI", out schedulazione))
+                    {
+                        MagazzinoMonitor mMagazzino = new MagazzinoMonitor();
+                        mMagazzino.VerificaSaldiNegativi();
+                        sMonitor.AggiornaSchedulazione(schedulazione);
+                    }
 
-                if (sMonitor.VerificaEsecuzione("MAGAZZINIGIACENZE", out schedulazione))
-                {
-                    MagazzinoMonitor mMagazzino = new MagazzinoMonitor();
-                    mMagazzino.VerificaGiacenze();
-                    sMonitor.AggiornaSchedulazione(schedulazione);
-                }
+                    if (sMonitor.VerificaEsecuzione("MAGAZZINIGIACENZE", out schedulazione))
+                    {
+                        MagazzinoMonitor mMagazzino = new MagazzinoMonitor();
+                        mMagazzino.VerificaGiacenze();
+                        sMonitor.AggiornaSchedulazione(schedulazione);
+                    }
 
-            }
-            catch (Exception ex)
-            {
-                _log.Error("Errore Monitor Service", ex);
-                while (ex.InnerException != null)
-                {
-                    _log.Error("--- INNER EXCEPTION", ex);
-                    ex = ex.InnerException;
+                    if (sMonitor.VerificaEsecuzione("VERIFICAREPLICHE", out schedulazione))
+                    {
+                        VerificaRepliche mRepliche = new VerificaRepliche();
+                        mRepliche.VerificaReplicheCartelleServer(@"\\DC01\IMMAGINI", @"\\DC02\IMMAGINI", "GIACOMO.BARLETTI", "topPasqua", "viamattei");
+                        mRepliche.VerificaReplicheCartelleServer(@"\\DC01\DATI DISTRIBUITI", @"\\DC02\DATI DISTRIBUITI", "GIACOMO.BARLETTI", "topPasqua", "viamattei");
+                        sMonitor.AggiornaSchedulazione(schedulazione);
+                    }
                 }
-            }
-            finally
-            {
+                catch (Exception ex)
+                {
+                    _log.Error("Errore Monitor Service", ex);
+                    while (ex.InnerException != null)
+                    {
+                        _log.Error("--- INNER EXCEPTION", ex);
+                        ex = ex.InnerException;
+                    }
+                }
+                finally
+                {
+                    Monitor.Exit(lockObject);
+                }
             }
         }
     }

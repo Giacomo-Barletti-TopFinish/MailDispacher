@@ -43,6 +43,7 @@
     <Compile Include="MagazzinoMonitor.cs" />
     <Compile Include="MonitorService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VerificaRepliche.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MailDispatcher.Common\MailDispatcher.Common.csproj">

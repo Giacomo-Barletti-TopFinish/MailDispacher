@@ -65,6 +65,9 @@ namespace MonitorServices.Services
                 case "GIORNALIERA":
                     nuovaSchedulazione.DATAESECUZIONE = DateTime.Today.AddDays(1);
                     break;
+                case "SETTIMANALE":
+                    nuovaSchedulazione.DATAESECUZIONE = DateTime.Today.AddDays(7);
+                    break;
             }
             _ds.MONITOR_SCHEDULER.AddMONITOR_SCHEDULERRow(nuovaSchedulazione);
 
