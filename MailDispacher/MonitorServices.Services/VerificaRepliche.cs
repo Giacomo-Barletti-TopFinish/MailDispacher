@@ -33,15 +33,15 @@ namespace MonitorServices.Services
             {
                 string messaggio = string.Format("ERRORE - in VerificaReplicheCartelleServer ");
                 Messaggi.AppendLine(messaggio);
-                messaggio = string.Format("ERRORE - Eccezione {0} ", ex.Message);
+                messaggio = string.Format("ERRORE - Eccezione {0} SORGENTE:{1} DESTINAZIONE:{2}", ex.Message, sorgente, destinazione);
                 Messaggi.AppendLine(messaggio);
 
             }
 
-            if(Messaggi.Length>0)
+            if (Messaggi.Length > 0)
             {
                 string oggetto = string.Format("Verifica repliche {0} Sorgente:{1}", DateTime.Today.ToShortDateString(), sorgente);
-                string corpo = Messaggi.ToString(); 
+                string corpo = Messaggi.ToString();
 
                 decimal IDMAIL = MailDispatcherService.CreaEmail("VERIFICA REPLICHE", oggetto, corpo);
                 MailDispatcherService.SottomettiEmail(IDMAIL);
