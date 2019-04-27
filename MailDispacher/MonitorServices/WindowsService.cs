@@ -67,6 +67,15 @@ namespace MonitorServices
                         sMonitor.AggiornaSchedulazione(schedulazione);
                     }
 
+                    if (sMonitor.VerificaEsecuzione("PRELIEVI", out schedulazione))
+                    {
+                        PrelieviService prelievi = new PrelieviService();
+                        prelievi.CreaCopiaPrelievi();
+                        prelievi.CreaCopiaTrasferimenti();
+                        prelievi.CreaCopiaFattibilita();
+                        sMonitor.AggiornaSchedulazione(schedulazione);
+                    }
+
                     if (sMonitor.VerificaEsecuzione("VERIFICAREPLICHE", out schedulazione))
                     {
                         VerificaRepliche mRepliche = new VerificaRepliche();

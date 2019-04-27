@@ -32,5 +32,28 @@ namespace MonitorServices.Data
             MagazzinoAdapter a = new MagazzinoAdapter(DbConnection, DbTransaction);
             a.FillMONITOR_APPROVVIGIONAMENTO(ds);
         }
+
+        [DataContext(true)]
+        public void CopiaPrelievi()
+        {
+            MagazzinoAdapter a = new MagazzinoAdapter(DbConnection, DbTransaction);
+            a.CopiaPrelievi();
+        }
+
+        [DataContext(true)]
+        public void CopiaTrasferimenti()
+        {
+            MagazzinoAdapter a = new MagazzinoAdapter(DbConnection, DbTransaction);
+            a.CopiaTrasferimentiTF();
+            a.CopiaTrasferimentiMP();
+        }
+
+        [DataContext(true)]
+        public void CopiaFattibilita()
+        {
+            MagazzinoAdapter a = new MagazzinoAdapter(DbConnection, DbTransaction);
+            a.CopiaFattibilitaMP();
+            a.CopiaFattibilitaTF();
+        }
     }
 }

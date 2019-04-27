@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="MagazzinoMonitor.cs" />
     <Compile Include="MonitorService.cs" />
+    <Compile Include="PrelieviService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VerificaRepliche.cs" />
   </ItemGroup>

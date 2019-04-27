@@ -24,6 +24,6 @@ namespace MonitorServices.Data
         {
             MonitorAdapter a = new MonitorAdapter(DbConnection, DbTransaction);
             a.UpdateMonitorDSTable(ds.MONITOR_SCHEDULER.TableName, ds);
-        }
+        }        
     }
 }
