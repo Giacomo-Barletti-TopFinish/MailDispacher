@@ -122,7 +122,8 @@ namespace MonitorServices.Data
 
         public void CopiaTrasferimentiMP()
         {
-            string insert = @"select 'MP' AZIENDA, SYSDATE DATAOPERAZIONE,ff.IDRICHTRASF,ff.IDRICHTRASFT, ff.IDMAGAZZ, vv.NUMRICHTRASFT, gr.modello, gr.desmagazz,magd.codicemag destinazione, cau.codicecaumgt,mago.codicemag origine,
+            string insert = @"insert into rw_trasferimenti 
+                    select 'MP' AZIENDA, SYSDATE DATAOPERAZIONE,ff.IDRICHTRASF,ff.IDRICHTRASFT, ff.IDMAGAZZ, vv.NUMRICHTRASFT, gr.modello, gr.desmagazz,magd.codicemag destinazione, cau.codicecaumgt,mago.codicemag origine,
                     flf.codiceclifor, vv.datarichtrasft, case vv.statorichtrasft when 0 then 'aperto' when 1 then 'chiuso' else 'trasferito' end stato
                     from ditta1.usr_trasf_rich ff
                     inner join ditta1.usr_trasf_richt vv on ff.IDRICHTRASFT = vv.IDRICHTRASFT
@@ -141,7 +142,8 @@ namespace MonitorServices.Data
         }
         public void CopiaTrasferimentiTF()
         {
-            string insert = @"select 'TF' AZIENDA, SYSDATE DATAOPERAZIONE,ff.IDRICHTRASF,ff.IDRICHTRASFT, ff.IDMAGAZZ, vv.NUMRICHTRASFT, gr.modello, gr.desmagazz,magd.codicemag destinazione, cau.codicecaumgt,mago.codicemag origine,
+            string insert = @"insert into rw_trasferimenti 
+                    select 'TF' AZIENDA, SYSDATE DATAOPERAZIONE,ff.IDRICHTRASF,ff.IDRICHTRASFT, ff.IDMAGAZZ, vv.NUMRICHTRASFT, gr.modello, gr.desmagazz,magd.codicemag destinazione, cau.codicecaumgt,mago.codicemag origine,
                     flf.codiceclifor, vv.datarichtrasft, case vv.statorichtrasft when 0 then 'aperto' when 1 then 'chiuso' else 'trasferito' end stato
                     from ditta2.usr_trasf_rich ff
                     inner join ditta2.usr_trasf_richt vv on ff.IDRICHTRASFT = vv.IDRICHTRASFT
