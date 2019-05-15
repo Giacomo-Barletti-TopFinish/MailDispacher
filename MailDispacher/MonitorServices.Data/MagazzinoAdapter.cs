@@ -101,13 +101,13 @@ namespace MonitorServices.Data
                 OR CODICEMAG LIKE 'GRE\SAL%' )
                 union all
                 select SYSDATE DATAOPERAZIONE,PRED.idprelievoD,TMO.CODICEMAG MAG_ORI,PRED.DATAPRELIEVOD,TMD.CODICEMAG MAG_DEST,MAG.MODELLO,PRED.QUANTITA,PRED.QUANTITA_SUCC, 'OrigineCliente' origine, CASE pret.statoprelievot WHEN 0 THEN 'Aperto' when 1 then 'Chiuso' else 'Prelevato' END stato
-                from ditta1.usr_prelievod PRED
+                from ditta2.usr_prelievod PRED
                 INNER JOIN GRUPPO.TABMAG  TMD ON TMD.IDTABMAG = PRED.IDTABMAG_DEST
                 INNER JOIN GRUPPO.TABMAG  TMO ON TMO.IDTABMAG = PRED.IDTABMAG_ORI
-                inner join ditta1.usr_VENDITED VD on pred.idorigine = VD.idVENDITED AND PRED.ORIGINE = 0
-                inner join ditta1.usr_VENDITET VT on VT.IDVENDITET= VD.IDVENDITET
+                inner join ditta2.usr_VENDITED VD on pred.idorigine = VD.idVENDITED AND PRED.ORIGINE = 0
+                inner join ditta2.usr_VENDITET VT on VT.IDVENDITET= VD.IDVENDITET
                 INNER JOIN GRUPPO.MAGAZZ MAG ON MAG.IDMAGAZZ = PRED.IDMAGAZZ_ORI
-                inner join ditta1.usr_prelievot pret on pred.idprelievot = pret.idprelievot
+                inner join ditta2.usr_prelievot pret on pred.idprelievot = pret.idprelievot
                  WHERE VT.codiceclifo not in ('MONT%','SALD%')
                 AND pret.statoprelievot = 0 
                 AND TMD.CODICEMAG NOT IN (select codicemag from gruppo.tabmag 
