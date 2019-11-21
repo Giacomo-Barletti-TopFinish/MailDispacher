@@ -63,10 +63,10 @@ namespace MonitorServices.Services
             switch (nuovaSchedulazione.FREQUENZA)
             {
                 case "GIORNALIERA":
-                    nuovaSchedulazione.DATAESECUZIONE = DateTime.Today.AddDays(1);
+                    nuovaSchedulazione.DATAESECUZIONE = schedulazione.DATAESECUZIONE.AddDays(1);
                     break;
                 case "SETTIMANALE":
-                    nuovaSchedulazione.DATAESECUZIONE = DateTime.Today.AddDays(7);
+                    nuovaSchedulazione.DATAESECUZIONE = schedulazione.DATAESECUZIONE.AddDays(7);
                     break;
             }
             _ds.MONITOR_SCHEDULER.AddMONITOR_SCHEDULERRow(nuovaSchedulazione);

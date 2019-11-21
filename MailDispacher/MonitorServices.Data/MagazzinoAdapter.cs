@@ -81,6 +81,26 @@ namespace MonitorServices.Data
             }
         }
 
+        public void FillGIACENZA_BRAND_MANAGER(MagazzinoDS ds)
+        {
+            string select = @"SELECT * FROM GIACENZA_BRAND_MANAGER ";
+
+            using (DbDataAdapter da = BuildDataAdapter(select))
+            {
+                da.Fill(ds.GIACENZA_BRAND_MANAGER);
+            }
+        }
+
+        public void FillUSR_INVENTARIOS(MagazzinoDS ds)
+        {
+            string select = @"SELECT * FROM DITTA1.USR_INVENTARIOS ";
+
+            using (DbDataAdapter da = BuildDataAdapter(select))
+            {
+                da.Fill(ds.USR_INVENTARIOS);
+            }
+        }
+
         public void CopiaPrelievi()
         {
             string insert = @"INSERT INTO RW_PRELIEVI  

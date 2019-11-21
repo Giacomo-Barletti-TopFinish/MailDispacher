@@ -66,5 +66,39 @@ namespace MonitorServices.Services
 
             }
         }
+
+        public void VerificaGiacenzeBrandManager()
+        {
+            MagazzinoDS ds = new MagazzinoDS();
+
+            using (MagazzinoBusiness bMagazzino = new MagazzinoBusiness())
+            {
+                bMagazzino.FillGIACENZA_BRAND_MANAGER(ds);
+                bMagazzino.FillUSR_INVENTARIOS(ds);
+
+                foreach (MagazzinoDS.GIACENZA_BRAND_MANAGERRow elemento in ds.GIACENZA_BRAND_MANAGER)
+                {
+                    MagazzinoDS.USR_INVENTARIOSRow costo = ds.USR_INVENTARIOS.Where(x => x.METODOCOSTO1 != 0 && x.IDMAGAZZ == elemento.IDMAGAZZ).OrderBy(x => x.DATACR).FirstOrDefault();
+                    if (costo != null)
+                    {
+                        elemento.COSTO = costo.COSTO1;
+                        elemento.VALORE = costo.COSTO1 * elemento.QESI;
+                        elemento.VALORE_DISP = costo.COSTO1 * elemento.QTOT_DISP_ESI;
+                    }
+                }
+
+
+                ExcelHelper excel = new ExcelHelper();
+                byte[] file = excel.CreaExcelMagazziniGiacenzeBrandManager(ds);
+
+                string oggetto = string.Format("Giacenze Brand Manager al giorno {0}", DateTime.Today.ToShortDateString());
+                string corpo = "Dati in allegato";
+
+                decimal IDMAIL = MailDispatcherService.CreaEmail("MONITOR GIACENZE BRAND", oggetto, corpo);
+                MailDispatcherService.AggiungiAllegato(IDMAIL, "GiacenzeBrandManager.xlsx", new System.IO.MemoryStream(file));
+                MailDispatcherService.SottomettiEmail(IDMAIL);
+
+            }
+        }
     }
 }

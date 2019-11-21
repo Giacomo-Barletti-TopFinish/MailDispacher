@@ -33,6 +33,20 @@ namespace MonitorServices.Data
             a.FillMONITOR_APPROVVIGIONAMENTO(ds);
         }
 
+        [DataContext]
+        public void FillGIACENZA_BRAND_MANAGER(MagazzinoDS ds)
+        {
+            MagazzinoAdapter a = new MagazzinoAdapter(DbConnection, DbTransaction);
+            a.FillGIACENZA_BRAND_MANAGER(ds);
+        }
+
+        [DataContext]
+        public void FillUSR_INVENTARIOS(MagazzinoDS ds)
+        {
+            MagazzinoAdapter a = new MagazzinoAdapter(DbConnection, DbTransaction);
+            a.FillUSR_INVENTARIOS(ds);
+        }
+
         [DataContext(true)]
         public void CopiaPrelievi()
         {

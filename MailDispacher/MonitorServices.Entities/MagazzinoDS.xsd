@@ -2,9 +2,10 @@
 <xs:schema id="MagazzinoDS" targetNamespace="http://tempuri.org/MagazzinoDS.xsd" xmlns:mstns="http://tempuri.org/MagazzinoDS.xsd" xmlns="http://tempuri.org/MagazzinoDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ConnectionString (Settings)" PropertyReference="ApplicationSettings.MonitorServices.Entities.Properties.Settings.GlobalReference.Default.ConnectionString" Provider="System.Data.OracleClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ConnectionString1 (Settings)" PropertyReference="ApplicationSettings.MonitorServices.Entities.Properties.Settings.GlobalReference.Default.ConnectionString1" Provider="System.Data.OracleClient" />
         </Connections>
         <Tables />
         <Sources />
@@ -113,11 +114,150 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="GIACENZA_BRAND_MANAGER" msprop:Generator_TableClassName="GIACENZA_BRAND_MANAGERDataTable" msprop:Generator_TableVarName="tableGIACENZA_BRAND_MANAGER" msprop:Generator_RowChangedName="GIACENZA_BRAND_MANAGERRowChanged" msprop:Generator_TablePropName="GIACENZA_BRAND_MANAGER" msprop:Generator_RowDeletingName="GIACENZA_BRAND_MANAGERRowDeleting" msprop:Generator_RowChangingName="GIACENZA_BRAND_MANAGERRowChanging" msprop:Generator_RowEvHandlerName="GIACENZA_BRAND_MANAGERRowChangeEventHandler" msprop:Generator_RowDeletedName="GIACENZA_BRAND_MANAGERRowDeleted" msprop:Generator_RowClassName="GIACENZA_BRAND_MANAGERRow" msprop:Generator_UserTableName="GIACENZA_BRAND_MANAGER" msprop:Generator_RowEvArgName="GIACENZA_BRAND_MANAGERRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IDMAGAZZ" msprop:Generator_ColumnVarNameInTable="columnIDMAGAZZ" msprop:Generator_ColumnPropNameInRow="IDMAGAZZ" msprop:Generator_ColumnPropNameInTable="IDMAGAZZColumn" msprop:Generator_UserColumnName="IDMAGAZZ">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MODELLO" msprop:Generator_ColumnVarNameInTable="columnMODELLO" msprop:Generator_ColumnPropNameInRow="MODELLO" msprop:Generator_ColumnPropNameInTable="MODELLOColumn" msprop:Generator_UserColumnName="MODELLO">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DESMAGAZZ" msprop:Generator_ColumnVarNameInTable="columnDESMAGAZZ" msprop:Generator_ColumnPropNameInRow="DESMAGAZZ" msprop:Generator_ColumnPropNameInTable="DESMAGAZZColumn" msprop:Generator_UserColumnName="DESMAGAZZ">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CODICEMAG" msprop:Generator_ColumnVarNameInTable="columnCODICEMAG" msprop:Generator_ColumnPropNameInRow="CODICEMAG" msprop:Generator_ColumnPropNameInTable="CODICEMAGColumn" msprop:Generator_UserColumnName="CODICEMAG">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DESTABMAG" msprop:Generator_ColumnVarNameInTable="columnDESTABMAG" msprop:Generator_ColumnPropNameInRow="DESTABMAG" msprop:Generator_ColumnPropNameInTable="DESTABMAGColumn" msprop:Generator_UserColumnName="DESTABMAG">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="QESI" msprop:Generator_ColumnVarNameInTable="columnQESI" msprop:Generator_ColumnPropNameInRow="QESI" msprop:Generator_ColumnPropNameInTable="QESIColumn" msprop:Generator_UserColumnName="QESI" type="xs:decimal" />
+              <xs:element name="QTOT_DISP_ESI" msprop:Generator_ColumnVarNameInTable="columnQTOT_DISP_ESI" msprop:Generator_ColumnPropNameInRow="QTOT_DISP_ESI" msprop:Generator_ColumnPropNameInTable="QTOT_DISP_ESIColumn" msprop:Generator_UserColumnName="QTOT_DISP_ESI" type="xs:decimal" />
+              <xs:element name="DATA_CARICO" msprop:Generator_ColumnVarNameInTable="columnDATA_CARICO" msprop:Generator_ColumnPropNameInRow="DATA_CARICO" msprop:Generator_ColumnPropNameInTable="DATA_CARICOColumn" msprop:Generator_UserColumnName="DATA_CARICO" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="DATA_SCARICO" msprop:Generator_ColumnVarNameInTable="columnDATA_SCARICO" msprop:Generator_ColumnPropNameInRow="DATA_SCARICO" msprop:Generator_ColumnPropNameInTable="DATA_SCARICOColumn" msprop:Generator_UserColumnName="DATA_SCARICO" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="SEGNALATORE" msprop:Generator_ColumnVarNameInTable="columnSEGNALATORE" msprop:Generator_ColumnPropNameInRow="SEGNALATORE" msprop:Generator_ColumnPropNameInTable="SEGNALATOREColumn" msprop:Generator_UserColumnName="SEGNALATORE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="254" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="COSTO" msprop:Generator_ColumnVarNameInTable="columnCOSTO" msprop:Generator_ColumnPropNameInRow="COSTO" msprop:Generator_ColumnPropNameInTable="COSTOColumn" msprop:Generator_UserColumnName="COSTO" type="xs:decimal" minOccurs="0" />
+              <xs:element name="VALORE" msprop:Generator_ColumnVarNameInTable="columnVALORE" msprop:Generator_ColumnPropNameInRow="VALORE" msprop:Generator_ColumnPropNameInTable="VALOREColumn" msprop:Generator_UserColumnName="VALORE" type="xs:decimal" minOccurs="0" />
+              <xs:element name="VALORE_DISP" msprop:Generator_ColumnVarNameInTable="columnVALORE_DISP" msprop:Generator_ColumnPropNameInRow="VALORE_DISP" msprop:Generator_ColumnPropNameInTable="VALORE_DISPColumn" msprop:Generator_UserColumnName="VALORE_DISP" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="USR_INVENTARIOS" msprop:Generator_TableClassName="USR_INVENTARIOSDataTable" msprop:Generator_TableVarName="tableUSR_INVENTARIOS" msprop:Generator_TablePropName="USR_INVENTARIOS" msprop:Generator_RowDeletingName="USR_INVENTARIOSRowDeleting" msprop:Generator_RowChangingName="USR_INVENTARIOSRowChanging" msprop:Generator_RowEvHandlerName="USR_INVENTARIOSRowChangeEventHandler" msprop:Generator_RowDeletedName="USR_INVENTARIOSRowDeleted" msprop:Generator_UserTableName="USR_INVENTARIOS" msprop:Generator_RowChangedName="USR_INVENTARIOSRowChanged" msprop:Generator_RowEvArgName="USR_INVENTARIOSRowChangeEvent" msprop:Generator_RowClassName="USR_INVENTARIOSRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IDINVENTARIOS" msprop:Generator_ColumnVarNameInTable="columnIDINVENTARIOS" msprop:Generator_ColumnPropNameInRow="IDINVENTARIOS" msprop:Generator_ColumnPropNameInTable="IDINVENTARIOSColumn" msprop:Generator_UserColumnName="IDINVENTARIOS">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="36" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IDINVENTARIOT" msprop:Generator_ColumnVarNameInTable="columnIDINVENTARIOT" msprop:Generator_ColumnPropNameInRow="IDINVENTARIOT" msprop:Generator_ColumnPropNameInTable="IDINVENTARIOTColumn" msprop:Generator_UserColumnName="IDINVENTARIOT">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="36" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IDMAGAZZ" msprop:Generator_ColumnVarNameInTable="columnIDMAGAZZ" msprop:Generator_ColumnPropNameInRow="IDMAGAZZ" msprop:Generator_ColumnPropNameInTable="IDMAGAZZColumn" msprop:Generator_UserColumnName="IDMAGAZZ">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IDTABMISU" msprop:Generator_ColumnVarNameInTable="columnIDTABMISU" msprop:Generator_ColumnPropNameInRow="IDTABMISU" msprop:Generator_ColumnPropNameInTable="IDTABMISUColumn" msprop:Generator_UserColumnName="IDTABMISU" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IDTABCOMBCOL" msprop:Generator_ColumnVarNameInTable="columnIDTABCOMBCOL" msprop:Generator_ColumnPropNameInRow="IDTABCOMBCOL" msprop:Generator_ColumnPropNameInTable="IDTABCOMBCOLColumn" msprop:Generator_UserColumnName="IDTABCOMBCOL" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IDTABVARI" msprop:Generator_ColumnVarNameInTable="columnIDTABVARI" msprop:Generator_ColumnPropNameInRow="IDTABVARI" msprop:Generator_ColumnPropNameInTable="IDTABVARIColumn" msprop:Generator_UserColumnName="IDTABVARI" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IDTABUNIMI" msprop:Generator_ColumnVarNameInTable="columnIDTABUNIMI" msprop:Generator_ColumnPropNameInRow="IDTABUNIMI" msprop:Generator_ColumnPropNameInTable="IDTABUNIMIColumn" msprop:Generator_UserColumnName="IDTABUNIMI">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="UNITRATE" msprop:Generator_ColumnVarNameInTable="columnUNITRATE" msprop:Generator_ColumnPropNameInRow="UNITRATE" msprop:Generator_ColumnPropNameInTable="UNITRATEColumn" msprop:Generator_UserColumnName="UNITRATE" type="xs:decimal" />
+              <xs:element name="QUANTITA" msprop:Generator_ColumnVarNameInTable="columnQUANTITA" msprop:Generator_ColumnPropNameInRow="QUANTITA" msprop:Generator_ColumnPropNameInTable="QUANTITAColumn" msprop:Generator_UserColumnName="QUANTITA" type="xs:decimal" />
+              <xs:element name="METODOCOSTO1" msprop:Generator_ColumnVarNameInTable="columnMETODOCOSTO1" msprop:Generator_ColumnPropNameInRow="METODOCOSTO1" msprop:Generator_ColumnPropNameInTable="METODOCOSTO1Column" msprop:Generator_UserColumnName="METODOCOSTO1" type="xs:decimal" />
+              <xs:element name="TIPOVALORIZZAZIONEDIBA1" msprop:Generator_ColumnVarNameInTable="columnTIPOVALORIZZAZIONEDIBA1" msprop:Generator_ColumnPropNameInRow="TIPOVALORIZZAZIONEDIBA1" msprop:Generator_ColumnPropNameInTable="TIPOVALORIZZAZIONEDIBA1Column" msprop:Generator_UserColumnName="TIPOVALORIZZAZIONEDIBA1" type="xs:decimal" />
+              <xs:element name="COSTO1" msprop:Generator_ColumnVarNameInTable="columnCOSTO1" msprop:Generator_ColumnPropNameInRow="COSTO1" msprop:Generator_ColumnPropNameInTable="COSTO1Column" msprop:Generator_UserColumnName="COSTO1" type="xs:decimal" />
+              <xs:element name="VALORE1" msprop:Generator_ColumnVarNameInTable="columnVALORE1" msprop:Generator_ColumnPropNameInRow="VALORE1" msprop:Generator_ColumnPropNameInTable="VALORE1Column" msprop:Generator_UserColumnName="VALORE1" type="xs:decimal" />
+              <xs:element name="METODOCOSTO2" msprop:Generator_ColumnVarNameInTable="columnMETODOCOSTO2" msprop:Generator_ColumnPropNameInRow="METODOCOSTO2" msprop:Generator_ColumnPropNameInTable="METODOCOSTO2Column" msprop:Generator_UserColumnName="METODOCOSTO2" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TIPOVALORIZZAZIONEDIBA2" msprop:Generator_ColumnVarNameInTable="columnTIPOVALORIZZAZIONEDIBA2" msprop:Generator_ColumnPropNameInRow="TIPOVALORIZZAZIONEDIBA2" msprop:Generator_ColumnPropNameInTable="TIPOVALORIZZAZIONEDIBA2Column" msprop:Generator_UserColumnName="TIPOVALORIZZAZIONEDIBA2" type="xs:decimal" minOccurs="0" />
+              <xs:element name="COSTO2" msprop:Generator_ColumnVarNameInTable="columnCOSTO2" msprop:Generator_ColumnPropNameInRow="COSTO2" msprop:Generator_ColumnPropNameInTable="COSTO2Column" msprop:Generator_UserColumnName="COSTO2" type="xs:decimal" minOccurs="0" />
+              <xs:element name="VALORE2" msprop:Generator_ColumnVarNameInTable="columnVALORE2" msprop:Generator_ColumnPropNameInRow="VALORE2" msprop:Generator_ColumnPropNameInTable="VALORE2Column" msprop:Generator_UserColumnName="VALORE2" type="xs:decimal" minOccurs="0" />
+              <xs:element name="METODOCOSTO3" msprop:Generator_ColumnVarNameInTable="columnMETODOCOSTO3" msprop:Generator_ColumnPropNameInRow="METODOCOSTO3" msprop:Generator_ColumnPropNameInTable="METODOCOSTO3Column" msprop:Generator_UserColumnName="METODOCOSTO3" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TIPOVALORIZZAZIONEDIBA3" msprop:Generator_ColumnVarNameInTable="columnTIPOVALORIZZAZIONEDIBA3" msprop:Generator_ColumnPropNameInRow="TIPOVALORIZZAZIONEDIBA3" msprop:Generator_ColumnPropNameInTable="TIPOVALORIZZAZIONEDIBA3Column" msprop:Generator_UserColumnName="TIPOVALORIZZAZIONEDIBA3" type="xs:decimal" minOccurs="0" />
+              <xs:element name="COSTO3" msprop:Generator_ColumnVarNameInTable="columnCOSTO3" msprop:Generator_ColumnPropNameInRow="COSTO3" msprop:Generator_ColumnPropNameInTable="COSTO3Column" msprop:Generator_UserColumnName="COSTO3" type="xs:decimal" minOccurs="0" />
+              <xs:element name="VALORE3" msprop:Generator_ColumnVarNameInTable="columnVALORE3" msprop:Generator_ColumnPropNameInRow="VALORE3" msprop:Generator_ColumnPropNameInTable="VALORE3Column" msprop:Generator_UserColumnName="VALORE3" type="xs:decimal" minOccurs="0" />
+              <xs:element name="COSTOMEDIOLF" msprop:Generator_ColumnVarNameInTable="columnCOSTOMEDIOLF" msprop:Generator_ColumnPropNameInRow="COSTOMEDIOLF" msprop:Generator_ColumnPropNameInTable="COSTOMEDIOLFColumn" msprop:Generator_UserColumnName="COSTOMEDIOLF" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PROPRIETASN" msprop:Generator_ColumnVarNameInTable="columnPROPRIETASN" msprop:Generator_ColumnPropNameInRow="PROPRIETASN" msprop:Generator_ColumnPropNameInTable="PROPRIETASNColumn" msprop:Generator_UserColumnName="PROPRIETASN" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DATACR" msprop:Generator_ColumnVarNameInTable="columnDATACR" msprop:Generator_ColumnPropNameInRow="DATACR" msprop:Generator_ColumnPropNameInTable="DATACRColumn" msprop:Generator_UserColumnName="DATACR" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="DATAVR" msprop:Generator_ColumnVarNameInTable="columnDATAVR" msprop:Generator_ColumnPropNameInRow="DATAVR" msprop:Generator_ColumnPropNameInTable="DATAVRColumn" msprop:Generator_UserColumnName="DATAVR" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="UTENTE" msprop:Generator_ColumnVarNameInTable="columnUTENTE" msprop:Generator_ColumnPropNameInRow="UTENTE" msprop:Generator_ColumnPropNameInTable="UTENTEColumn" msprop:Generator_UserColumnName="UTENTE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:MONITOR_APPROVVIGIONAMENTO" />
       <xs:field xpath="mstns:IDMAGAZZ" />
+    </xs:unique>
+    <xs:unique name="USR_INVENTARIOS_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:USR_INVENTARIOS" />
+      <xs:field xpath="mstns:IDINVENTARIOS" />
     </xs:unique>
   </xs:element>
 </xs:schema>

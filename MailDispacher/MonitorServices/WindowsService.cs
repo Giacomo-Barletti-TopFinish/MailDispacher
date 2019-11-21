@@ -79,10 +79,17 @@ namespace MonitorServices
                     if (sMonitor.VerificaEsecuzione("VERIFICAREPLICHE", out schedulazione))
                     {
                         VerificaRepliche mRepliche = new VerificaRepliche();
-                        mRepliche.VerificaReplicheCartelleServer(@"\\DC01\IMMAGINI", @"\\DC02\IMMAGINI", "GIACOMO.BARLETTI", "topPasqua", "viamattei");
-                        mRepliche.VerificaReplicheCartelleServer(@"\\DC02\IMMAGINI", @"\\DC01\IMMAGINI", "GIACOMO.BARLETTI", "topPasqua", "viamattei");
-                        mRepliche.VerificaReplicheCartelleServer(@"\\DC01\DATI DISTRIBUITI", @"\\DC02\DATI DISTRIBUITI", "GIACOMO.BARLETTI", "topPasqua", "viamattei");
-                        mRepliche.VerificaReplicheCartelleServer(@"\\DC02\DATI DISTRIBUITI", @"\\DC01\DATI DISTRIBUITI", "GIACOMO.BARLETTI", "topPasqua", "viamattei");
+                        mRepliche.VerificaReplicheCartelleServer(@"\\DC01\IMMAGINI", @"\\DC02\IMMAGINI", "GIACOMO.BARLETTI", "topPasqua#1", "viamattei");
+                        mRepliche.VerificaReplicheCartelleServer(@"\\DC02\IMMAGINI", @"\\DC01\IMMAGINI", "GIACOMO.BARLETTI", "topPasqua#1", "viamattei");
+                        mRepliche.VerificaReplicheCartelleServer(@"\\DC01\DATI DISTRIBUITI", @"\\DC02\DATI DISTRIBUITI", "GIACOMO.BARLETTI", "topPasqua#1", "viamattei");
+                        mRepliche.VerificaReplicheCartelleServer(@"\\DC02\DATI DISTRIBUITI", @"\\DC01\DATI DISTRIBUITI", "GIACOMO.BARLETTI", "topPasqua#1", "viamattei");
+                        sMonitor.AggiornaSchedulazione(schedulazione);
+                    }
+
+                    if (sMonitor.VerificaEsecuzione("MAGAZZINIGIACENZEBRANDMANAGER", out schedulazione))
+                    {
+                        MagazzinoMonitor mMagazzino = new MagazzinoMonitor();
+                        mMagazzino.VerificaGiacenzeBrandManager();
                         sMonitor.AggiornaSchedulazione(schedulazione);
                     }
                 }

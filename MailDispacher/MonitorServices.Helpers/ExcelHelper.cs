@@ -13,6 +13,184 @@ namespace MonitorServices.Helpers
 {
     public class ExcelHelper
     {
+        public byte[] CreaExcelMagazziniGiacenzeBrandManager(MagazzinoDS ds)
+        {
+            byte[] content;
+            MemoryStream ms = new MemoryStream();
+            using (SpreadsheetDocument document = SpreadsheetDocument.Create(ms, SpreadsheetDocumentType.Workbook))
+            {
+                WorkbookPart workbookPart = document.AddWorkbookPart();
+                workbookPart.Workbook = new Workbook();
+
+                WorksheetPart worksheetPart = workbookPart.AddNewPart<WorksheetPart>();
+                worksheetPart.Worksheet = new Worksheet();
+
+                // Adding style
+                WorkbookStylesPart stylePart = workbookPart.AddNewPart<WorkbookStylesPart>();
+                stylePart.Stylesheet = GenerateStylesheet();
+                stylePart.Stylesheet.Save();
+
+                // Setting up columns
+                Columns columns = new Columns(
+                        new Column // Id column
+                        {
+                            Min = 1,
+                            Max = 1,
+                            Width = 20,
+                            CustomWidth = true
+                        },
+                        new Column // Id column
+                        {
+                            Min = 2,
+                            Max = 2,
+                            Width = 15,
+                            CustomWidth = true
+                        },
+                        new Column // Id column
+                        {
+                            Min = 3,
+                            Max = 3,
+                            Width = 20,
+                            CustomWidth = false
+                        },
+                        new Column // Id column
+                        {
+                            Min = 4,
+                            Max = 4,
+                            Width = 20,
+                            CustomWidth = true
+                        },
+                        new Column // Salary column
+                        {
+                            Min = 5,
+                            Max = 5,
+                            Width = 15,
+                            CustomWidth = true
+                        },
+                        new Column // Salary column
+                        {
+                            Min = 6,
+                            Max = 6,
+                            Width = 15,
+                            CustomWidth = true
+                        },
+                        new Column // Salary column
+                        {
+                            Min = 5,
+                            Max = 5,
+                            Width = 15,
+                            CustomWidth = true
+                        },
+                        new Column // Salary column
+                        {
+                            Min = 5,
+                            Max = 5,
+                            Width = 15,
+                            CustomWidth = true
+                        },
+                        new Column // Salary column
+                        {
+                            Min = 5,
+                            Max = 5,
+                            Width = 15,
+                            CustomWidth = true
+                        },
+                        new Column // Salary column
+                        {
+                            Min = 5,
+                            Max = 5,
+                            Width = 15,
+                            CustomWidth = true
+                        },
+                        new Column // Salary column
+                        {
+                            Min = 5,
+                            Max = 5,
+                            Width = 15,
+                            CustomWidth = true
+                        },
+                        new Column // Salary column
+                        {
+                            Min = 5,
+                            Max = 5,
+                            Width = 15,
+                            CustomWidth = true
+                        },
+                        new Column // Salary column
+                        {
+                            Min = 6,
+                            Max = 6,
+                            Width = 15,
+                            CustomWidth = true
+                        });
+
+                worksheetPart.Worksheet.AppendChild(columns);
+
+                Sheets sheets = workbookPart.Workbook.AppendChild(new Sheets());
+
+                Sheet sheet = new Sheet() { Id = workbookPart.GetIdOfPart(worksheetPart), SheetId = 1, Name = "Giacenze Brand Manger" };
+
+                sheets.Append(sheet);
+
+                workbookPart.Workbook.Save();
+
+                SheetData sheetData = worksheetPart.Worksheet.AppendChild(new SheetData());
+
+                // Constructing header
+                Row row = new Row();
+
+                row.Append(
+                    ConstructCell("IDMAGAZZ", CellValues.String, 2),
+                    ConstructCell("MODELLO", CellValues.String, 2),
+                    ConstructCell("DESCRIZIONE", CellValues.String, 2),
+                    ConstructCell("MAGAZZINO", CellValues.String, 2),
+                    ConstructCell("DESCRIZIONE MAGAZZINO", CellValues.String, 2),
+                    ConstructCell("ESISTENA", CellValues.String, 2),
+                    ConstructCell("DISPONIBILE SU ESISTENZA", CellValues.String, 2),
+                    ConstructCell("COSTO", CellValues.String, 2),
+                    ConstructCell("VALORE", CellValues.String, 2),
+                    ConstructCell("VALORE DISPONIBILE", CellValues.String, 2),
+                    ConstructCell("DATA CARICO", CellValues.String, 2),
+                    ConstructCell("DATA SCARICO", CellValues.String, 2),
+                    ConstructCell("SEGNALATORE", CellValues.String, 2));
+
+                // Insert the header row to the Sheet Data
+                sheetData.AppendChild(row);
+
+                foreach (MagazzinoDS.GIACENZA_BRAND_MANAGERRow elemento in ds.GIACENZA_BRAND_MANAGER)
+                {
+                    row = new Row();
+
+                    row.Append(
+                        ConstructCell(elemento.IDMAGAZZ, CellValues.String, 1),
+                        ConstructCell(elemento.MODELLO, CellValues.String, 1),
+                        ConstructCell(elemento.DESMAGAZZ, CellValues.String, 1),
+                        ConstructCell(elemento.CODICEMAG, CellValues.String, 1),
+                        ConstructCell(elemento.DESTABMAG, CellValues.String, 1),
+                        ConstructCell(elemento.QESI.ToString(), CellValues.String, 1),
+                        ConstructCell(elemento.QTOT_DISP_ESI.ToString(), CellValues.String, 1),
+
+                   ConstructCell(elemento.IsCOSTONull() ? string.Empty : elemento.COSTO.ToString(), CellValues.String, 1),
+                   ConstructCell(elemento.IsVALORENull() ? string.Empty : elemento.VALORE.ToString(), CellValues.String, 1),
+                   ConstructCell(elemento.IsVALORE_DISPNull() ? string.Empty : elemento.VALORE_DISP.ToString(), CellValues.String, 1),
+
+
+                        ConstructCell(elemento.IsDATA_CARICONull() ? string.Empty : elemento.DATA_CARICO.ToShortDateString(), CellValues.String, 1),
+                    ConstructCell(elemento.IsDATA_SCARICONull() ? String.Empty : elemento.DATA_SCARICO.ToShortDateString(), CellValues.String, 1),
+                    ConstructCell(elemento.IsSEGNALATORENull() ? string.Empty : elemento.SEGNALATORE, CellValues.String, 1));
+                    sheetData.AppendChild(row);
+                }
+
+                workbookPart.Workbook.Save();
+                document.Save();
+                document.Close();
+
+                ms.Seek(0, SeekOrigin.Begin);
+                content = ms.ToArray();
+            }
+
+            return content;
+        }
 
         public byte[] CreaExcelMagazziniGiacenze(MagazzinoDS ds)
         {
