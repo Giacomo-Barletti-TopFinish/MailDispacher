@@ -39,7 +39,12 @@ namespace MonitorServices.Data
             MagazzinoAdapter a = new MagazzinoAdapter(DbConnection, DbTransaction);
             a.FillGIACENZA_BRAND_MANAGER(ds);
         }
-
+        [DataContext]
+        public void FillSCARTIDIFETTOSI(DateTime dataTermini,MagazzinoDS ds)
+        {
+            MagazzinoAdapter a = new MagazzinoAdapter(DbConnection, DbTransaction);
+            a.FillSCARTIDIFETTOSI(dataTermini,ds);
+        }
         [DataContext]
         public void FillUSR_INVENTARIOS(MagazzinoDS ds)
         {

@@ -100,5 +100,26 @@ namespace MonitorServices.Services
 
             }
         }
+
+        public void ScartiDifettosi()
+        {
+            MagazzinoDS ds = new MagazzinoDS();
+            DateTime dataTermini = DateTime.Today.AddDays(-1);
+            using (MagazzinoBusiness bMagazzino = new MagazzinoBusiness())
+            {
+                bMagazzino.FillSCARTIDIFETTOSI(dataTermini,ds);
+
+                ExcelHelper excel = new ExcelHelper();
+                byte[] file = excel.CreaExcelScartiDifettosi(ds);
+
+                string oggetto = string.Format("Scarti difettosi al giorno {0}", dataTermini.ToShortDateString());
+                string corpo = "Dati in allegato";
+
+                decimal IDMAIL = MailDispatcherService.CreaEmail("SCARTI DIFETTOSI", oggetto, corpo);
+                MailDispatcherService.AggiungiAllegato(IDMAIL, "SCARTI DIFETTOSI.xlsx", new System.IO.MemoryStream(file));
+                MailDispatcherService.SottomettiEmail(IDMAIL);
+
+            }
+        }
     }
 }

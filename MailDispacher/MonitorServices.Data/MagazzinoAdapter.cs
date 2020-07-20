@@ -91,6 +91,31 @@ namespace MonitorServices.Data
             }
         }
 
+        public void FillSCARTIDIFETTOSI(DateTime dataTermini,MagazzinoDS ds)
+        {
+            string select = @"select LA.nomecommessa,LA.RIFERIMENTO,MF.AZIENDA,mf.DATAFLUSSOMOVFASE,mf.QTAFLUSSO QUANTITA,FA.NUMMOVFASE,TRIM(CL.RAGIONESOC) REPARTO,
+                            FA.QTA QTANTITAODL, FA.QTATER QUANTITATERMINATA,FA.QTATER_DF TOTALEDIFETTOSA,FA.QTATER_MA TOTALEMANCANTI, 
+                            MA.MODELLO, MA.DESMAGAZZ
+                            from usr_prd_flusso_movfasi mf
+                            inner join usr_prd_movfasi fa on fa.IDPRDMOVFASE = mf.IDPRDMOVFASE
+                            inner join gruppo.magazz ma on ma.idmagazz = fa.idmagazz
+                            INNER JOIN USR_PRD_FASI FS ON FS.IDPRDFASE=FA.IDPRDFASE
+                            INNER JOIN USR_PRD_LANCIOD LA ON LA.IDLANCIOD=FS.IDLANCIOD
+                            INNER JOIN GRUPPO.CLIFO CL ON CL.CODICE=fa.CODICECLIFO
+                            where idprdcaufase = '0000000009' 
+                            and DATAFLUSSOMOVFASE > to_date('{0} 00:00:00','dd/mm/yyyy HH24:MI:SS')
+                            and DATAFLUSSOMOVFASE < to_date('{1} 23:59:59','dd/mm/yyyy HH24:MI:SS')
+                            ORDER BY LA.nomecommessa, MA.MODELLO
+                            ";
+            string data = dataTermini.ToString("dd/MM/yyyy");
+            select = string.Format(select, data, data);
+
+            using (DbDataAdapter da = BuildDataAdapter(select))
+            {
+                da.Fill(ds.SCARTIDIFETTOSI);
+            }
+        }
+
         public void FillUSR_INVENTARIOS(MagazzinoDS ds)
         {
             string select = @"SELECT * FROM DITTA1.USR_INVENTARIOS ";

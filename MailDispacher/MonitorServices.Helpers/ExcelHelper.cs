@@ -192,6 +192,101 @@ namespace MonitorServices.Helpers
             return content;
         }
 
+        public byte[] CreaExcelScartiDifettosi(MagazzinoDS ds)
+        {
+            byte[] content;
+            MemoryStream ms = new MemoryStream();
+            using (SpreadsheetDocument document = SpreadsheetDocument.Create(ms, SpreadsheetDocumentType.Workbook))
+            {
+                WorkbookPart workbookPart = document.AddWorkbookPart();
+                workbookPart.Workbook = new Workbook();
+
+                WorksheetPart worksheetPart = workbookPart.AddNewPart<WorksheetPart>();
+                worksheetPart.Worksheet = new Worksheet();
+
+                // Adding style
+                WorkbookStylesPart stylePart = workbookPart.AddNewPart<WorkbookStylesPart>();
+                stylePart.Stylesheet = GenerateStylesheet();
+                stylePart.Stylesheet.Save();
+
+                Columns columns = new Columns();
+                for (int i = 0; i < ds.SCARTIDIFETTOSI.Columns.Count; i++)
+                {
+                    Column c = new Column();
+                    UInt32Value u = new UInt32Value((uint)(i + 1));
+                    c.Min = u;
+                    c.Max = u;
+                    c.Width = 15;
+
+                    columns.Append(c);
+                }
+
+
+                worksheetPart.Worksheet.AppendChild(columns);
+
+                Sheets sheets = workbookPart.Workbook.AppendChild(new Sheets());
+
+                Sheet sheet = new Sheet() { Id = workbookPart.GetIdOfPart(worksheetPart), SheetId = 1, Name = "Scarti difettosi" };
+
+                sheets.Append(sheet);
+
+                workbookPart.Workbook.Save();
+
+                SheetData sheetData = worksheetPart.Worksheet.AppendChild(new SheetData());
+
+                // Constructing header
+                Row row = new Row();
+
+                row.Append(
+                    ConstructCell("MODELLO", CellValues.String, 2),
+                    ConstructCell("DESCRIZIONE", CellValues.String, 2),
+                    ConstructCell("COMMESSA", CellValues.String, 2),
+                    ConstructCell("RIFERIMENTO", CellValues.String, 2),
+                    ConstructCell("AZIENDA", CellValues.String, 2),
+                    ConstructCell("DATA", CellValues.String, 2),
+                    ConstructCell("QUANTITA'", CellValues.String, 2),
+                    ConstructCell("ODL", CellValues.String, 2),
+                    ConstructCell("REPARTO", CellValues.String, 2),
+                    ConstructCell("QUANTITA' ODL", CellValues.String, 2),
+                    ConstructCell("QUANTITA TERMINATA ODL", CellValues.String, 2),
+                    ConstructCell("TOTALE DIFETTOSA", CellValues.String, 2),
+                    ConstructCell("TOTALE MANCANTI", CellValues.String, 2));
+
+                // Insert the header row to the Sheet Data
+                sheetData.AppendChild(row);
+
+                foreach (MagazzinoDS.SCARTIDIFETTOSIRow elemento in ds.SCARTIDIFETTOSI)
+                {
+                    row = new Row();
+
+                    row.Append(
+                        ConstructCell(elemento.MODELLO, CellValues.String, 1),
+                        ConstructCell(elemento.DESMAGAZZ, CellValues.String, 1),
+                        ConstructCell(elemento.NOMECOMMESSA, CellValues.String, 1),
+                        ConstructCell(elemento.IsRIFERIMENTONull()?string.Empty:elemento.RIFERIMENTO, CellValues.String, 1),
+                        ConstructCell(elemento.AZIENDA, CellValues.String, 1),
+                        ConstructCell(elemento.DATAFLUSSOMOVFASE.ToShortDateString(), CellValues.String, 1),
+                        ConstructCell(elemento.QUANTITA.ToString(), CellValues.String, 1),
+                        ConstructCell(elemento.NUMMOVFASE, CellValues.String, 1),
+                        ConstructCell(elemento.REPARTO, CellValues.String, 1),
+                        ConstructCell(elemento.QTANTITAODL.ToString(), CellValues.String, 1),
+                        ConstructCell(elemento.QUANTITATERMINATA.ToString(), CellValues.String, 1),
+                        ConstructCell(elemento.TOTALEDIFETTOSA.ToString(), CellValues.String, 1),
+                        ConstructCell(elemento.TOTALEMANCANTI.ToString(), CellValues.String, 1));
+                    sheetData.AppendChild(row);
+                }
+
+                workbookPart.Workbook.Save();
+                document.Save();
+                document.Close();
+
+                ms.Seek(0, SeekOrigin.Begin);
+                content = ms.ToArray();
+            }
+
+            return content;
+        }
+
         public byte[] CreaExcelMagazziniGiacenze(MagazzinoDS ds)
         {
             byte[] content;

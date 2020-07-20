@@ -92,6 +92,13 @@ namespace MonitorServices
                         mMagazzino.VerificaGiacenzeBrandManager();
                         sMonitor.AggiornaSchedulazione(schedulazione);
                     }
+
+                    if (sMonitor.VerificaEsecuzione("SCARTIDIFETTOSI", out schedulazione))
+                    {
+                        MagazzinoMonitor mMagazzino = new MagazzinoMonitor();
+                        mMagazzino.ScartiDifettosi();
+                        sMonitor.AggiornaSchedulazione(schedulazione);
+                    }
                 }
                 catch (Exception ex)
                 {
