@@ -103,8 +103,9 @@ namespace MonitorServices.Data
                             INNER JOIN USR_PRD_LANCIOD LA ON LA.IDLANCIOD=FS.IDLANCIOD
                             INNER JOIN GRUPPO.CLIFO CL ON CL.CODICE=fa.CODICECLIFO
                             where idprdcaufase = '0000000009' 
-                            and DATAFLUSSOMOVFASE > to_date('{0} 00:00:00','dd/mm/yyyy HH24:MI:SS')
-                            and DATAFLUSSOMOVFASE < to_date('{1} 23:59:59','dd/mm/yyyy HH24:MI:SS')
+                            and fa.codiceclifo <>'02350'
+                            and DATAFLUSSOMOVFASE >= to_date('{0} 00:00:00','dd/mm/yyyy HH24:MI:SS')
+                            and DATAFLUSSOMOVFASE <= to_date('{1} 23:59:59','dd/mm/yyyy HH24:MI:SS')
                             ORDER BY LA.nomecommessa, MA.MODELLO
                             ";
             string data = dataTermini.ToString("dd/MM/yyyy");
