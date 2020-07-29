@@ -266,13 +266,13 @@ namespace MonitorServices.Helpers
                         ConstructCell(elemento.IsRIFERIMENTONull()?string.Empty:elemento.RIFERIMENTO, CellValues.String, 1),
                         ConstructCell(elemento.AZIENDA, CellValues.String, 1),
                         ConstructCell(elemento.DATAFLUSSOMOVFASE.ToShortDateString(), CellValues.String, 1),
-                        ConstructCell(elemento.QUANTITA.ToString(), CellValues.String, 1),
+                        ConstructCell(elemento.QUANTITA.ToString(), CellValues.Number, 1),
                         ConstructCell(elemento.NUMMOVFASE, CellValues.String, 1),
                         ConstructCell(elemento.REPARTO, CellValues.String, 1),
-                        ConstructCell(elemento.QTANTITAODL.ToString(), CellValues.String, 1),
-                        ConstructCell(elemento.QUANTITATERMINATA.ToString(), CellValues.String, 1),
-                        ConstructCell(elemento.TOTALEDIFETTOSA.ToString(), CellValues.String, 1),
-                        ConstructCell(elemento.TOTALEMANCANTI.ToString(), CellValues.String, 1));
+                        ConstructCell(elemento.QTANTITAODL.ToString(), CellValues.Number, 1),
+                        ConstructCell(elemento.QUANTITATERMINATA.ToString(), CellValues.Number, 1),
+                        ConstructCell(elemento.TOTALEDIFETTOSA.ToString(), CellValues.Number, 1),
+                        ConstructCell(elemento.TOTALEMANCANTI.ToString(), CellValues.Number, 1));
                     sheetData.AppendChild(row);
                 }
 
