@@ -2499,6 +2499,8 @@ namespace MonitorServices.Entities {
             
             private global::System.Data.DataColumn columnSEGNALATORE;
             
+            private global::System.Data.DataColumn columnBRANDDESCRIZIONE;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public SCARTIDIFETTOSIDataTable() {
@@ -2646,6 +2648,14 @@ namespace MonitorServices.Entities {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn BRANDDESCRIZIONEColumn {
+                get {
+                    return this.columnBRANDDESCRIZIONE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2681,7 +2691,7 @@ namespace MonitorServices.Entities {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SCARTIDIFETTOSIRow AddSCARTIDIFETTOSIRow(string NOMECOMMESSA, string RIFERIMENTO, string AZIENDA, System.DateTime DATAFLUSSOMOVFASE, decimal QUANTITA, string NUMMOVFASE, string REPARTO, decimal QTANTITAODL, decimal QUANTITATERMINATA, decimal TOTALEDIFETTOSA, decimal TOTALEMANCANTI, string MODELLO, string DESMAGAZZ, string SEGNALATORE) {
+            public SCARTIDIFETTOSIRow AddSCARTIDIFETTOSIRow(string NOMECOMMESSA, string RIFERIMENTO, string AZIENDA, System.DateTime DATAFLUSSOMOVFASE, decimal QUANTITA, string NUMMOVFASE, string REPARTO, decimal QTANTITAODL, decimal QUANTITATERMINATA, decimal TOTALEDIFETTOSA, decimal TOTALEMANCANTI, string MODELLO, string DESMAGAZZ, string SEGNALATORE, string BRANDDESCRIZIONE) {
                 SCARTIDIFETTOSIRow rowSCARTIDIFETTOSIRow = ((SCARTIDIFETTOSIRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         NOMECOMMESSA,
@@ -2697,7 +2707,8 @@ namespace MonitorServices.Entities {
                         TOTALEMANCANTI,
                         MODELLO,
                         DESMAGAZZ,
-                        SEGNALATORE};
+                        SEGNALATORE,
+                        BRANDDESCRIZIONE};
                 rowSCARTIDIFETTOSIRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSCARTIDIFETTOSIRow);
                 return rowSCARTIDIFETTOSIRow;
@@ -2734,6 +2745,7 @@ namespace MonitorServices.Entities {
                 this.columnMODELLO = base.Columns["MODELLO"];
                 this.columnDESMAGAZZ = base.Columns["DESMAGAZZ"];
                 this.columnSEGNALATORE = base.Columns["SEGNALATORE"];
+                this.columnBRANDDESCRIZIONE = base.Columns["BRANDDESCRIZIONE"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2767,6 +2779,8 @@ namespace MonitorServices.Entities {
                 base.Columns.Add(this.columnDESMAGAZZ);
                 this.columnSEGNALATORE = new global::System.Data.DataColumn("SEGNALATORE", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSEGNALATORE);
+                this.columnBRANDDESCRIZIONE = new global::System.Data.DataColumn("BRANDDESCRIZIONE", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBRANDDESCRIZIONE);
                 this.columnNOMECOMMESSA.MaxLength = 50;
                 this.columnRIFERIMENTO.MaxLength = 100;
                 this.columnAZIENDA.MaxLength = 2;
@@ -4296,6 +4310,22 @@ namespace MonitorServices.Entities {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string BRANDDESCRIZIONE {
+                get {
+                    try {
+                        return ((string)(this[this.tableSCARTIDIFETTOSI.BRANDDESCRIZIONEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'BRANDDESCRIZIONE\' in table \'SCARTIDIFETTOSI\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSCARTIDIFETTOSI.BRANDDESCRIZIONEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsNOMECOMMESSANull() {
                 return this.IsNull(this.tableSCARTIDIFETTOSI.NOMECOMMESSAColumn);
             }
@@ -4436,6 +4466,18 @@ namespace MonitorServices.Entities {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetSEGNALATORENull() {
                 this[this.tableSCARTIDIFETTOSI.SEGNALATOREColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsBRANDDESCRIZIONENull() {
+                return this.IsNull(this.tableSCARTIDIFETTOSI.BRANDDESCRIZIONEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetBRANDDESCRIZIONENull() {
+                this[this.tableSCARTIDIFETTOSI.BRANDDESCRIZIONEColumn] = global::System.Convert.DBNull;
             }
         }
         

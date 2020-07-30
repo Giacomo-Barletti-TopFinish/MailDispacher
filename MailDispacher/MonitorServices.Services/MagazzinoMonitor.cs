@@ -112,10 +112,10 @@ namespace MonitorServices.Services
 
                 ExcelHelper excel = new ExcelHelper();
                 byte[] file = excel.CreaExcelScartiDifettosi(ds);
-                //FileStream fs = new FileStream(@"c:\temp\ttt.xlsx", FileMode.Create);
-                //fs.Write(file, 0, file.Length);
-                //fs.Flush();
-                //fs.Close();
+                FileStream fs = new FileStream(@"c:\temp\ttt.xlsx", FileMode.Create);
+                fs.Write(file, 0, file.Length);
+                fs.Flush();
+                fs.Close();
                 string oggetto = string.Format("Scarti difettosi al giorno {0}", dataTermini.ToShortDateString());
                 string corpo = "Dati in allegato";
 
