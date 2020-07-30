@@ -93,7 +93,8 @@ namespace MonitorServices.Data
 
         public void FillSCARTIDIFETTOSI(DateTime dataTermini,MagazzinoDS ds)
         {
-            string select = @"select LA.nomecommessa,LA.RIFERIMENTO,MF.AZIENDA,mf.DATAFLUSSOMOVFASE,mf.QTAFLUSSO QUANTITA,FA.NUMMOVFASE,TRIM(CL.RAGIONESOC) REPARTO,
+            string select = @"select TRIM(SE.RAGIONESOC)SEGNALATORE,LA.nomecommessa,LA.RIFERIMENTO,MF.AZIENDA,mf.DATAFLUSSOMOVFASE,
+                            mf.QTAFLUSSO QUANTITA,FA.NUMMOVFASE,TRIM(CL.RAGIONESOC) REPARTO,
                             FA.QTA QTANTITAODL, FA.QTATER QUANTITATERMINATA,FA.QTATER_DF TOTALEDIFETTOSA,FA.QTATER_MA TOTALEMANCANTI, 
                             MA.MODELLO, MA.DESMAGAZZ
                             from usr_prd_flusso_movfasi mf
@@ -101,6 +102,7 @@ namespace MonitorServices.Data
                             inner join gruppo.magazz ma on ma.idmagazz = fa.idmagazz
                             INNER JOIN USR_PRD_FASI FS ON FS.IDPRDFASE=FA.IDPRDFASE
                             INNER JOIN USR_PRD_LANCIOD LA ON LA.IDLANCIOD=FS.IDLANCIOD
+                            INNER JOIN GRUPPO.CLIFO SE ON SE.CODICE=LA.SEGNALATORE
                             INNER JOIN GRUPPO.CLIFO CL ON CL.CODICE=fa.CODICECLIFO
                             where idprdcaufase = '0000000009' 
                             and fa.codiceclifo <>'02350'

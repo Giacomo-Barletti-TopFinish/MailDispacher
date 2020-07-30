@@ -238,6 +238,7 @@ namespace MonitorServices.Helpers
                 Row row = new Row();
 
                 row.Append(
+                    ConstructCell("SEGNALATORE", CellValues.String, 2),
                     ConstructCell("MODELLO", CellValues.String, 2),
                     ConstructCell("DESCRIZIONE", CellValues.String, 2),
                     ConstructCell("COMMESSA", CellValues.String, 2),
@@ -260,6 +261,7 @@ namespace MonitorServices.Helpers
                     row = new Row();
 
                     row.Append(
+                        ConstructCell(elemento.SEGNALATORE, CellValues.String, 1),
                         ConstructCell(elemento.MODELLO, CellValues.String, 1),
                         ConstructCell(elemento.DESMAGAZZ, CellValues.String, 1),
                         ConstructCell(elemento.NOMECOMMESSA, CellValues.String, 1),
