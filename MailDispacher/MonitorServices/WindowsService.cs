@@ -67,6 +67,13 @@ namespace MonitorServices
                         sMonitor.AggiornaSchedulazione(schedulazione);
                     }
 
+                    if (sMonitor.VerificaEsecuzione("SALDIUBICAZIONI", out schedulazione))
+                    {
+                        MagazzinoMonitor mMagazzino = new MagazzinoMonitor();
+                        mMagazzino.SaldiUbicazioni();
+                        sMonitor.AggiornaSchedulazione(schedulazione);
+                    }
+
                     if (sMonitor.VerificaEsecuzione("PRELIEVI", out schedulazione))
                     {
                         PrelieviService prelievi = new PrelieviService();

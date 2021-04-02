@@ -267,7 +267,7 @@ namespace MonitorServices.Helpers
                         ConstructCell(elemento.MODELLO, CellValues.String, 1),
                         ConstructCell(elemento.DESMAGAZZ, CellValues.String, 1),
                         ConstructCell(elemento.NOMECOMMESSA, CellValues.String, 1),
-                        ConstructCell(elemento.IsRIFERIMENTONull()?string.Empty:elemento.RIFERIMENTO, CellValues.String, 1),
+                        ConstructCell(elemento.IsRIFERIMENTONull() ? string.Empty : elemento.RIFERIMENTO, CellValues.String, 1),
                         ConstructCell(elemento.AZIENDA, CellValues.String, 1),
                         ConstructCell(elemento.DATAFLUSSOMOVFASE.ToShortDateString(), CellValues.String, 1),
                         ConstructCell(elemento.QUANTITA.ToString(), CellValues.Number, 1),
@@ -290,7 +290,119 @@ namespace MonitorServices.Helpers
 
             return content;
         }
+        public byte[] CreaExcelSaldiUbicazioni(MagazzinoDS ds)
+        {
+            byte[] content;
+            MemoryStream ms = new MemoryStream();
+            using (SpreadsheetDocument document = SpreadsheetDocument.Create(ms, SpreadsheetDocumentType.Workbook))
+            {
+                WorkbookPart workbookPart = document.AddWorkbookPart();
+                workbookPart.Workbook = new Workbook();
 
+                WorksheetPart worksheetPart = workbookPart.AddNewPart<WorksheetPart>();
+                worksheetPart.Worksheet = new Worksheet();
+
+                // Adding style
+                WorkbookStylesPart stylePart = workbookPart.AddNewPart<WorkbookStylesPart>();
+                stylePart.Stylesheet = GenerateStylesheet();
+                stylePart.Stylesheet.Save();
+
+                // Setting up columns
+                Columns columns = new Columns(
+                        new Column // Id column
+                        {
+                            Min = 1,
+                            Max = 1,
+                            Width = 20,
+                            CustomWidth = true
+                        },
+                        new Column // Id column
+                        {
+                            Min = 2,
+                            Max = 2,
+                            Width = 15,
+                            CustomWidth = true
+                        },
+                        new Column // Id column
+                        {
+                            Min = 3,
+                            Max = 3,
+                            Width = 20,
+                            CustomWidth = false
+                        },
+                        new Column // Id column
+                        {
+                            Min = 4,
+                            Max = 4,
+                            Width = 20,
+                            CustomWidth = true
+                        },
+                        new Column // Salary column
+                        {
+                            Min = 5,
+                            Max = 5,
+                            Width = 15,
+                            CustomWidth = true
+                        },
+                        new Column // Salary column
+                        {
+                            Min = 6,
+                            Max = 6,
+                            Width = 15,
+                            CustomWidth = true
+                        });
+
+                worksheetPart.Worksheet.AppendChild(columns);
+
+                Sheets sheets = workbookPart.Workbook.AppendChild(new Sheets());
+
+                Sheet sheet = new Sheet() { Id = workbookPart.GetIdOfPart(worksheetPart), SheetId = 1, Name = "Saldi" };
+
+                sheets.Append(sheet);
+
+                workbookPart.Workbook.Save();
+
+                SheetData sheetData = worksheetPart.Worksheet.AppendChild(new SheetData());
+
+                // Constructing header
+                Row row = new Row();
+
+                row.Append(
+                    ConstructCell("MODELLO", CellValues.String, 2),
+                    ConstructCell("GIACENZA", CellValues.String, 2),
+                    ConstructCell("CATEGORIA", CellValues.String, 2),
+                    ConstructCell("COSTO", CellValues.String, 2),
+                    ConstructCell("QUANTITA'", CellValues.String, 2),
+                    ConstructCell("VALORE", CellValues.String, 2));
+
+                // Insert the header row to the Sheet Data
+                sheetData.AppendChild(row);
+
+                foreach (MagazzinoDS.SALDIUBICAZIONIRow elemento in ds.SALDIUBICAZIONI)
+                {
+                    row = new Row();
+
+                    row.Append(
+                        ConstructCell(elemento.MODELLO, CellValues.String, 1),
+                        ConstructCell(elemento.CODICEMAG, CellValues.String, 1),
+                        ConstructCell(elemento.IsCATEGORIANull() ? string.Empty : elemento.CATEGORIA, CellValues.String, 1),
+                        ConstructCell(elemento.IsCOSTO1Null() ? string.Empty : elemento.COSTO1.ToString(), CellValues.String, 1),
+                    ConstructCell(elemento.QESI.ToString(), CellValues.String, 1),
+                    ConstructCell(elemento.IsVALORENull() ? string.Empty : elemento.VALORE.ToString(), CellValues.String, 1));
+
+                    sheetData.AppendChild(row);
+                }
+
+                workbookPart.Workbook.Save();
+                document.Save();
+                document.Close();
+
+                ms.Seek(0, SeekOrigin.Begin);
+                content = ms.ToArray();
+            }
+
+            return content;
+        }
         public byte[] CreaExcelMagazziniGiacenze(MagazzinoDS ds)
         {
             byte[] content;

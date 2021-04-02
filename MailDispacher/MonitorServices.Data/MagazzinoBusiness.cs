@@ -34,6 +34,13 @@ namespace MonitorServices.Data
         }
 
         [DataContext]
+        public void FillSALDIUBICAZIONI(MagazzinoDS ds)
+        {
+            MagazzinoAdapter a = new MagazzinoAdapter(DbConnection, DbTransaction);
+            a.FillSALDIUBICAZIONI(ds);
+        }
+
+        [DataContext]
         public void FillGIACENZA_BRAND_MANAGER(MagazzinoDS ds)
         {
             MagazzinoAdapter a = new MagazzinoAdapter(DbConnection, DbTransaction);

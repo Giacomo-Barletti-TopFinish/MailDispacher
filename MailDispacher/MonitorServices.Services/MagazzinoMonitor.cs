@@ -68,6 +68,48 @@ namespace MonitorServices.Services
             }
         }
 
+        public void SaldiUbicazioni()
+        {
+            MagazzinoDS ds = new MagazzinoDS();
+
+            using (MagazzinoBusiness bMagazzino = new MagazzinoBusiness())
+            {
+                bMagazzino.FillSALDIUBICAZIONI(ds);
+
+                foreach (MagazzinoDS.SALDIUBICAZIONIRow saldo in ds.SALDIUBICAZIONI)
+                {
+                    if (saldo.IsCATEGORIANull())
+                    {
+                        saldo.Delete();
+                        continue;
+                    }
+                    switch (saldo.CATEGORIA)
+                    {
+                        case "Lavorazione Esterna":
+                        case "Prodotti Di Terzi":
+                        case "PL45":
+                            saldo.Delete();
+                            break;
+
+                    }
+                }
+
+                ds.SALDIUBICAZIONI.AcceptChanges();
+
+                if (ds.SALDIUBICAZIONI.Count == 0) return;
+
+                ExcelHelper excel = new ExcelHelper();
+                byte[] file = excel.CreaExcelSaldiUbicazioni(ds);
+
+                string oggetto = string.Format("Saldi ubicazioni al giorno {0}", DateTime.Today.ToShortDateString());
+                string corpo = "Dati in allegato";
+
+                decimal IDMAIL = MailDispatcherService.CreaEmail("SALDI UBICAZIONI", oggetto, corpo);
+                MailDispatcherService.AggiungiAllegato(IDMAIL, "SaldiUbicazioni.xlsx", new System.IO.MemoryStream(file));
+                MailDispatcherService.SottomettiEmail(IDMAIL);
+
+            }
+        }
         public void VerificaGiacenzeBrandManager()
         {
             MagazzinoDS ds = new MagazzinoDS();
@@ -108,7 +150,7 @@ namespace MonitorServices.Services
             DateTime dataTermini = DateTime.Today.AddDays(-1);
             using (MagazzinoBusiness bMagazzino = new MagazzinoBusiness())
             {
-                bMagazzino.FillSCARTIDIFETTOSI(dataTermini,ds);
+                bMagazzino.FillSCARTIDIFETTOSI(dataTermini, ds);
 
                 ExcelHelper excel = new ExcelHelper();
                 byte[] file = excel.CreaExcelScartiDifettosi(ds);

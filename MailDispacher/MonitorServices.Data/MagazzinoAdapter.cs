@@ -81,6 +81,22 @@ namespace MonitorServices.Data
             }
         }
 
+        public void FillSALDIUBICAZIONI(MagazzinoDS ds)
+        {
+            string select = @"select ma.modello,tm.codicemag,
+                                CLASSIFICA_MAGAZZINO(tm.codicemag ,'','', tm.destabmag ) categoria,val.costo1,sg.qesi, sg.qesi*val.costo1 valore
+                                from ditta1.saldi_gen sg
+                                inner join gruppo.magazz ma on ma.idmagazz = sg.idmagazz
+                                inner join gruppo.tabmag tm on tm.idtabmag = sg.idtabmag
+                                left outer join ditta1.USR_INVENTARIOs val on val.idmagazz = sg.idmagazz and val.idinventariot= '81af466b-104b-4ca9-998c-5bf5e4d22e0c' 
+                                WHERE SG.QESI > 0";
+
+            using (DbDataAdapter da = BuildDataAdapter(select))
+            {
+                da.Fill(ds.SALDIUBICAZIONI);
+            }
+        }
+
         public void FillGIACENZA_BRAND_MANAGER(MagazzinoDS ds)
         {
             string select = @"SELECT * FROM GIACENZA_BRAND_MANAGER ";
@@ -91,7 +107,7 @@ namespace MonitorServices.Data
             }
         }
 
-        public void FillSCARTIDIFETTOSI(DateTime dataTermini,MagazzinoDS ds)
+        public void FillSCARTIDIFETTOSI(DateTime dataTermini, MagazzinoDS ds)
         {
             string select = @"select TRIM(SE.RAGIONESOC)SEGNALATORE,TTO.DESTABTIPOO BRANDDESCRIZIONE,LA.nomecommessa,LA.RIFERIMENTO,MF.AZIENDA,mf.DATAFLUSSOMOVFASE,
                             mf.QTAFLUSSO QUANTITA,FA.NUMMOVFASE,TRIM(CL.RAGIONESOC) REPARTO,
