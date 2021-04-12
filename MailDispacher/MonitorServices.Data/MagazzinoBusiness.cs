@@ -37,6 +37,7 @@ namespace MonitorServices.Data
         public void FillSALDIUBICAZIONI(MagazzinoDS ds)
         {
             MagazzinoAdapter a = new MagazzinoAdapter(DbConnection, DbTransaction);
+            a.CreaStoricoGiacenzaMagazzino();
             a.FillSALDIUBICAZIONI(ds);
         }
 
