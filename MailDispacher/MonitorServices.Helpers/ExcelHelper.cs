@@ -290,6 +290,174 @@ namespace MonitorServices.Helpers
 
             return content;
         }
+        public byte[] CreaExcelMovimentiFiltrati(MagazzinoDS ds)
+        {
+            byte[] content;
+            MemoryStream ms = new MemoryStream();
+            using (SpreadsheetDocument document = SpreadsheetDocument.Create(ms, SpreadsheetDocumentType.Workbook))
+            {
+                WorkbookPart workbookPart = document.AddWorkbookPart();
+                workbookPart.Workbook = new Workbook();
+
+                WorksheetPart worksheetPart = workbookPart.AddNewPart<WorksheetPart>();
+                worksheetPart.Worksheet = new Worksheet();
+
+                // Adding style
+                WorkbookStylesPart stylePart = workbookPart.AddNewPart<WorkbookStylesPart>();
+                stylePart.Stylesheet = GenerateStylesheet();
+                stylePart.Stylesheet.Save();
+
+                // Setting up columns
+                Columns columns = new Columns(
+                        new Column // Id column
+                        {
+                            Min = 1,
+                            Max = 1,
+                            Width = 20,
+                            CustomWidth = true
+                        },
+                        new Column // Id column
+                        {
+                            Min = 2,
+                            Max = 2,
+                            Width = 15,
+                            CustomWidth = true
+                        },
+                        new Column // Id column
+                        {
+                            Min = 3,
+                            Max = 3,
+                            Width = 20,
+                            CustomWidth = false
+                        },
+                        new Column // Id column
+                        {
+                            Min = 4,
+                            Max = 4,
+                            Width = 20,
+                            CustomWidth = true
+                        },
+                        new Column // Salary column
+                        {
+                            Min = 5,
+                            Max = 5,
+                            Width = 15,
+                            CustomWidth = true
+                        },
+                        new Column // Salary column
+                        {
+                            Min = 6,
+                            Max = 6,
+                            Width = 15,
+                            CustomWidth = true
+                        },
+                        new Column // Salary column
+                        {
+                            Min = 7,
+                            Max = 7,
+                            Width = 15,
+                            CustomWidth = true
+                        },
+                        new Column // Salary column
+                        {
+                            Min = 8,
+                            Max = 8,
+                            Width = 15,
+                            CustomWidth = true
+                        },
+                        new Column // Salary column
+                        {
+                            Min = 9,
+                            Max = 9,
+                            Width = 15,
+                            CustomWidth = true
+                        },
+                        new Column // Salary column
+                        {
+                            Min = 10,
+                            Max = 10,
+                            Width = 15,
+                            CustomWidth = true
+                        },
+                        new Column // Salary column
+                        {
+                            Min = 11,
+                            Max = 11,
+                            Width = 15,
+                            CustomWidth = true
+                        },
+                        new Column // Salary column
+                        {
+                            Min = 12,
+                            Max = 12,
+                            Width = 15,
+                            CustomWidth = true
+                        }
+                        );
+
+                worksheetPart.Worksheet.AppendChild(columns);
+
+                Sheets sheets = workbookPart.Workbook.AppendChild(new Sheets());
+
+                Sheet sheet = new Sheet() { Id = workbookPart.GetIdOfPart(worksheetPart), SheetId = 1, Name = "Movimenti" };
+
+                sheets.Append(sheet);
+
+                workbookPart.Workbook.Save();
+
+                SheetData sheetData = worksheetPart.Worksheet.AppendChild(new SheetData());
+
+                // Constructing header
+                Row row = new Row();
+
+                row.Append(
+                    ConstructCell("MAG_R", CellValues.String, 2),
+                    ConstructCell("CALSSIFICA_R", CellValues.String, 2),
+                    ConstructCell("MAG_D", CellValues.String, 2),
+                    ConstructCell("CLASSIFICA_D", CellValues.String, 2),
+                    ConstructCell("IDMOVIMENTO", CellValues.String, 2),
+                    ConstructCell("ANNO", CellValues.String, 2),
+                    ConstructCell("DATA", CellValues.String, 2),
+                    ConstructCell("NUMERO", CellValues.String, 2),
+                    ConstructCell("MODELLO", CellValues.String, 2),
+                    ConstructCell("QUANTITA'", CellValues.String, 2),
+                    ConstructCell("CAUSALE", CellValues.String, 2),
+                    ConstructCell("DIREZIONE", CellValues.String, 2));
+
+                // Insert the header row to the Sheet Data
+                sheetData.AppendChild(row);
+
+                foreach (MagazzinoDS.MOVIMENTIFILTRATIRow elemento in ds.MOVIMENTIFILTRATI)
+                {
+                    row = new Row();
+
+                    row.Append(
+                        ConstructCell(elemento.MAG_R, CellValues.String, 1),
+                        ConstructCell(elemento.IsCLASSIFICA_RNull() ? String.Empty : elemento.CLASSIFICA_R, CellValues.String, 1),
+                        ConstructCell(elemento.MAR_D, CellValues.String, 1),
+                        ConstructCell(elemento.IsCLASSIFICA_DNull() ? String.Empty : elemento.CLASSIFICA_D, CellValues.String, 1),
+                        ConstructCell(elemento.IDMOVIMENTO, CellValues.String, 1),
+                        ConstructCell(elemento.ANNOMOV.ToString(), CellValues.String, 1),
+                        ConstructCell(elemento.IsDATMOVNull() ? string.Empty : elemento.DATMOV.ToShortDateString(), CellValues.String, 1),
+                        ConstructCell(elemento.NUMMOV.ToString(), CellValues.String, 1),
+                        ConstructCell(elemento.MODELLO, CellValues.String, 1),
+                        ConstructCell(elemento.QUANTITA.ToString(), CellValues.String, 1),
+                        ConstructCell(elemento.DESTABCAUMGT, CellValues.String, 1),
+                        ConstructCell(elemento.IsDIREZIONENull() ? string.Empty : elemento.DIREZIONE, CellValues.String, 1));
+
+                    sheetData.AppendChild(row);
+                }
+
+                workbookPart.Workbook.Save();
+                document.Save();
+                document.Close();
+
+                ms.Seek(0, SeekOrigin.Begin);
+                content = ms.ToArray();
+            }
+
+            return content;
+        }
         public byte[] CreaExcelSaldiUbicazioni(MagazzinoDS ds)
         {
             byte[] content;

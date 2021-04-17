@@ -90,7 +90,7 @@ namespace MonitorServices.Data
                                 inner join gruppo.magazz ma on ma.idmagazz = sg.idmagazz
                                 inner join gruppo.tabmag tm on tm.idtabmag = sg.idtabmag
                                 left outer join ditta1.USR_INVENTARIOs val on val.idmagazz = sg.idmagazz and val.idinventariot= '81af466b-104b-4ca9-998c-5bf5e4d22e0c' 
-                                WHERE SG.QESI > 0;";
+                                WHERE SG.QESI > 0";
 
 
             using (DbCommand cmd = BuildCommand(comando))
@@ -112,6 +112,33 @@ namespace MonitorServices.Data
             using (DbDataAdapter da = BuildDataAdapter(select))
             {
                 da.Fill(ds.SALDIUBICAZIONI);
+            }
+        }
+
+        public void FillMOVIMENTIFILTRATI(MagazzinoDS ds)
+        {
+            string dataFiltro = DateTime.Today.AddDays(-1).ToString("dd/MM/yyyy");
+
+            string select =string.Format( @" SELECT * FROM (
+                                SELECT MAR.CODICEMAG MAG_R, 
+                                CLASSIFICA_MAGAZZINO(MAR.CODICEMAG,'','', '') CLASSIFICA_R,
+                                MAD.CODICEMAG MAR_D,
+                                CLASSIFICA_MAGAZZINO(MAD.CODICEMAG,'','', '') CLASSIFICA_D,
+                                MO.IDMOVIMENTO,ANNOMOV,DATMOV,NUMMOV,MA.MODELLO,MO.QUANTITA,
+                                CAU.DESTABCAUMGT,CASE WHEN CAU.QESI=1 THEN 'CARICO' WHEN CAU.QESI=2 THEN 'SCARICO' END DIREZIONE 
+                                FROM DITTA1.USR_MOVIMENTI MO
+                                INNER JOIN GRUPPO.TABMAG MAR ON MO.IDTABMAGR = MAR.IDTABMAG
+                                INNER JOIN GRUPPO.TABMAG MAD ON MO.IDTABMAGR = MAD.IDTABMAG
+                                INNER JOIN GRUPPO.MAGAZZ MA ON MA.IDMAGAZZ=MO.IDMAGAZZ
+                                INNER JOIN gruppo.tabcaumgt CAU ON CAU.IDTABCAUMGT = MO.IDTABCAUMGT
+                                WHERE MO.DATMOV >= to_date('{0} 00:00:00','dd/mm/yyyy HH24:MI:SS')
+                                AND MO.DATMOV <= to_date('{1} 23:59:59','dd/mm/yyyy HH24:MI:SS')
+                                ) T WHERE T.CLASSIFICA_R IN ('In Attesa Componenti','Ubicato','Acquistato')
+                                OR T.CLASSIFICA_D IN ('In Attesa Componenti','Ubicato','Acquistato')", dataFiltro, dataFiltro);
+
+            using (DbDataAdapter da = BuildDataAdapter(select))
+            {
+                da.Fill(ds.MOVIMENTIFILTRATI);
             }
         }
 

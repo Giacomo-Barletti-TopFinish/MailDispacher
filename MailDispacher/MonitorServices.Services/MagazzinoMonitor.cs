@@ -100,12 +100,14 @@ namespace MonitorServices.Services
 
                 ExcelHelper excel = new ExcelHelper();
                 byte[] file = excel.CreaExcelSaldiUbicazioni(ds);
+                byte[] fileMovimenti = excel.CreaExcelMovimentiFiltrati(ds);
 
                 string oggetto = string.Format("Saldi ubicazioni al giorno {0}", DateTime.Today.ToShortDateString());
                 string corpo = "Dati in allegato";
 
                 decimal IDMAIL = MailDispatcherService.CreaEmail("SALDI UBICAZIONI", oggetto, corpo);
                 MailDispatcherService.AggiungiAllegato(IDMAIL, "SaldiUbicazioni.xlsx", new System.IO.MemoryStream(file));
+                MailDispatcherService.AggiungiAllegato(IDMAIL, "Movimenti.xlsx", new System.IO.MemoryStream(fileMovimenti));
                 MailDispatcherService.SottomettiEmail(IDMAIL);
 
             }

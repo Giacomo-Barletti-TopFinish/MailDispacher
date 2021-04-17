@@ -38,6 +38,8 @@ namespace MonitorServices.Entities {
         
         private SALDIUBICAZIONIDataTable tableSALDIUBICAZIONI;
         
+        private MOVIMENTIFILTRATIDataTable tableMOVIMENTIFILTRATI;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -86,6 +88,9 @@ namespace MonitorServices.Entities {
                 }
                 if ((ds.Tables["SALDIUBICAZIONI"] != null)) {
                     base.Tables.Add(new SALDIUBICAZIONIDataTable(ds.Tables["SALDIUBICAZIONI"]));
+                }
+                if ((ds.Tables["MOVIMENTIFILTRATI"] != null)) {
+                    base.Tables.Add(new MOVIMENTIFILTRATIDataTable(ds.Tables["MOVIMENTIFILTRATI"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -177,6 +182,16 @@ namespace MonitorServices.Entities {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public MOVIMENTIFILTRATIDataTable MOVIMENTIFILTRATI {
+            get {
+                return this.tableMOVIMENTIFILTRATI;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -263,6 +278,9 @@ namespace MonitorServices.Entities {
                 if ((ds.Tables["SALDIUBICAZIONI"] != null)) {
                     base.Tables.Add(new SALDIUBICAZIONIDataTable(ds.Tables["SALDIUBICAZIONI"]));
                 }
+                if ((ds.Tables["MOVIMENTIFILTRATI"] != null)) {
+                    base.Tables.Add(new MOVIMENTIFILTRATIDataTable(ds.Tables["MOVIMENTIFILTRATI"]));
+                }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;
@@ -338,6 +356,12 @@ namespace MonitorServices.Entities {
                     this.tableSALDIUBICAZIONI.InitVars();
                 }
             }
+            this.tableMOVIMENTIFILTRATI = ((MOVIMENTIFILTRATIDataTable)(base.Tables["MOVIMENTIFILTRATI"]));
+            if ((initTable == true)) {
+                if ((this.tableMOVIMENTIFILTRATI != null)) {
+                    this.tableMOVIMENTIFILTRATI.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -362,6 +386,8 @@ namespace MonitorServices.Entities {
             base.Tables.Add(this.tableSCARTIDIFETTOSI);
             this.tableSALDIUBICAZIONI = new SALDIUBICAZIONIDataTable();
             base.Tables.Add(this.tableSALDIUBICAZIONI);
+            this.tableMOVIMENTIFILTRATI = new MOVIMENTIFILTRATIDataTable();
+            base.Tables.Add(this.tableMOVIMENTIFILTRATI);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -403,6 +429,12 @@ namespace MonitorServices.Entities {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private bool ShouldSerializeSALDIUBICAZIONI() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private bool ShouldSerializeMOVIMENTIFILTRATI() {
             return false;
         }
         
@@ -481,6 +513,9 @@ namespace MonitorServices.Entities {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void SALDIUBICAZIONIRowChangeEventHandler(object sender, SALDIUBICAZIONIRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public delegate void MOVIMENTIFILTRATIRowChangeEventHandler(object sender, MOVIMENTIFILTRATIRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -3275,6 +3310,422 @@ namespace MonitorServices.Entities {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class MOVIMENTIFILTRATIDataTable : global::System.Data.TypedTableBase<MOVIMENTIFILTRATIRow> {
+            
+            private global::System.Data.DataColumn columnMAG_R;
+            
+            private global::System.Data.DataColumn columnCLASSIFICA_R;
+            
+            private global::System.Data.DataColumn columnMAR_D;
+            
+            private global::System.Data.DataColumn columnCLASSIFICA_D;
+            
+            private global::System.Data.DataColumn columnIDMOVIMENTO;
+            
+            private global::System.Data.DataColumn columnANNOMOV;
+            
+            private global::System.Data.DataColumn columnDATMOV;
+            
+            private global::System.Data.DataColumn columnNUMMOV;
+            
+            private global::System.Data.DataColumn columnMODELLO;
+            
+            private global::System.Data.DataColumn columnQUANTITA;
+            
+            private global::System.Data.DataColumn columnDESTABCAUMGT;
+            
+            private global::System.Data.DataColumn columnDIREZIONE;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public MOVIMENTIFILTRATIDataTable() {
+                this.TableName = "MOVIMENTIFILTRATI";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal MOVIMENTIFILTRATIDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected MOVIMENTIFILTRATIDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn MAG_RColumn {
+                get {
+                    return this.columnMAG_R;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CLASSIFICA_RColumn {
+                get {
+                    return this.columnCLASSIFICA_R;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn MAR_DColumn {
+                get {
+                    return this.columnMAR_D;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CLASSIFICA_DColumn {
+                get {
+                    return this.columnCLASSIFICA_D;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn IDMOVIMENTOColumn {
+                get {
+                    return this.columnIDMOVIMENTO;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ANNOMOVColumn {
+                get {
+                    return this.columnANNOMOV;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn DATMOVColumn {
+                get {
+                    return this.columnDATMOV;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn NUMMOVColumn {
+                get {
+                    return this.columnNUMMOV;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn MODELLOColumn {
+                get {
+                    return this.columnMODELLO;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn QUANTITAColumn {
+                get {
+                    return this.columnQUANTITA;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn DESTABCAUMGTColumn {
+                get {
+                    return this.columnDESTABCAUMGT;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn DIREZIONEColumn {
+                get {
+                    return this.columnDIREZIONE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public MOVIMENTIFILTRATIRow this[int index] {
+                get {
+                    return ((MOVIMENTIFILTRATIRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event MOVIMENTIFILTRATIRowChangeEventHandler MOVIMENTIFILTRATIRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event MOVIMENTIFILTRATIRowChangeEventHandler MOVIMENTIFILTRATIRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event MOVIMENTIFILTRATIRowChangeEventHandler MOVIMENTIFILTRATIRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event MOVIMENTIFILTRATIRowChangeEventHandler MOVIMENTIFILTRATIRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void AddMOVIMENTIFILTRATIRow(MOVIMENTIFILTRATIRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public MOVIMENTIFILTRATIRow AddMOVIMENTIFILTRATIRow(string MAG_R, string CLASSIFICA_R, string MAR_D, string CLASSIFICA_D, string IDMOVIMENTO, decimal ANNOMOV, System.DateTime DATMOV, decimal NUMMOV, string MODELLO, decimal QUANTITA, string DESTABCAUMGT, string DIREZIONE) {
+                MOVIMENTIFILTRATIRow rowMOVIMENTIFILTRATIRow = ((MOVIMENTIFILTRATIRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        MAG_R,
+                        CLASSIFICA_R,
+                        MAR_D,
+                        CLASSIFICA_D,
+                        IDMOVIMENTO,
+                        ANNOMOV,
+                        DATMOV,
+                        NUMMOV,
+                        MODELLO,
+                        QUANTITA,
+                        DESTABCAUMGT,
+                        DIREZIONE};
+                rowMOVIMENTIFILTRATIRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowMOVIMENTIFILTRATIRow);
+                return rowMOVIMENTIFILTRATIRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                MOVIMENTIFILTRATIDataTable cln = ((MOVIMENTIFILTRATIDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new MOVIMENTIFILTRATIDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal void InitVars() {
+                this.columnMAG_R = base.Columns["MAG_R"];
+                this.columnCLASSIFICA_R = base.Columns["CLASSIFICA_R"];
+                this.columnMAR_D = base.Columns["MAR_D"];
+                this.columnCLASSIFICA_D = base.Columns["CLASSIFICA_D"];
+                this.columnIDMOVIMENTO = base.Columns["IDMOVIMENTO"];
+                this.columnANNOMOV = base.Columns["ANNOMOV"];
+                this.columnDATMOV = base.Columns["DATMOV"];
+                this.columnNUMMOV = base.Columns["NUMMOV"];
+                this.columnMODELLO = base.Columns["MODELLO"];
+                this.columnQUANTITA = base.Columns["QUANTITA"];
+                this.columnDESTABCAUMGT = base.Columns["DESTABCAUMGT"];
+                this.columnDIREZIONE = base.Columns["DIREZIONE"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            private void InitClass() {
+                this.columnMAG_R = new global::System.Data.DataColumn("MAG_R", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMAG_R);
+                this.columnCLASSIFICA_R = new global::System.Data.DataColumn("CLASSIFICA_R", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCLASSIFICA_R);
+                this.columnMAR_D = new global::System.Data.DataColumn("MAR_D", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMAR_D);
+                this.columnCLASSIFICA_D = new global::System.Data.DataColumn("CLASSIFICA_D", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCLASSIFICA_D);
+                this.columnIDMOVIMENTO = new global::System.Data.DataColumn("IDMOVIMENTO", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIDMOVIMENTO);
+                this.columnANNOMOV = new global::System.Data.DataColumn("ANNOMOV", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnANNOMOV);
+                this.columnDATMOV = new global::System.Data.DataColumn("DATMOV", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDATMOV);
+                this.columnNUMMOV = new global::System.Data.DataColumn("NUMMOV", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNUMMOV);
+                this.columnMODELLO = new global::System.Data.DataColumn("MODELLO", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMODELLO);
+                this.columnQUANTITA = new global::System.Data.DataColumn("QUANTITA", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnQUANTITA);
+                this.columnDESTABCAUMGT = new global::System.Data.DataColumn("DESTABCAUMGT", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDESTABCAUMGT);
+                this.columnDIREZIONE = new global::System.Data.DataColumn("DIREZIONE", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDIREZIONE);
+                this.columnMAG_R.AllowDBNull = false;
+                this.columnMAG_R.MaxLength = 10;
+                this.columnCLASSIFICA_R.MaxLength = 4000;
+                this.columnMAR_D.AllowDBNull = false;
+                this.columnMAR_D.MaxLength = 10;
+                this.columnCLASSIFICA_D.MaxLength = 4000;
+                this.columnIDMOVIMENTO.AllowDBNull = false;
+                this.columnIDMOVIMENTO.MaxLength = 36;
+                this.columnANNOMOV.AllowDBNull = false;
+                this.columnNUMMOV.AllowDBNull = false;
+                this.columnMODELLO.AllowDBNull = false;
+                this.columnMODELLO.MaxLength = 30;
+                this.columnQUANTITA.AllowDBNull = false;
+                this.columnDESTABCAUMGT.MaxLength = 254;
+                this.columnDIREZIONE.MaxLength = 7;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public MOVIMENTIFILTRATIRow NewMOVIMENTIFILTRATIRow() {
+                return ((MOVIMENTIFILTRATIRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new MOVIMENTIFILTRATIRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(MOVIMENTIFILTRATIRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.MOVIMENTIFILTRATIRowChanged != null)) {
+                    this.MOVIMENTIFILTRATIRowChanged(this, new MOVIMENTIFILTRATIRowChangeEvent(((MOVIMENTIFILTRATIRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.MOVIMENTIFILTRATIRowChanging != null)) {
+                    this.MOVIMENTIFILTRATIRowChanging(this, new MOVIMENTIFILTRATIRowChangeEvent(((MOVIMENTIFILTRATIRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.MOVIMENTIFILTRATIRowDeleted != null)) {
+                    this.MOVIMENTIFILTRATIRowDeleted(this, new MOVIMENTIFILTRATIRowChangeEvent(((MOVIMENTIFILTRATIRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.MOVIMENTIFILTRATIRowDeleting != null)) {
+                    this.MOVIMENTIFILTRATIRowDeleting(this, new MOVIMENTIFILTRATIRowChangeEvent(((MOVIMENTIFILTRATIRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void RemoveMOVIMENTIFILTRATIRow(MOVIMENTIFILTRATIRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                MagazzinoDS ds = new MagazzinoDS();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "MOVIMENTIFILTRATIDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class MAGAZZINONEGATIVORow : global::System.Data.DataRow {
@@ -4972,6 +5423,238 @@ namespace MonitorServices.Entities {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class MOVIMENTIFILTRATIRow : global::System.Data.DataRow {
+            
+            private MOVIMENTIFILTRATIDataTable tableMOVIMENTIFILTRATI;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal MOVIMENTIFILTRATIRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableMOVIMENTIFILTRATI = ((MOVIMENTIFILTRATIDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string MAG_R {
+                get {
+                    return ((string)(this[this.tableMOVIMENTIFILTRATI.MAG_RColumn]));
+                }
+                set {
+                    this[this.tableMOVIMENTIFILTRATI.MAG_RColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string CLASSIFICA_R {
+                get {
+                    try {
+                        return ((string)(this[this.tableMOVIMENTIFILTRATI.CLASSIFICA_RColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CLASSIFICA_R\' in table \'MOVIMENTIFILTRATI\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMOVIMENTIFILTRATI.CLASSIFICA_RColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string MAR_D {
+                get {
+                    return ((string)(this[this.tableMOVIMENTIFILTRATI.MAR_DColumn]));
+                }
+                set {
+                    this[this.tableMOVIMENTIFILTRATI.MAR_DColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string CLASSIFICA_D {
+                get {
+                    try {
+                        return ((string)(this[this.tableMOVIMENTIFILTRATI.CLASSIFICA_DColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CLASSIFICA_D\' in table \'MOVIMENTIFILTRATI\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMOVIMENTIFILTRATI.CLASSIFICA_DColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string IDMOVIMENTO {
+                get {
+                    return ((string)(this[this.tableMOVIMENTIFILTRATI.IDMOVIMENTOColumn]));
+                }
+                set {
+                    this[this.tableMOVIMENTIFILTRATI.IDMOVIMENTOColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal ANNOMOV {
+                get {
+                    return ((decimal)(this[this.tableMOVIMENTIFILTRATI.ANNOMOVColumn]));
+                }
+                set {
+                    this[this.tableMOVIMENTIFILTRATI.ANNOMOVColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public System.DateTime DATMOV {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableMOVIMENTIFILTRATI.DATMOVColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DATMOV\' in table \'MOVIMENTIFILTRATI\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMOVIMENTIFILTRATI.DATMOVColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal NUMMOV {
+                get {
+                    return ((decimal)(this[this.tableMOVIMENTIFILTRATI.NUMMOVColumn]));
+                }
+                set {
+                    this[this.tableMOVIMENTIFILTRATI.NUMMOVColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string MODELLO {
+                get {
+                    return ((string)(this[this.tableMOVIMENTIFILTRATI.MODELLOColumn]));
+                }
+                set {
+                    this[this.tableMOVIMENTIFILTRATI.MODELLOColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal QUANTITA {
+                get {
+                    return ((decimal)(this[this.tableMOVIMENTIFILTRATI.QUANTITAColumn]));
+                }
+                set {
+                    this[this.tableMOVIMENTIFILTRATI.QUANTITAColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string DESTABCAUMGT {
+                get {
+                    try {
+                        return ((string)(this[this.tableMOVIMENTIFILTRATI.DESTABCAUMGTColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DESTABCAUMGT\' in table \'MOVIMENTIFILTRATI\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMOVIMENTIFILTRATI.DESTABCAUMGTColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string DIREZIONE {
+                get {
+                    try {
+                        return ((string)(this[this.tableMOVIMENTIFILTRATI.DIREZIONEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DIREZIONE\' in table \'MOVIMENTIFILTRATI\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMOVIMENTIFILTRATI.DIREZIONEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsCLASSIFICA_RNull() {
+                return this.IsNull(this.tableMOVIMENTIFILTRATI.CLASSIFICA_RColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetCLASSIFICA_RNull() {
+                this[this.tableMOVIMENTIFILTRATI.CLASSIFICA_RColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsCLASSIFICA_DNull() {
+                return this.IsNull(this.tableMOVIMENTIFILTRATI.CLASSIFICA_DColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetCLASSIFICA_DNull() {
+                this[this.tableMOVIMENTIFILTRATI.CLASSIFICA_DColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsDATMOVNull() {
+                return this.IsNull(this.tableMOVIMENTIFILTRATI.DATMOVColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetDATMOVNull() {
+                this[this.tableMOVIMENTIFILTRATI.DATMOVColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsDESTABCAUMGTNull() {
+                return this.IsNull(this.tableMOVIMENTIFILTRATI.DESTABCAUMGTColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetDESTABCAUMGTNull() {
+                this[this.tableMOVIMENTIFILTRATI.DESTABCAUMGTColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsDIREZIONENull() {
+                return this.IsNull(this.tableMOVIMENTIFILTRATI.DIREZIONEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetDIREZIONENull() {
+                this[this.tableMOVIMENTIFILTRATI.DIREZIONEColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -5195,6 +5878,40 @@ namespace MonitorServices.Entities {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public SALDIUBICAZIONIRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public class MOVIMENTIFILTRATIRowChangeEvent : global::System.EventArgs {
+            
+            private MOVIMENTIFILTRATIRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public MOVIMENTIFILTRATIRowChangeEvent(MOVIMENTIFILTRATIRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public MOVIMENTIFILTRATIRow Row {
                 get {
                     return this.eventRow;
                 }
