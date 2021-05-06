@@ -102,7 +102,7 @@ namespace MonitorServices.Data
         public void FillSALDIUBICAZIONI(MagazzinoDS ds)
         {
             string select = @"select ma.modello,tm.codicemag,
-                                CLASSIFICA_MAGAZZINO(tm.codicemag ,'','', tm.destabmag ) categoria,val.costo1,sg.qesi, sg.qesi*val.costo1 valore
+                                CLASSIFICA_MAGAZZINO(tm.codicemag ,'','', tm.destabmag ) categoria,val.costo1,sg.qesi, sg.qesi*val.costo1 valore, SG.QTOT_DISP_ESI
                                 from ditta1.saldi_gen sg
                                 inner join gruppo.magazz ma on ma.idmagazz = sg.idmagazz
                                 inner join gruppo.tabmag tm on tm.idtabmag = sg.idtabmag

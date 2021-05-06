@@ -488,7 +488,7 @@ namespace MonitorServices.Helpers
                         {
                             Min = 2,
                             Max = 2,
-                            Width = 15,
+                            Width = 20,
                             CustomWidth = true
                         },
                         new Column // Id column
@@ -502,7 +502,7 @@ namespace MonitorServices.Helpers
                         {
                             Min = 4,
                             Max = 4,
-                            Width = 20,
+                            Width = 15,
                             CustomWidth = true
                         },
                         new Column // Salary column
@@ -517,6 +517,27 @@ namespace MonitorServices.Helpers
                             Min = 6,
                             Max = 6,
                             Width = 15,
+                            CustomWidth = true
+                        },
+                          new Column // Salary column
+                          {
+                              Min = 7,
+                              Max = 7,
+                              Width = 15,
+                              CustomWidth = true
+                          },
+                        new Column // Salary column
+                        {
+                            Min = 8,
+                            Max = 8,
+                            Width = 15,
+                            CustomWidth = true
+                        },
+                        new Column // Salary column
+                        {
+                            Min = 9,
+                            Max = 9,
+                            Width = 30,
                             CustomWidth = true
                         });
 
@@ -537,11 +558,14 @@ namespace MonitorServices.Helpers
 
                 row.Append(
                     ConstructCell("MODELLO", CellValues.String, 2),
+                    ConstructCell("FILTRO1", CellValues.String, 2),
+                    ConstructCell("FILTRO2", CellValues.String, 2),
                     ConstructCell("GIACENZA", CellValues.String, 2),
                     ConstructCell("CATEGORIA", CellValues.String, 2),
                     ConstructCell("COSTO", CellValues.String, 2),
                     ConstructCell("QUANTITA'", CellValues.String, 2),
-                    ConstructCell("VALORE", CellValues.String, 2));
+                    ConstructCell("VALORE", CellValues.String, 2),
+                ConstructCell("ESISTENZA NETTA IMPEGNI", CellValues.String, 2));
 
                 // Insert the header row to the Sheet Data
                 sheetData.AppendChild(row);
@@ -552,11 +576,15 @@ namespace MonitorServices.Helpers
 
                     row.Append(
                         ConstructCell(elemento.MODELLO, CellValues.String, 1),
+                        ConstructCell(elemento.MODELLO, CellValues.String, 1),
+                        ConstructCell(elemento.MODELLO, CellValues.String, 1),
                         ConstructCell(elemento.CODICEMAG, CellValues.String, 1),
                         ConstructCell(elemento.IsCATEGORIANull() ? string.Empty : elemento.CATEGORIA, CellValues.String, 1),
                         ConstructCell(elemento.IsCOSTO1Null() ? string.Empty : elemento.COSTO1.ToString(), CellValues.String, 1),
                     ConstructCell(elemento.QESI.ToString(), CellValues.String, 1),
-                    ConstructCell(elemento.IsVALORENull() ? string.Empty : elemento.VALORE.ToString(), CellValues.String, 1));
+                    ConstructCell(elemento.IsVALORENull() ? string.Empty : elemento.VALORE.ToString(), CellValues.String, 1),
+                    ConstructCell(elemento.IsQTOT_DISP_ESINull() ? string.Empty : elemento.QTOT_DISP_ESI.ToString(), CellValues.String, 1)
+                    );
 
                     sheetData.AppendChild(row);
                 }

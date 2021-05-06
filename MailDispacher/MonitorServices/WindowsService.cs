@@ -53,6 +53,8 @@ namespace MonitorServices
                 {
                     MonitorService sMonitor = new MonitorService();
                     MonitorDS.MONITOR_SCHEDULERRow schedulazione;
+
+
                     if (sMonitor.VerificaEsecuzione("MAGAZZININEGATIVI", out schedulazione))
                     {
                         MagazzinoMonitor mMagazzino = new MagazzinoMonitor();

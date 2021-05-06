@@ -3005,6 +3005,8 @@ namespace MonitorServices.Entities {
             
             private global::System.Data.DataColumn columnVALORE;
             
+            private global::System.Data.DataColumn columnQTOT_DISP_ESI;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public SALDIUBICAZIONIDataTable() {
@@ -3088,6 +3090,14 @@ namespace MonitorServices.Entities {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn QTOT_DISP_ESIColumn {
+                get {
+                    return this.columnQTOT_DISP_ESI;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -3123,7 +3133,7 @@ namespace MonitorServices.Entities {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SALDIUBICAZIONIRow AddSALDIUBICAZIONIRow(string MODELLO, string CODICEMAG, string CATEGORIA, decimal COSTO1, decimal QESI, decimal VALORE) {
+            public SALDIUBICAZIONIRow AddSALDIUBICAZIONIRow(string MODELLO, string CODICEMAG, string CATEGORIA, decimal COSTO1, decimal QESI, decimal VALORE, decimal QTOT_DISP_ESI) {
                 SALDIUBICAZIONIRow rowSALDIUBICAZIONIRow = ((SALDIUBICAZIONIRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         MODELLO,
@@ -3131,7 +3141,8 @@ namespace MonitorServices.Entities {
                         CATEGORIA,
                         COSTO1,
                         QESI,
-                        VALORE};
+                        VALORE,
+                        QTOT_DISP_ESI};
                 rowSALDIUBICAZIONIRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSALDIUBICAZIONIRow);
                 return rowSALDIUBICAZIONIRow;
@@ -3160,6 +3171,7 @@ namespace MonitorServices.Entities {
                 this.columnCOSTO1 = base.Columns["COSTO1"];
                 this.columnQESI = base.Columns["QESI"];
                 this.columnVALORE = base.Columns["VALORE"];
+                this.columnQTOT_DISP_ESI = base.Columns["QTOT_DISP_ESI"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3177,6 +3189,8 @@ namespace MonitorServices.Entities {
                 base.Columns.Add(this.columnQESI);
                 this.columnVALORE = new global::System.Data.DataColumn("VALORE", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnVALORE);
+                this.columnQTOT_DISP_ESI = new global::System.Data.DataColumn("QTOT_DISP_ESI", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnQTOT_DISP_ESI);
                 this.columnMODELLO.AllowDBNull = false;
                 this.columnMODELLO.MaxLength = 30;
                 this.columnCODICEMAG.AllowDBNull = false;
@@ -5387,6 +5401,22 @@ namespace MonitorServices.Entities {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal QTOT_DISP_ESI {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSALDIUBICAZIONI.QTOT_DISP_ESIColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'QTOT_DISP_ESI\' in table \'SALDIUBICAZIONI\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSALDIUBICAZIONI.QTOT_DISP_ESIColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsCATEGORIANull() {
                 return this.IsNull(this.tableSALDIUBICAZIONI.CATEGORIAColumn);
             }
@@ -5419,6 +5449,18 @@ namespace MonitorServices.Entities {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetVALORENull() {
                 this[this.tableSALDIUBICAZIONI.VALOREColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsQTOT_DISP_ESINull() {
+                return this.IsNull(this.tableSALDIUBICAZIONI.QTOT_DISP_ESIColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetQTOT_DISP_ESINull() {
+                this[this.tableSALDIUBICAZIONI.QTOT_DISP_ESIColumn] = global::System.Convert.DBNull;
             }
         }
         
