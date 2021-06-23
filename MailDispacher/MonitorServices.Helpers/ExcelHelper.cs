@@ -191,6 +191,96 @@ namespace MonitorServices.Helpers
 
             return content;
         }
+        public byte[] CreaExcelScartiGreco(MagazzinoDS ds)
+        {
+            byte[] content;
+            MemoryStream ms = new MemoryStream();
+            using (SpreadsheetDocument document = SpreadsheetDocument.Create(ms, SpreadsheetDocumentType.Workbook))
+            {
+                WorkbookPart workbookPart = document.AddWorkbookPart();
+                workbookPart.Workbook = new Workbook();
+
+                WorksheetPart worksheetPart = workbookPart.AddNewPart<WorksheetPart>();
+                worksheetPart.Worksheet = new Worksheet();
+
+                // Adding style
+                WorkbookStylesPart stylePart = workbookPart.AddNewPart<WorkbookStylesPart>();
+                stylePart.Stylesheet = GenerateStylesheet();
+                stylePart.Stylesheet.Save();
+
+                Columns columns = new Columns();
+                for (int i = 0; i < ds.SCARTIGRECO.Columns.Count; i++)
+                {
+                    Column c = new Column();
+                    UInt32Value u = new UInt32Value((uint)(i + 1));
+                    c.Min = u;
+                    c.Max = u;
+                    c.Width = 15;
+
+                    columns.Append(c);
+                }
+
+
+                worksheetPart.Worksheet.AppendChild(columns);
+
+                Sheets sheets = workbookPart.Workbook.AppendChild(new Sheets());
+
+                Sheet sheet = new Sheet() { Id = workbookPart.GetIdOfPart(worksheetPart), SheetId = 1, Name = "Scarti" };
+
+                sheets.Append(sheet);
+
+                workbookPart.Workbook.Save();
+
+                SheetData sheetData = worksheetPart.Worksheet.AppendChild(new SheetData());
+
+                // Constructing header
+                Row row = new Row();
+
+                row.Append(
+                    ConstructCell("AZIENDA", CellValues.String, 2),
+                    ConstructCell("DATA SCARTO", CellValues.String, 2),
+                    ConstructCell("MODELLO", CellValues.String, 2),
+                    ConstructCell("QUANTITA'", CellValues.String, 2),
+                    ConstructCell("CAUSALE", CellValues.String, 2),
+                    ConstructCell("DESCRIZIONE CAUSALE", CellValues.String, 2),
+                    ConstructCell("DATA ODL", CellValues.String, 2),
+                    ConstructCell("ODL", CellValues.String, 2),
+                    ConstructCell("REPARTO", CellValues.String, 2),
+                    ConstructCell("QUANTITA' ODL", CellValues.String, 2)
+                    );
+
+                // Insert the header row to the Sheet Data
+                sheetData.AppendChild(row);
+
+                foreach (MagazzinoDS.SCARTIGRECORow elemento in ds.SCARTIGRECO)
+                {
+                    row = new Row();
+
+                    row.Append(
+                        ConstructCell(elemento.AZIENDA, CellValues.String, 1),
+                        ConstructCell(elemento.DATAFLUSSOMOVFASE.ToString("dd/MM/yyyy"), CellValues.String, 1),
+                        ConstructCell(elemento.MODELLO, CellValues.String, 1),
+                        ConstructCell(elemento.QUANTITA.ToString(), CellValues.Number, 1),
+                        ConstructCell(elemento.CODPRDCAUFASE, CellValues.String, 1),
+                        ConstructCell(elemento.IsDESPRDCAUFASENull() ? string.Empty : elemento.DESPRDCAUFASE, CellValues.String, 1),
+                        ConstructCell(elemento.DATAORDINE.ToString("dd/MM/yyyy"), CellValues.String, 1),
+                        ConstructCell(elemento.ORDINE, CellValues.String, 1),
+                        ConstructCell(elemento.IsREPARTONull() ? String.Empty : elemento.REPARTO, CellValues.String, 1),
+                        ConstructCell(elemento.QTAORDINE.ToString(), CellValues.Number, 1)
+                        );
+                    sheetData.AppendChild(row);
+                }
+
+                workbookPart.Workbook.Save();
+                document.Save();
+                document.Close();
+
+                ms.Seek(0, SeekOrigin.Begin);
+                content = ms.ToArray();
+            }
+
+            return content;
+        }
 
         public byte[] CreaExcelScartiDifettosi(MagazzinoDS ds)
         {

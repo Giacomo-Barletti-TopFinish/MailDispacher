@@ -181,6 +181,54 @@ namespace MonitorServices.Data
             }
         }
 
+        public void FillSCARTIGRECO(DateTime dataTermini, MagazzinoDS ds)
+        {
+            string select = @"select 'MP' azienda,fmf.DATAFLUSSOMOVFASE,ma.modello,fmf.qtaflusso quantita, cf.CODPRDCAUFASE,cf.DESPRDCAUFASE,mf.DATAMOVFASE dataOrdine,mf.NUMMOVFASE ordine ,trim(cli.ragionesoc)reparto,mf.qta qtaOrdine
+                                from ditta1.usr_prd_flusso_movfasi fmf
+                                inner join gruppo.usr_prd_caufasi cf on cf.idprdcaufase = fmf.idprdcaufase
+                                inner join ditta1.usr_prd_movfasi mf on mf.idprdmovfase = fmf.idprdmovfase
+                                inner join gruppo.magazz ma on ma.idmagazz= mf.idmagazz
+                                inner join gruppo.clifo cli on cli.codice = mf.codiceclifo
+                                where fmf.idprdcaufase in 
+                                ('0000000009',	
+                                '0000000010',	
+                                '0000000011',	
+                                '0000000012',	
+                                '0000002103',	
+                                '0000002101',	
+                                '0000002102',	
+                                '0000002106',	
+                                '0000002105'	
+                                )
+                                and fmf.DATAFLUSSOMOVFASE >=to_date('{0}','dd/MM/yyyy')
+                                union all
+                                select 'TF' azienda,fmf.DATAFLUSSOMOVFASE,ma.modello,fmf.qtaflusso quantita, cf.CODPRDCAUFASE,cf.DESPRDCAUFASE,mf.DATAMOVFASE dataOrdine,mf.NUMMOVFASE ordine ,trim(cli.ragionesoc)reparto,mf.qta qtaOrdine
+                                from ditta2.usr_prd_flusso_movfasi fmf
+                                inner join gruppo.usr_prd_caufasi cf on cf.idprdcaufase = fmf.idprdcaufase
+                                inner join ditta2.usr_prd_movfasi mf on mf.idprdmovfase = fmf.idprdmovfase
+                                inner join gruppo.magazz ma on ma.idmagazz= mf.idmagazz
+                                inner join gruppo.clifo cli on cli.codice = mf.codiceclifo
+                                where fmf.idprdcaufase in 
+                                ('0000000009',	
+                                '0000000010',	
+                                '0000000011',	
+                                '0000000012',	
+                                '0000002103',	
+                                '0000002101',	
+                                '0000002102',	
+                                '0000002106',	
+                                '0000002105'	
+                                )
+                                and fmf.DATAFLUSSOMOVFASE >=to_date('{1}','dd/MM/yyyy')
+                            ";
+            string data = dataTermini.ToString("dd/MM/yyyy");
+            select = string.Format(select, data, data);
+
+            using (DbDataAdapter da = BuildDataAdapter(select))
+            {
+                da.Fill(ds.SCARTIGRECO);
+            }
+        }
         public void FillUSR_INVENTARIOS(MagazzinoDS ds)
         {
             string select = @"SELECT * FROM DITTA1.USR_INVENTARIOS ";

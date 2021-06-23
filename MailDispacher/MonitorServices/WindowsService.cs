@@ -108,6 +108,13 @@ namespace MonitorServices
                         mMagazzino.ScartiDifettosi();
                         sMonitor.AggiornaSchedulazione(schedulazione);
                     }
+
+                    if (sMonitor.VerificaEsecuzione("SCARTIGRECO", out schedulazione))
+                    {
+                        MagazzinoMonitor mMagazzino = new MagazzinoMonitor();
+                        mMagazzino.ScartiGreco();
+                        sMonitor.AggiornaSchedulazione(schedulazione);
+                    }
                 }
                 catch (Exception ex)
                 {

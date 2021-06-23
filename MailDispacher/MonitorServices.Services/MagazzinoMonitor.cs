@@ -169,5 +169,31 @@ namespace MonitorServices.Services
 
             }
         }
+
+        public void ScartiGreco()
+        {
+            MagazzinoDS ds = new MagazzinoDS();
+            DateTime dataTermini = DateTime.Today.AddDays(-1);
+            using (MagazzinoBusiness bMagazzino = new MagazzinoBusiness())
+            {
+                bMagazzino.FillSCARTIGRECO(dataTermini, ds);
+
+                ExcelHelper excel = new ExcelHelper();
+                byte[] file = excel.CreaExcelScartiGreco(ds);
+                string filename = string.Format(@"c:\temp\Scarti del {0}.{1}.{2}.xlsx", dataTermini.Day, dataTermini.Month, dataTermini.Year);
+                FileStream fs = new FileStream(filename, FileMode.Create);
+                fs.Write(file, 0, file.Length);
+                fs.Flush();
+                fs.Close();
+                string oggetto = string.Format("Scarti difettosi al giorno {0}", dataTermini.ToShortDateString());
+                string corpo = "Dati in allegato";
+
+                decimal IDMAIL = MailDispatcherService.CreaEmail("SCARTIGRECO", oggetto, corpo);
+                MailDispatcherService.AggiungiAllegato(IDMAIL, "SCARTI.xlsx", new System.IO.MemoryStream(file));
+                MailDispatcherService.SottomettiEmail(IDMAIL);
+                if (File.Exists(filename))
+                    File.Delete(filename);
+            }
+        }
     }
 }
