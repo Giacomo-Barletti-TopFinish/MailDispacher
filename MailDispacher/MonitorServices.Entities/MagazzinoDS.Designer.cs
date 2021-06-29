@@ -3801,6 +3801,8 @@ namespace MonitorServices.Entities {
             
             private global::System.Data.DataColumn columnQTAORDINE;
             
+            private global::System.Data.DataColumn columnSEGNALATORE;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public SCARTIGRECODataTable() {
@@ -3916,6 +3918,14 @@ namespace MonitorServices.Entities {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn SEGNALATOREColumn {
+                get {
+                    return this.columnSEGNALATORE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -3951,7 +3961,7 @@ namespace MonitorServices.Entities {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SCARTIGRECORow AddSCARTIGRECORow(string AZIENDA, System.DateTime DATAFLUSSOMOVFASE, string MODELLO, decimal QUANTITA, string CODPRDCAUFASE, string DESPRDCAUFASE, System.DateTime DATAORDINE, string ORDINE, string REPARTO, decimal QTAORDINE) {
+            public SCARTIGRECORow AddSCARTIGRECORow(string AZIENDA, System.DateTime DATAFLUSSOMOVFASE, string MODELLO, decimal QUANTITA, string CODPRDCAUFASE, string DESPRDCAUFASE, System.DateTime DATAORDINE, string ORDINE, string REPARTO, decimal QTAORDINE, string SEGNALATORE) {
                 SCARTIGRECORow rowSCARTIGRECORow = ((SCARTIGRECORow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         AZIENDA,
@@ -3963,7 +3973,8 @@ namespace MonitorServices.Entities {
                         DATAORDINE,
                         ORDINE,
                         REPARTO,
-                        QTAORDINE};
+                        QTAORDINE,
+                        SEGNALATORE};
                 rowSCARTIGRECORow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSCARTIGRECORow);
                 return rowSCARTIGRECORow;
@@ -3996,6 +4007,7 @@ namespace MonitorServices.Entities {
                 this.columnORDINE = base.Columns["ORDINE"];
                 this.columnREPARTO = base.Columns["REPARTO"];
                 this.columnQTAORDINE = base.Columns["QTAORDINE"];
+                this.columnSEGNALATORE = base.Columns["SEGNALATORE"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4021,6 +4033,8 @@ namespace MonitorServices.Entities {
                 base.Columns.Add(this.columnREPARTO);
                 this.columnQTAORDINE = new global::System.Data.DataColumn("QTAORDINE", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnQTAORDINE);
+                this.columnSEGNALATORE = new global::System.Data.DataColumn("SEGNALATORE", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSEGNALATORE);
                 this.columnAZIENDA.MaxLength = 2;
                 this.columnMODELLO.MaxLength = 30;
                 this.columnCODPRDCAUFASE.MaxLength = 10;
@@ -6286,6 +6300,22 @@ namespace MonitorServices.Entities {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string SEGNALATORE {
+                get {
+                    try {
+                        return ((string)(this[this.tableSCARTIGRECO.SEGNALATOREColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SEGNALATORE\' in table \'SCARTIGRECO\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSCARTIGRECO.SEGNALATOREColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsAZIENDANull() {
                 return this.IsNull(this.tableSCARTIGRECO.AZIENDAColumn);
             }
@@ -6402,6 +6432,18 @@ namespace MonitorServices.Entities {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetQTAORDINENull() {
                 this[this.tableSCARTIGRECO.QTAORDINEColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsSEGNALATORENull() {
+                return this.IsNull(this.tableSCARTIGRECO.SEGNALATOREColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetSEGNALATORENull() {
+                this[this.tableSCARTIGRECO.SEGNALATOREColumn] = global::System.Convert.DBNull;
             }
         }
         

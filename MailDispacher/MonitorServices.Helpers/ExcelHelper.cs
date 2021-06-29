@@ -246,7 +246,8 @@ namespace MonitorServices.Helpers
                     ConstructCell("DATA ODL", CellValues.String, 2),
                     ConstructCell("ODL", CellValues.String, 2),
                     ConstructCell("REPARTO", CellValues.String, 2),
-                    ConstructCell("QUANTITA' ODL", CellValues.String, 2)
+                    ConstructCell("QUANTITA' ODL", CellValues.String, 2),
+                    ConstructCell("SEGNALATORE", CellValues.String, 2)
                     );
 
                 // Insert the header row to the Sheet Data
@@ -266,7 +267,8 @@ namespace MonitorServices.Helpers
                         ConstructCell(elemento.DATAORDINE.ToString("dd/MM/yyyy"), CellValues.String, 1),
                         ConstructCell(elemento.ORDINE, CellValues.String, 1),
                         ConstructCell(elemento.IsREPARTONull() ? String.Empty : elemento.REPARTO, CellValues.String, 1),
-                        ConstructCell(elemento.QTAORDINE.ToString(), CellValues.Number, 1)
+                        ConstructCell(elemento.QTAORDINE.ToString(), CellValues.Number, 1),
+                        ConstructCell(elemento.IsSEGNALATORENull() ? string.Empty : elemento.SEGNALATORE, CellValues.String, 1)
                         );
                     sheetData.AppendChild(row);
                 }

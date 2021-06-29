@@ -14,7 +14,7 @@
     <Shape ID="DesignTable:SCARTIDIFETTOSI" ZOrder="4" X="90" Y="185" Height="429" Width="169" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="425" />
     <Shape ID="DesignTable:SALDIUBICAZIONI" ZOrder="3" X="299" Y="246" Height="162" Width="172" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="158" />
     <Shape ID="DesignTable:MOVIMENTIFILTRATI" ZOrder="2" X="1461" Y="267" Height="257" Width="190" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="301" />
-    <Shape ID="DesignTable:SCARTIGRECO" ZOrder="1" X="322" Y="542" Height="219" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="263" />
+    <Shape ID="DesignTable:SCARTIGRECO" ZOrder="1" X="322" Y="542" Height="238" Width="166" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="234" />
   </Shapes>
   <Connectors />
 </DiagramLayout>

@@ -183,11 +183,15 @@ namespace MonitorServices.Data
 
         public void FillSCARTIGRECO(DateTime dataTermini, MagazzinoDS ds)
         {
-            string select = @"select 'MP' azienda,fmf.DATAFLUSSOMOVFASE,ma.modello,fmf.qtaflusso quantita, cf.CODPRDCAUFASE,cf.DESPRDCAUFASE,mf.DATAMOVFASE dataOrdine,mf.NUMMOVFASE ordine ,trim(cli.ragionesoc)reparto,mf.qta qtaOrdine
+            string select = @"select 'MP' azienda,fmf.DATAFLUSSOMOVFASE,ma.modello,fmf.qtaflusso quantita, cf.CODPRDCAUFASE,cf.DESPRDCAUFASE,mf.DATAMOVFASE dataOrdine,mf.NUMMOVFASE ordine ,
+                                trim(cli.ragionesoc)reparto,mf.qta qtaOrdine,trim(seg.ragionesoc)segnalatore
                                 from ditta1.usr_prd_flusso_movfasi fmf
                                 inner join gruppo.usr_prd_caufasi cf on cf.idprdcaufase = fmf.idprdcaufase
                                 inner join ditta1.usr_prd_movfasi mf on mf.idprdmovfase = fmf.idprdmovfase
                                 inner join gruppo.magazz ma on ma.idmagazz= mf.idmagazz
+                                inner join ditta1.usr_prd_fasi fa on fa.idprdfase = mf.idprdfase
+                                inner join ditta1.usr_prd_lanciod ld on ld.idlanciod = fa.idlanciod
+                                inner join gruppo.clifo seg on seg.codice = ld.segnalatore
                                 inner join gruppo.clifo cli on cli.codice = mf.codiceclifo
                                 where fmf.idprdcaufase in 
                                 ('0000000009',	
@@ -202,10 +206,14 @@ namespace MonitorServices.Data
                                 )
                                 and fmf.DATAFLUSSOMOVFASE >=to_date('{0}','dd/MM/yyyy')
                                 union all
-                                select 'TF' azienda,fmf.DATAFLUSSOMOVFASE,ma.modello,fmf.qtaflusso quantita, cf.CODPRDCAUFASE,cf.DESPRDCAUFASE,mf.DATAMOVFASE dataOrdine,mf.NUMMOVFASE ordine ,trim(cli.ragionesoc)reparto,mf.qta qtaOrdine
+                                select 'TF' azienda,fmf.DATAFLUSSOMOVFASE,ma.modello,fmf.qtaflusso quantita, cf.CODPRDCAUFASE,cf.DESPRDCAUFASE,mf.DATAMOVFASE dataOrdine,mf.NUMMOVFASE ordine ,
+                                trim(cli.ragionesoc)reparto,mf.qta qtaOrdine,trim(seg.ragionesoc)segnalatore
                                 from ditta2.usr_prd_flusso_movfasi fmf
                                 inner join gruppo.usr_prd_caufasi cf on cf.idprdcaufase = fmf.idprdcaufase
                                 inner join ditta2.usr_prd_movfasi mf on mf.idprdmovfase = fmf.idprdmovfase
+                                inner join ditta1.usr_prd_fasi fa on fa.idprdfase = mf.idprdfase
+                                inner join ditta1.usr_prd_lanciod ld on ld.idlanciod = fa.idlanciod
+                                inner join gruppo.clifo seg on seg.codice = ld.segnalatore
                                 inner join gruppo.magazz ma on ma.idmagazz= mf.idmagazz
                                 inner join gruppo.clifo cli on cli.codice = mf.codiceclifo
                                 where fmf.idprdcaufase in 
