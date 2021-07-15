@@ -283,7 +283,119 @@ namespace MonitorServices.Helpers
 
             return content;
         }
+        public byte[] CreaExcelEstrazioneOC(MagazzinoDS ds)
+        {
+            byte[] content;
+            MemoryStream ms = new MemoryStream();
+            using (SpreadsheetDocument document = SpreadsheetDocument.Create(ms, SpreadsheetDocumentType.Workbook))
+            {
+                WorkbookPart workbookPart = document.AddWorkbookPart();
+                workbookPart.Workbook = new Workbook();
 
+                WorksheetPart worksheetPart = workbookPart.AddNewPart<WorksheetPart>();
+                worksheetPart.Worksheet = new Worksheet();
+
+                // Adding style
+                WorkbookStylesPart stylePart = workbookPart.AddNewPart<WorkbookStylesPart>();
+                stylePart.Stylesheet = GenerateStylesheet();
+                stylePart.Stylesheet.Save();
+
+                Columns columns = new Columns();
+                for (int i = 0; i < 20; i++)
+                {
+                    Column c = new Column();
+                    UInt32Value u = new UInt32Value((uint)(i + 1));
+                    c.Min = u;
+                    c.Max = u;
+                    c.Width = 15;
+
+                    columns.Append(c);
+                }
+
+
+                worksheetPart.Worksheet.AppendChild(columns);
+
+                Sheets sheets = workbookPart.Workbook.AppendChild(new Sheets());
+
+                Sheet sheet = new Sheet() { Id = workbookPart.GetIdOfPart(worksheetPart), SheetId = 1, Name = "OC" };
+
+                sheets.Append(sheet);
+
+                workbookPart.Workbook.Save();
+
+                SheetData sheetData = worksheetPart.Worksheet.AppendChild(new SheetData());
+
+                // Constructing header
+                Row row = new Row();
+
+
+
+
+                row.Append(
+                    ConstructCell("Tipo Documento Codice Testata", CellValues.String, 2),
+                    ConstructCell("Descrizione Segnalatore Testata", CellValues.String, 2),
+                    ConstructCell("Riferimento Testata", CellValues.String, 2),
+                    ConstructCell("Cliente/Fornitore Testata", CellValues.String, 2),
+                    ConstructCell("Data Creazione", CellValues.String, 2),
+                    ConstructCell("Numero Riga", CellValues.String, 2),
+                    ConstructCell("Modello Codice", CellValues.String, 2),
+                    ConstructCell("Modello Descrizione", CellValues.String, 2),
+                    ConstructCell("Qta. Totale", CellValues.String, 2),
+                    ConstructCell("Qta. non spedita", CellValues.String, 2),
+                    ConstructCell("Qta. Spedita", CellValues.String, 2),
+                    ConstructCell("Prezzo Unitario", CellValues.String, 2),
+                    ConstructCell("Valore non Spedito", CellValues.String, 2),
+                    ConstructCell("Qta. non Accantonata", CellValues.String, 2),
+                    ConstructCell("Tipo Riga", CellValues.String, 2),
+                    ConstructCell("Q.tà netta evadibile c.lav.", CellValues.String, 2),
+                    ConstructCell("Qta. Estratta", CellValues.String, 2),
+                    ConstructCell("Qta. Accantonata su esistenza", CellValues.String, 2),
+                    ConstructCell("Data Richiesta", CellValues.String, 2),
+                    ConstructCell("Data Conferma", CellValues.String, 2)
+                    );
+
+                // Insert the header row to the Sheet Data
+                sheetData.AppendChild(row);
+
+                foreach (MagazzinoDS.ESTRAZIONE_OCRow elemento in ds.ESTRAZIONE_OC)
+                {
+                    row = new Row();
+
+                    row.Append(
+                        ConstructCell(elemento.CODICETIPDOC, CellValues.String, 1),
+                        ConstructCell(elemento.SEGNALATORE, CellValues.String, 1),
+                        ConstructCell(elemento.IsRIFERIMENTONull() ? String.Empty : elemento.RIFERIMENTO, CellValues.String, 1),
+                        ConstructCell(elemento.CLIENTE, CellValues.String, 1),
+                        ConstructCell(elemento.DATADOCUMENTO.ToString("dd/MM/yyyy"), CellValues.String, 1),
+                        ConstructCell(elemento.NRRIGA, CellValues.String, 1),
+                        ConstructCell(elemento.MODELLO, CellValues.String, 1),
+                        ConstructCell(elemento.DESCRIZIONE, CellValues.String, 1),
+                        ConstructCell(elemento.QTATOT.ToString(), CellValues.String, 1),
+                        ConstructCell(elemento.QTANOSPE.ToString(), CellValues.String, 1),
+                        ConstructCell(elemento.QTASPE.ToString(), CellValues.String, 1),
+                        ConstructCell(elemento.PREZZOTOT.ToString(), CellValues.String, 1),
+                        ConstructCell(elemento.VALORENOSPE.ToString(), CellValues.String, 1),
+                        ConstructCell(elemento.QTADAC.ToString("dd/MM/yyyy"), CellValues.String, 1),
+                        ConstructCell("Normale", CellValues.String, 1),
+                        ConstructCell("0", CellValues.String, 1),// qta netta evadibile cl
+                        ConstructCell(elemento.IsQTAESTNull()?"0": elemento.QTAEST.ToString(), CellValues.String, 1),// qta estratta
+                        ConstructCell(elemento.IsQTAACENull()?"0": elemento.QTAACE.ToString(), CellValues.String, 1),// qta accantonata su esi
+                        ConstructCell(elemento.DATA_RICHIESTA.ToString("dd/MM/yyyy"), CellValues.String, 1),
+                        ConstructCell(elemento.DATA_CONFERMA.ToString("dd/MM/yyyy"), CellValues.String, 1)
+                        );
+                    sheetData.AppendChild(row);
+                }
+
+                workbookPart.Workbook.Save();
+                document.Save();
+                document.Close();
+
+                ms.Seek(0, SeekOrigin.Begin);
+                content = ms.ToArray();
+            }
+
+            return content;
+        }
         public byte[] CreaExcelScartiDifettosi(MagazzinoDS ds)
         {
             byte[] content;

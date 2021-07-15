@@ -61,6 +61,12 @@ namespace MonitorServices.Data
             a.FillSCARTIGRECO(dataTermini, ds);
         }
         [DataContext]
+        public void FillESTRAZIONE_OC(MagazzinoDS ds)
+        {
+            MagazzinoAdapter a = new MagazzinoAdapter(DbConnection, DbTransaction);
+            a.FillESTRAZIONE_OC(ds);
+        }
+        [DataContext]
         public void FillUSR_INVENTARIOS(MagazzinoDS ds)
         {
             MagazzinoAdapter a = new MagazzinoAdapter(DbConnection, DbTransaction);

@@ -115,6 +115,13 @@ namespace MonitorServices
                         mMagazzino.ScartiGreco();
                         sMonitor.AggiornaSchedulazione(schedulazione);
                     }
+
+                    if (sMonitor.VerificaEsecuzione("ESTRAZIONE_OC", out schedulazione))
+                    {
+                        MagazzinoMonitor mMagazzino = new MagazzinoMonitor();
+                        mMagazzino.EstrazioneOC();
+                        sMonitor.AggiornaSchedulazione(schedulazione);
+                    }
                 }
                 catch (Exception ex)
                 {

@@ -195,5 +195,31 @@ namespace MonitorServices.Services
                     File.Delete(filename);
             }
         }
+
+        public void EstrazioneOC()
+        {
+            MagazzinoDS ds = new MagazzinoDS();
+            using (MagazzinoBusiness bMagazzino = new MagazzinoBusiness())
+            {
+                bMagazzino.FillESTRAZIONE_OC( ds);
+
+                ExcelHelper excel = new ExcelHelper();
+                byte[] file = excel.CreaExcelEstrazioneOC(ds);
+                string filename = string.Format(@"c:\temp\Estrazione_OC del {0}.{1}.{2}.xlsx", DateTime.Today.Day, DateTime.Today.Month, DateTime.Today.Year);
+                FileStream fs = new FileStream(filename, FileMode.Create);
+                fs.Write(file, 0, file.Length);
+                fs.Flush();
+                fs.Close();
+                string oggetto = string.Format("Estrazione OC al giorno {0}", DateTime.Today.ToShortDateString());
+                string corpo = "Dati in allegato";
+
+                decimal IDMAIL = MailDispatcherService.CreaEmail("ESTRAZIONE_OC", oggetto, corpo);
+                MailDispatcherService.AggiungiAllegato(IDMAIL, "ESTRAZIONE_OC.xlsx", new System.IO.MemoryStream(file));
+                MailDispatcherService.SottomettiEmail(IDMAIL);
+                if (File.Exists(filename))
+                    File.Delete(filename);
+            }
+        }
+
     }
 }

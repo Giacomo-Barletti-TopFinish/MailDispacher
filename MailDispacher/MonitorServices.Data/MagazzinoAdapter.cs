@@ -119,7 +119,7 @@ namespace MonitorServices.Data
         {
             string dataFiltro = DateTime.Today.AddDays(-1).ToString("dd/MM/yyyy");
 
-            string select =string.Format( @" SELECT * FROM (
+            string select = string.Format(@" SELECT * FROM (
                                 SELECT MAR.CODICEMAG MAG_R, 
                                 CLASSIFICA_MAGAZZINO(MAR.CODICEMAG,'','', '') CLASSIFICA_R,
                                 MAD.CODICEMAG MAR_D,
@@ -237,6 +237,31 @@ namespace MonitorServices.Data
                 da.Fill(ds.SCARTIGRECO);
             }
         }
+
+        public void FillESTRAZIONE_OC(MagazzinoDS ds)
+        {
+            string select = @"select td.codicetipdoc,trim(seg.ragionesoc)segnalatore, vt.riferimento,trim(cliente.ragionesoc)cliente,vt.datdoc datadocumento, vt.annodoc, vt.numdoc,vt.datarif datariferimento,vt.fullnumdoc,
+                                vd.nrriga,ma.modello,ma.desmagazz descrizione,vd.qtatot, vd.qtaann, vd.qtadac, vd.qtaspe, vd.QTANOSPE, vd.consegna, vd.PREZZOTOT, vd.valore, vd.VALORENOSPE,vd.data_richiesta, vd.data_conferma
+                                 from usr_venditet vt
+                                inner join usr_vendited vd on vd.idvenditet = vt.idvenditet and vd.azienda = vt.azienda
+                                inner join gruppo.tabtipdoc td on td.idtabtipdoc = vt.IDTABTIPDOC
+                                inner join gruppo.clifo seg on seg.codice = vt.segnalatore
+                                inner join gruppo.clifo cliente on cliente.codice = vt.codiceclifo
+                                inner join gruppo.magazz ma on ma.idmagazz = vd.idmagazz
+                                where vt.idtabtipdoc in (
+                                '0000000022',
+                                '0000002117',
+                                '0000002138')
+                                and vd.qtanospe>0
+                                order by vt.fullnumdoc,vd.NRRIGA
+                            ";
+
+            using (DbDataAdapter da = BuildDataAdapter(select))
+            {
+                da.Fill(ds.ESTRAZIONE_OC);
+            }
+        }
+
         public void FillUSR_INVENTARIOS(MagazzinoDS ds)
         {
             string select = @"SELECT * FROM DITTA1.USR_INVENTARIOS ";
