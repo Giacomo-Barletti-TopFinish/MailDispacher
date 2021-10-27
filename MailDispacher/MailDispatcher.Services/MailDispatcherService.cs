@@ -113,16 +113,14 @@ namespace MailDispatcher.Services
                         StringBuilder exstr = new StringBuilder();
                         exstr.AppendLine(string.Format("Eccezione {0}", ex.Message));
                         exstr.AppendLine(string.Format("Stack {0}", ex.StackTrace));
+                        bMD.InsertMD_LOG(mail.IDMAIL, "ERRORE", exstr.ToString());
                         while (ex.InnerException != null)
                         {
                             exstr.AppendLine(string.Format("Eccezione {0}", ex.InnerException.Message));
                             exstr.AppendLine(string.Format("Stack {0}", ex.InnerException.StackTrace));
+                            bMD.InsertMD_LOG(mail.IDMAIL, "ERRORE", exstr.ToString());
                             ex = ex.InnerException;
                         }
-                        if (exstr.Length > 200)
-                            exstr.Remove(199, (exstr.Length - 200));
-
-                        bMD.InsertMD_LOG(mail.IDMAIL, "ERRORE", exstr.ToString());
                     }
                 }
 

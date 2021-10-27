@@ -74,8 +74,19 @@ namespace MailDispatcher.Data
         [DataContext]
         public void InsertMD_LOG(decimal IdMail, string TipoOperazione, string Nota)
         {
+            int lunghezzaMassima = 1000;
             MailDispatcherAdapter a = new MailDispatcherAdapter(DbConnection, DbTransaction);
-            a.InsertMD_LOG(IdMail, TipoOperazione.ToUpper(), Nota.ToUpper());
+
+            while (Nota.Length > 0)
+            {
+                string subNota = Nota;
+                if (Nota.Length > lunghezzaMassima)
+                    subNota = Nota.Substring(0, lunghezzaMassima);
+
+                a.InsertMD_LOG(IdMail, TipoOperazione.ToUpper(), subNota.ToUpper());
+                Nota = Nota.Remove(0, Math.Min(Nota.Length, lunghezzaMassima));
+            }
+
         }
 
         [DataContext]
@@ -101,7 +112,7 @@ namespace MailDispatcher.Data
 
         [DataContext(true)]
         public void AggiungiAllegato(decimal IDMAIL, string filename, MemoryStream ms)
-        {            
+        {
             MailDispatcherAdapter a = new MailDispatcherAdapter(DbConnection, DbTransaction);
             a.AggiungiAllegato(IDMAIL, filename, ms);
         }
