@@ -2,6 +2,7 @@
 using MailDispatcher.Data;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Net.Mail;
@@ -28,7 +29,9 @@ namespace MailDispatcher.Services
                 bMD.FillMD_GRUPPI_DESTINATARI(ds);
 
                 List<decimal> idmail = ds.MD_EMAIL.Select(x => x.IDMAIL).Distinct().ToList();
-
+                decimal tentativiPermessi = 3;
+                if (!decimal.TryParse(ConfigurationManager.AppSettings["TentativiPermessi"], out tentativiPermessi))
+                    tentativiPermessi = 3;
                 foreach (MailDispatcherDS.MD_EMAILRow mail in ds.MD_EMAIL)
                 {
                     try
@@ -37,7 +40,9 @@ namespace MailDispatcher.Services
                         bMD.FillMD_ALLEGATI(ds, mail.IDMAIL);
                         decimal idRichiedente = mail.IDRICHIEDENTE;
 
-                        if (mail.TENTATIVO == 3)
+
+
+                        if (mail.TENTATIVO == tentativiPermessi)
                         {
                             bMD.InsertMD_LOG(mail.IDMAIL, "MAIL BLOCCATA", "SUPERATO IL NUMERO DI TENTATIVI AMMESSI");
                             mail.STATO = MD_EMAIL_STATO.BLOCCATA;
@@ -55,7 +60,7 @@ namespace MailDispatcher.Services
                             continue;
                         }
 
-                        List<string> destintinatariMail = (from destinatari in ds.MD_GRUPPI_DESTINATARI                                                          
+                        List<string> destintinatariMail = (from destinatari in ds.MD_GRUPPI_DESTINATARI
                                                            join richiedenti in ds.MD_GRUPPI_RICHIEDENTI on destinatari.IDGRUPPO equals richiedenti.IDGRUPPO
                                                            where richiedenti.IDRICHIEDENTE == idRichiedente
                                                            select destinatari.DESTINATARIO).ToList();
