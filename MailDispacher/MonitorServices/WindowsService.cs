@@ -55,12 +55,12 @@ namespace MonitorServices
                     MonitorDS.MONITOR_SCHEDULERRow schedulazione;
 
 
-                    if (sMonitor.VerificaEsecuzione("MAGAZZININEGATIVI", out schedulazione))
-                    {
-                        MagazzinoMonitor mMagazzino = new MagazzinoMonitor();
-                        mMagazzino.VerificaSaldiNegativi();
-                        sMonitor.AggiornaSchedulazione(schedulazione);
-                    }
+                    //if (sMonitor.VerificaEsecuzione("MAGAZZININEGATIVI", out schedulazione))
+                    //{
+                    //    MagazzinoMonitor mMagazzino = new MagazzinoMonitor();
+                    //    mMagazzino.VerificaSaldiNegativi();
+                    //    sMonitor.AggiornaSchedulazione(schedulazione);
+                    //}
 
                     if (sMonitor.VerificaEsecuzione("MAGAZZINIGIACENZE", out schedulazione))
                     {
